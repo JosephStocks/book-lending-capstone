@@ -4,7 +4,7 @@ import {
   bookSearch,
   bookSearchByTitle,
   bookSearchByAuthor,
-} from "./api-calls/3rd-party-apis";
+} from "../api-calls/3rd-party-apis";
 import styled from "styled-components";
 import Book from "./Book";
 
@@ -62,6 +62,7 @@ export default function App() {
         setBooks(result.items);
       } catch (error) {
         setBooks([]);
+        console.error(error);
         console.log("There must not be any results for that!");
       }
     })();
