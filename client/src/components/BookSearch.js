@@ -62,6 +62,7 @@ export default function App() {
         setBooks(result.items);
       } catch (error) {
         setBooks([]);
+        console.error(error);
         console.log("There must not be any results for that!");
       }
     })();

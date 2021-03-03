@@ -5,16 +5,16 @@ let volumeInfoFields = [
   "title",
   "description",
   "authors",
-  // "ratingsCount",
+  "ratingsCount",
   "publisher",
   "publishedDate",
-  // "previewLink",
-  // "pageCount",
-  // "infoLink",
+  "previewLink",
+  "pageCount",
+  "infoLink",
   "imageLinks",
   "categories",
-  // "canonicalVolumeLink",
-  // "averageRating",
+  "canonicalVolumeLink",
+  "averageRating",
   "industryIdentifiers",
 ];
 
@@ -63,7 +63,7 @@ export const bookSearchByISBN = async (isbn) => {
 };
 
 export const bookSearchByTitle = async (title) => {
-  return flattenDeeplyNestedObject(await baseSearch(`intitle:${title}`));
+  return flattenDeeplyNestedObject(await baseSearch(`intitle:${title}`)).data;
 };
 
 export const bookSearchByAuthor = async (author) => {
