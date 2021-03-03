@@ -10,9 +10,14 @@
 # sequelize model:generate --name myBooks \
 # --attributes userID:integer,bookID:integer,lendTo:integer
 
-
-# sequelize model:generate --name lendingBooks \
-# --attributes bookID:integer,lendTo:integer,ownedBy:integer
-
 # sequelize model:generate --name booksTable \
 # --attributes title:string,author:string,category:string,isbn:integer
+
+sequelize model:generate --name OwnedBooks \
+--attributes userID:integer,bookID:integer,lendToID:integer
+
+sequelize model:generate --name WantToReadBooks \
+--attributes userID:integer,bookID:integer
+
+sequelize model:generate --name ReadBooks \
+--attributes userID:integer,bookID:integer

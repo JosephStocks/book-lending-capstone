@@ -20,6 +20,12 @@ module.exports = {
       isbn: {
         type: Sequelize.INTEGER
       },
+      description: {
+        type: Sequelize.STRING
+      },
+      imageLink: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
