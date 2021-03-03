@@ -9,6 +9,7 @@ import BaseLayout from "./components/layout/BaseLayout";
 import reducer from "./redux/reducers/reducerTemplate";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
+import BookSearch from "./components/BookSearch";
 import "./styles/app.scss";
 
 const saveToLocalStorage = (reduxGlobalState) => {
@@ -54,6 +55,7 @@ ReactDOM.render(
             <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Registration} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/search" component={BookSearch} />
           </Switch>
         </BaseLayout>
       </Router>
