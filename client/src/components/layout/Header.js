@@ -1,35 +1,40 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { Navbar, NavDropdown, Nav, Form, FormControl, Button } from 'react-bootstrap';
+
+import Avatar from '../../styles/images/avatar.png'
 
 const Header = () => {
     return (
         <> 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" href="#">Books App</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form className="form-inline ml-auto my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                            </Link>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" href="#">Action</Link>
-                            <Link className="dropdown-item" href="#">Another action</Link>
-                            <div className="dropdown-divider"></div>
-                            <Link className="dropdown-item" href="#">Something else here</Link>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <Navbar bg="warning" expand="lg" sticky="top">
+                <Navbar.Brand href="#home">Book Swap</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    {/* <Form className="ml-auto" inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-info">Search</Button>
+                    </Form> */}
+                    <Nav.Link className="ml-auto" href="#link">Search</Nav.Link>
+                    <Nav.Link href="#link">Login</Nav.Link>
+                    <NavDropdown className="mr-5" eventKey={1} 
+                            title={
+                                <div className="pull-left">
+                                    <img className="thumbnail-image" 
+                                        src={Avatar} 
+                                        alt="user pic"
+                                        height="50px"
+                                    />
+                                </div>
+                            } id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">My Books</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">My Friends</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">My Account</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+                    </NavDropdown>
+                </Navbar.Collapse>
+            </Navbar>
         </>
     )
 }
