@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-import App from "./App";
+import Home from "./Home";
 import BaseLayout from "./components/layout/BaseLayout";
-import Hooks from "./components/Hooks";
-import Classes from "./components/Classes";
 import reducer from "./redux/reducers/reducerTemplate";
+import Login from "./components/Login";
+import Registration from "./components/Registration";
+import "./styles/app.scss";
 
 const saveToLocalStorage = (reduxGlobalState) => {
   //serialization = converting js object to a string
@@ -51,9 +51,9 @@ ReactDOM.render(
       <Router>
         <BaseLayout>
           <Switch>
-            <Route exact path="/" component={App} />
-            <Route exact path="/hooks" component={Hooks} />
-            <Route exact path="/classes" component={Classes} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/register" component={Registration} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </BaseLayout>
       </Router>
