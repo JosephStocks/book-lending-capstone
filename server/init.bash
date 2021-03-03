@@ -7,8 +7,8 @@
 # sequelize model:generate --name friendsRelations \
 # --attributes userID:integer,friendUserID:integer
 
-sequelize model:generate --name myBooks \
---attributes userID:integer,bookID:integer,lendTo:integer
+# sequelize model:generate --name myBooks \
+# --attributes userID:integer,bookID:integer,lendTo:integer
 
 
 # sequelize model:generate --name lendingBooks \
