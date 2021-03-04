@@ -27,10 +27,10 @@ const Header = () => {
                                     />
                                 </div>
                             } id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">My Books</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">My Friends</NavDropdown.Item>
+                        <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
+                        <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">My Account</NavDropdown.Item>
+                        <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
