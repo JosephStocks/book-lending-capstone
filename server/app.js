@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+
 //body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -14,9 +15,8 @@ app.use(function (req, res, next) {
 });
 
 
-
-// routes
-app.use(require("./routes/auth"));
+//routes
+// app.use(require("./routes/auth"));
 app.use(require("./routes/books"));
 
 // server

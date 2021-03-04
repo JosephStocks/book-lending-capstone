@@ -11,8 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       user.hasMany(models.friendsRelations, { foreignKey: "userID" });
       user.hasMany(models.friendsRelations, { foreignKey: "friendUserID" });
-      user.hasMany(models.myBooks, { foreignKey: "userID" });
-      user.hasMany(models.myBooks, { foreignKey: "lendTo" });
+      user.hasMany(models.OwnedBooks, { foreignKey: "userID" });
+      user.hasMany(models.OwnedBooks, { foreignKey: "lendTo" });
+      user.hasMany(models.ReadBooks, { foreignKey: "userID" });
+      user.hasMany(models.WantToReadBooks, { foreignKey: "userID" });
     }
   }
   user.init(
@@ -21,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       lastName: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
+      googleAuth: DataTypes.STRING,
     },
     {
       sequelize,
