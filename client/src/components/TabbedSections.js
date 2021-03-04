@@ -1,21 +1,32 @@
 import React from "react";
-import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
 
 export default function TabbedSections() {
   return (
     <>
-      <Tabs defaultActiveKey="own" id="uncontrolled-tab-example">
-        <Tab eventkey="own" title="Books I own">
-          {/* <Sonnet /> */}
-        </Tab>
-        <Tab eventkey="read" title="Books I've Read">
-          {/* <Sonnet /> */}
-        </Tab>
-        <Tab eventkey="want" title="Books I want to Read">
-          {/* <Sonnet /> */}
-        </Tab>
-      </Tabs>
+    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col>
+          <Nav variant="tabs" className="flex-row">
+            <Nav.Item>
+              <Nav.Link eventKey="first">My Books</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link eventKey="second">Books I've Read</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link eventKey="third">Books To Read</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+      </Row>
+    </Tab.Container>
+      
     </>
   );
 }
