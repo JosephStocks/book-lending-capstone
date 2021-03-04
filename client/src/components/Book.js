@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { bookAddPost } from "../api-calls/internal-api";
 
 import * as S from "../styles/Styles";
 
@@ -99,8 +100,14 @@ export default function Book({ book }) {
           )}
         </S.CardContent>
         <S.ButtonGroup key={`buttons-${id}`}>
-          <S.Button key={`button1-${id}`} size="sm">
-            Add To Already Read
+          <S.Button
+            key={`button1-${id}`}
+            size="sm"
+            onClick={() => {
+              bookAddPost(book);
+            }}
+          >
+            Add Book to Database
           </S.Button>
           <S.Button key={`button2-${id}`} size="sm">
             Add To Want to Read
