@@ -8,11 +8,27 @@ router.get("/api", (req, res) => {
 
 router.post("/addbook", async (req, res) => {
   console.log(req.body);
-  //   await db.watchlists.create({
-  //     userid: req.session.passport.user,
-  //     movieid: movie.id,
-  // });
-  res.status(200).send("some text");
+
+  let {
+    id,
+    title,
+    authors,
+    categories,
+    industryIdentifiers,
+    description,
+    imageLinks,
+  } = req.body.book;
+  let result = await db.books.create({
+    title: title,
+    authors: JSON.stringify(authors),
+    categories: JSON.stringify(categories),
+    isbn: JSON.stringify(industryIdentifiers),
+    description: description,
+    imageLinks: JSON.stringify(imageLinks),
+    googleBookID: id,
+  });
+  console.log(result);
+  res.status(200).json(result);
 });
 
 module.exports = router;
