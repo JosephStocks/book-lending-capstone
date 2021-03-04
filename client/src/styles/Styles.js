@@ -1,19 +1,6 @@
 import styled, { css } from "styled-components";
-import Avatar from "../styles/images/avatar.png";
 import { default as UnstyledButton } from "react-bootstrap/Button";
 
-// export const Paper = styled.div`
-//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-//     transition: 0.3s;
-//     border-radius: 5px; /* 5px rounded corners */
-//     width: 400px;
-//     height: ${props => props.height || "400px"};
-//     background-color: ${props => props.bgc || "purple"};
-//     margin-left: auto;
-//     margin-right: auto;
-//     margin-bottom: 15px;
-//     text-align: center;
-// `
 
 export const Form = styled.form`
   margin-left: auto;
@@ -56,6 +43,11 @@ export const Grid = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 `;
+
+export const Box = styled.div`
+  border-style: solid;
+  height: 300px;
+`
 
 export const PlaceholderDivImg = styled.div`
   width: 128px;

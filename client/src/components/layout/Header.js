@@ -9,15 +9,14 @@ const Header = () => {
         <> 
             <Navbar bg="info" expand="lg" sticky="top">
                 <Navbar.Brand as={Link} to="/">ReadMe Book Swap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar className="ml-auto" id="basic-navbar-nav">
                     {/* <Form className="ml-auto" inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-info">Search</Button>
                     </Form> */}
-                    <Nav.Link className="ml-auto" as={Link} to="/search">Search</Nav.Link>
+                    <Nav.Link as={Link} to="/search">Search</Nav.Link>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                    <NavDropdown className="mr-5" eventKey={1} 
+                    <NavDropdown eventKey={1} 
                             title={
                                 <div className="pull-left">
                                     <img className="thumbnail-image" 
@@ -33,7 +32,7 @@ const Header = () => {
                         <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
                     </NavDropdown>
-                </Navbar.Collapse>
+                </Navbar>
             </Navbar>
         </>
     )
