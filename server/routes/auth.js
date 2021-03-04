@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs"); //encrypt passwords
 const db = require("../models");
-// const config = require('../secrets');
+const config = require('../config/jwtsecret');
 
 router.post("/signin", requireSignin, (req, res) => {
     //validate user
