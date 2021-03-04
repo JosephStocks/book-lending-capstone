@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       imageLinks: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       googleBookID: {
         type: Sequelize.STRING,

@@ -18,13 +18,13 @@ router.post("/addbook", async (req, res) => {
     description,
     imageLinks,
   } = req.body.book;
-  let result = await db.booksTable.create({
+  let result = await db.books.create({
     title: title,
-    author: JSON.stringify(authors),
-    category: JSON.stringify(categories),
+    authors: JSON.stringify(authors),
+    categories: JSON.stringify(categories),
     isbn: JSON.stringify(industryIdentifiers),
     description: description,
-    imageLink: imageLinks.thumbnail,
+    imageLinks: JSON.stringify(imageLinks),
     googleBookID: id,
   });
   console.log(result);
