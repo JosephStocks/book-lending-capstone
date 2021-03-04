@@ -4,7 +4,7 @@ import {
   bookSearch,
   bookSearchByTitle,
   bookSearchByAuthor,
-} from "./api-calls/3rd-party-apis";
+} from "../api-calls/3rd-party-apis";
 import styled from "styled-components";
 import Book from "./Book";
 
