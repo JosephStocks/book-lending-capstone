@@ -7,13 +7,13 @@ export default function TabbedSections() {
     <>
       <Tabs defaultActiveKey="own" id="uncontrolled-tab-example">
         <Tab eventKey="own" title="Books I own">
-          <Sonnet />
+          {/* <Sonnet /> */}
         </Tab>
         <Tab eventKey="read" title="Books I've Read">
-          <Sonnet />
+          {/* <Sonnet /> */}
         </Tab>
         <Tab eventKey="want" title="Books I want to Read">
-          <Sonnet />
+          {/* <Sonnet /> */}
         </Tab>
       </Tabs>
     </>
