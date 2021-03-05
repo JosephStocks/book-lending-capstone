@@ -7,6 +7,9 @@ import {
 } from "../api-calls/3rd-party-apis";
 import Book from "./Book";
 import * as S from "../styles/Styles";
+import {Button} from 'react-bootstrap';
+
+import BookModal from './BookModal';
 
 export default function App() {
   const [searchText, setSearchText] = useState("");
@@ -32,6 +35,7 @@ export default function App() {
   };
 
   return (
+    <>
     <div style={{ padding: 0, margin: 0 }}>
       <S.H2>Search for a book!</S.H2>
       <S.Form onSubmit={handleSubmit}>
@@ -53,5 +57,7 @@ export default function App() {
         </S.Grid>
       </div>
     </div>
+    <BookModal/>
+    </>
   );
 }

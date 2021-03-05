@@ -1,6 +1,6 @@
 //setting initial state
 const initialState = {
-    counter: 0
+    modalShow: false
 }
 
 //purpose of reducer is to return a new global state
@@ -8,10 +8,10 @@ const initialState = {
 const reducerTemplate = (state = initialState, action) => {
     
     switch(action.type){
-        case "INCREMENT":   //must match name of action.type in actions
+        case "TOGGLEMODAL":   //must match name of action.type in actions
             return{
                 ...state,
-                counter: state.counter + action.data
+                modalShow: !state.modalShow
             }
         
         default:
