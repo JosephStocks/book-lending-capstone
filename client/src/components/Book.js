@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { bookAddPost } from "../api-calls/internal-api";
+import {toggleModal} from '../redux/actions/templateActions';
 
 import * as S from "../styles/Styles";
 
@@ -109,7 +110,8 @@ export default function Book({ book }) {
           >
             Add Book to Database
           </S.Button>
-          <S.Button key={`button2-${id}`} size="sm">
+          <S.Button key={`button2-${id}`} onClick={()=>dispatch(toggleModal(true))}>See More</S.Button>
+          <S.Button key={`button3-${id}`} size="sm">
             Add To Want to Read
           </S.Button>
         </S.ButtonGroup>

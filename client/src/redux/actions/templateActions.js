@@ -1,10 +1,9 @@
 
 //this is an action creator and it returns an object
-export const increment = (n) => {
+export const toggleModal = () => {
     
     return{
-        type: "INCREMENT",
-        data: n,
+        type: "TOGGLEMODAL"
     }
 }
 
