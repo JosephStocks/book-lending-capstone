@@ -7,5 +7,12 @@ export const toggleModal = () => {
     }
 }
 
+export const addIndividBook = (book) => {
+    
+    return{
+        type: "ADDINDIVIDBOOK",
+        book: book
+    }
+}
 
 
