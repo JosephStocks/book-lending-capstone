@@ -52,12 +52,12 @@ export default function App() {
       <div>
         <S.Grid>
           {books.map((book) => (
-            <Book book={book} />
+            <Book book={book}/>
           ))}
         </S.Grid>
       </div>
     </div>
-    <BookModal/>
+    <BookModal />
     </>
   );
 }
