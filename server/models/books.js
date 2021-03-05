@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       imageLinks: DataTypes.TEXT,
       googleBookID: DataTypes.STRING,
+      publisher: DataTypes.STRING,
+      publishedDate: DataTypes.STRING,
     },
     {
       sequelize,
