@@ -11,5 +11,5 @@ export const bookAddPost = async (book) => {
     }
   );
 
-  console.log(response);
+  console.log(response?.data?.publishedDate);
 };

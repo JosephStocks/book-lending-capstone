@@ -29,6 +29,12 @@ module.exports = {
       googleBookID: {
         type: Sequelize.STRING,
       },
+      publisher: {
+        type: Sequelize.STRING,
+      },
+      publishedDate: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
