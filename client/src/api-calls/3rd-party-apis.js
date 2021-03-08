@@ -76,3 +76,21 @@ export const searchMapping = {
   title: bookSearchByTitle,
   author: bookSearchByAuthor,
 };
+
+export const addLargerImageLinks = async (originalBook) => {
+  let { selfLink } = originalBook;
+  try {
+    let url = new URL(selfLink); //check if it is URL
+    let result = await axios.get(selfLink, {
+      params: {
+        fields: `volumeInfo/imageLinks`,
+      },
+    });
+    let imageLinks = result.data.volumeInfo.imageLinks;
+    console.log(imageLinks);
+    return { ...originalBook, imageLinks };
+  } catch (error) {
+    console.error(error);
+    return originalBook;
+  }
+};
