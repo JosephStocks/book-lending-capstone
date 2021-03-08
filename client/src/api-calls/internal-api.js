@@ -31,3 +31,21 @@ export const bookDeleteRequestByDatabaseID = async (id) => {
 export const bookDeleteRequestByGoogleBookID = async (id) => {
   return await bookDeleteRequest("googleBookID", id);
 };
+
+export const addBookToPersonalLists = async (
+  book,
+  owned = false,
+  read = false,
+  wantToRead = false
+) => {
+  let response = await axios.post(
+    "http://localhost:3005/books",
+    { book, owned, read, wantToRead },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+  console.log(response);
+};
