@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../models");
 const axios = require("axios");
 
-router.get("/ownedbooks/:userID", async (req, res) => {
+router.get("/ownedbooks", async (req, res) => {
   let userID = req.params.userID;
   res.status(200).json(await showAllOwnedBooksByUser(userID));
 });
@@ -12,6 +12,7 @@ router.get("/readbooks/:userID", async (req, res) => {
   let userID = req.params.userID;
   res.status(200).json(await showAllReadBooksByUser(userID));
 });
+
 router.get("/wantbooks/:userID", async (req, res) => {
   let userID = req.params.userID;
   res.status(200).json(await showAllWantToReadBooksByUser(userID));
