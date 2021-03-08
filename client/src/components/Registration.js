@@ -19,17 +19,17 @@ const Registration = () => {
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="email" placeholder="Enter First Name" />
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="text" placeholder="Enter Last Name" />
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="text" placeholder="Enter email" />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
