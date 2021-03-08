@@ -2,6 +2,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const axios = require("axios");
+// auth
+const passport = require('passport');
+require('../auth/passAuth'); //import all of passport auth strategy
+
+// jwt auth
+let requireAuth = passport.authenticate('jwt', { session: false });
+
 
 router.get("/ownedbooks", async (req, res) => {
   let userID = req.params.userID;
