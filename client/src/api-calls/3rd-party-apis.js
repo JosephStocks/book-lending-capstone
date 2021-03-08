@@ -77,9 +77,8 @@ export const searchMapping = {
   author: bookSearchByAuthor,
 };
 
-const addLargerImageLinks = async (originalBook) => {
+export const addLargerImageLinks = async (originalBook) => {
   let { selfLink } = originalBook;
-
   try {
     let url = new URL(selfLink); //check if it is URL
     let result = await axios.get(selfLink, {

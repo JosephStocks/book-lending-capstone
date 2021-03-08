@@ -15,10 +15,10 @@ export const addIndividBook = (book) => {
     }
 }
 
-export const searchFunction = (book) => {
+export const searchFunction = (results) => {
     return{
         type: "SEARCHFUNCTION",
-        book: book
+        results: results
     }
 }
 

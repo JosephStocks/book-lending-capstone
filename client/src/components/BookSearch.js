@@ -4,6 +4,7 @@ import {
   bookSearch,
   bookSearchByTitle,
   bookSearchByAuthor,
+  addLargerImageLinks,
 } from "../api-calls/3rd-party-apis";
 import * as S from "../styles/Styles";
 import {Button} from 'react-bootstrap';
@@ -53,8 +54,8 @@ export default function App() {
       </S.Form>
       <div>
         <S.Grid>
-          {searchResults?.map((book) => (
-            <Book book={book}/>
+          {searchResults?.map((book, index) => (
+            <Book book={{...book, index}}/>
           ))}
         </S.Grid>
       </div>

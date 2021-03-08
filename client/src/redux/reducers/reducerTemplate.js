@@ -23,7 +23,7 @@ const reducerTemplate = (state = initialState, action) => {
         case "SEARCHFUNCTION":
             return{
                 ...state,
-                searchResults: action.book
+                searchResults: action.results
             }
         
         default:
