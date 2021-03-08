@@ -27,16 +27,17 @@ router.get("/wantbooks/:userID", async (req, res) => {
 });
 
 router.post("/books", requireAuth, async (req, res) => {
-  // req.data.user.id
-  // req.data.req.books
-  console.log(req.data.req.books);
-  console.log(req.data.user.id);
 
 
-  let book = await addLargerImageLinks(req.body.book);
-  let result = await createBookEntry(book);
-  console.log(result);
-  res.status(200).json(result);
+  console.log(req.user.id)
+  console.log(req.body.bookid);
+  res.send('hi')
+
+
+  // let book = await addLargerImageLinks(req.body.book);
+  // let result = await createBookEntry(book);
+  // console.log(result);
+  // res.status(200).json(result);
 });
 
 router.delete("/books", async (req, res) => {
