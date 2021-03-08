@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from "axios";
 
 const Registration = () => {
 
@@ -12,13 +13,11 @@ const Registration = () => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let registerUser = await axios.post('http://localhost:3005/register', {firstName:fName, lastName:lName, email, password})
+    console.log(registerUser)
   }
-  
-
-
   return (
     <>
 

@@ -32,15 +32,10 @@ export const bookDeleteRequestByGoogleBookID = async (id) => {
   return await bookDeleteRequest("googleBookID", id);
 };
 
-export const addBookToPersonalLists = async (
-  book,
-  owned = false,
-  read = false,
-  wantToRead = false
-) => {
+export const addBookToPersonalLists = async (book, whichList) => {
   let response = await axios.post(
     "http://localhost:3005/books",
-    { book, owned, read, wantToRead },
+    { book, whichList },
     {
       headers: {
         "content-type": "application/json",
