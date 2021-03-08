@@ -28,11 +28,11 @@ import * as S from "../styles/Styles";
                     <Modal.Title>{individBook.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                {individBook.imageLinks?.thumbnail ? (
+                {individBook.imageLinks?.small ? (
                     <img
-                        height="192px"
+                        // height="292px"
                         key={`Media-${individBook.id}`}
-                        src={individBook.imageLinks?.thumbnail}
+                        src={individBook.imageLinks?.small}
                         alt={individBook.title}
                     />
                     ) : (
