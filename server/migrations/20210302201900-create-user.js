@@ -23,6 +23,9 @@ module.exports = {
       googleAuth: {
         type: Sequelize.STRING,
       },
+      jwtToken: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

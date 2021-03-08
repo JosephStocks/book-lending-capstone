@@ -3,13 +3,86 @@ const router = express.Router();
 const db = require("../models");
 const axios = require("axios");
 
-router.get("/api", (req, res) => {
-  res.send("I am an API.");
+router.get("/ownedbooks/:userID", async (req, res) => {
+  let userID = req.params.userID;
+  res.status(200).json(await showAllOwnedBooksByUser(userID));
 });
 
-router.post("/addbook", async (req, res) => {
+router.get("/readbooks/:userID", async (req, res) => {
+  let userID = req.params.userID;
+  res.status(200).json(await showAllReadBooksByUser(userID));
+});
+router.get("/wantbooks/:userID", async (req, res) => {
+  let userID = req.params.userID;
+  res.status(200).json(await showAllWantToReadBooksByUser(userID));
+});
+
+router.post("/books", async (req, res) => {
   let book = await addLargerImageLinks(req.body.book);
 
+  let result = await createBookEntry(book);
+  console.log(result);
+  res.status(200).json(result);
+});
+
+router.delete("/books", async (req, res) => {
+  let result = deleteBookByAnyID(req.body);
+
+  console.log(result);
+  res.status(200).json(result);
+});
+
+const showAllOwnedBooksByUser = async (userID) => {
+  return await showSpecifiedBookListByUser(db.OwnedBooks, userID);
+};
+
+const showAllReadBooksByUser = async (userID) => {
+  return await showSpecifiedBookListByUser(db.ReadBooks, userID);
+};
+const showAllWantToReadBooksByUser = async (userID) => {
+  return await showSpecifiedBookListByUser(db.WantToReadBooks, userID);
+};
+
+const showSpecifiedBookListByUser = async (dbTableModel, userID) => {
+  return await dbTableModel.findAll({
+    where: {
+      userID: userID,
+    },
+    include: [
+      {
+        model: db.books,
+      },
+    ],
+    raw: true,
+  });
+};
+
+// Delete by database id OR by googleID
+const deleteBookByAnyID = async ({ idType, id }) => {
+  return await db.books.destroy({
+    where: {
+      [idType]: id,
+    },
+  });
+};
+
+const deleteBookByID = async (id) => {
+  return await db.books.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+const deleteBookByGoogleBookID = async (googleBookID) => {
+  return await db.books.destroy({
+    where: {
+      googleBookID: googleBookID,
+    },
+  });
+};
+
+const createBookEntry = async (book) => {
   let {
     id,
     title,
@@ -22,7 +95,7 @@ router.post("/addbook", async (req, res) => {
     publishedDate,
   } = book;
 
-  let result = await db.books.create({
+  return await db.books.create({
     title,
     publisher,
     publishedDate,
@@ -33,9 +106,37 @@ router.post("/addbook", async (req, res) => {
     isbn: JSON.stringify(industryIdentifiers),
     imageLinks: JSON.stringify(imageLinks),
   });
-  // console.log(result);
-  res.status(200).json(result);
-});
+};
+
+const findOrCreateBookEntry = async (book) => {
+  let {
+    id,
+    title,
+    authors,
+    categories,
+    industryIdentifiers,
+    description,
+    imageLinks,
+    publisher,
+    publishedDate,
+  } = book;
+
+  return await db.books.findOrCreate({
+    where: {
+      googleBookID: id,
+    },
+    defaults: {
+      title,
+      publisher,
+      publishedDate,
+      description,
+      authors: JSON.stringify(authors),
+      categories: JSON.stringify(categories),
+      isbn: JSON.stringify(industryIdentifiers),
+      imageLinks: JSON.stringify(imageLinks),
+    },
+  });
+};
 
 const addLargerImageLinks = async (originalBook) => {
   let { selfLink } = originalBook;
