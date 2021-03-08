@@ -17,7 +17,7 @@ import * as S from "../styles/Styles";
             <>
             <Modal key={individBook.id}
                 // ref={modalRef}
-                animation={false}
+                // animation={false}
                 onHide={() => dispatch(toggleModal())}
                 show={modalState}
                 size="lg"
@@ -42,7 +42,6 @@ import * as S from "../styles/Styles";
                     ></S.PlaceholderDivImg>
                     )}
                     <p>{individBook.description}</p>
-                    <p>Published By: {individBook.publisher}</p>
                     {individBook.publisher ? (
                         <p>Published By: {individBook.publisher}</p>
                     ) : (
