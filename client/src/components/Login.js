@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from "axios";
 
 const Login = () => {
 
@@ -11,10 +12,10 @@ const Login = () => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password)
-
+    let loginUser = await axios.post('http://localhost:3005/signin', {email, password})
+    console.log(loginUser)
   }
 
   return (

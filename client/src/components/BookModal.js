@@ -3,6 +3,11 @@ import { Button, Modal } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleModal} from '../redux/actions/templateActions';
 import * as S from "../styles/Styles";
+import {
+    bookAddPost,
+    bookDeleteRequestByDatabaseID,
+    bookDeleteRequestByGoogleBookID,
+    } from "../api-calls/internal-api";
     
     const BookModal = (props) => {
         const dispatch = useDispatch();
@@ -54,7 +59,34 @@ import * as S from "../styles/Styles";
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => dispatch(toggleModal())}>Close</Button>
+                        <S.Button
+                        key={`button1-${individBook.id}`}
+                        size="sm"
+                        onClick={() => {
+                        bookAddPost(individBook);
+                        }}
+                        >
+                            I Own This Book
+                        </S.Button>
+                        <S.Button
+                        key={`button2-${individBook.id}`}
+                        size="sm"
+                        onClick={() => {
+                        bookAddPost(individBook);
+                        }}
+                        >
+                            I've Read This Book
+                        </S.Button>
+                        <S.Button
+                        key={`button3-${individBook.id}`}
+                        size="sm"
+                        onClick={() => {
+                        bookAddPost(individBook);
+                        }}
+                        >
+                            I Want To Read
+                        </S.Button>
+                        
                 </Modal.Footer>
             </Modal>
             </>

@@ -122,7 +122,7 @@ export default function Book({ book }, props) {
           )}
         </S.CardContent>
         <S.ButtonGroup key={`buttons-${id}`}>
-          <S.Button
+          {/* <S.Button
             key={`button1-${id}`}
             size="sm"
             onClick={() => {
@@ -130,11 +130,11 @@ export default function Book({ book }, props) {
             }}
           >
             Add Book to Database
-          </S.Button>
+          </S.Button> */}
           <S.Button key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
-          <S.Button
+          {/* <S.Button
             key={`button3-${id}`}
             size="sm"
             onClick={() => {
@@ -142,7 +142,7 @@ export default function Book({ book }, props) {
             }}
           >
             Delete book from database
-          </S.Button>
+          </S.Button> */}
         </S.ButtonGroup>
       </S.Card>
     </>
