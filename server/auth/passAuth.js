@@ -7,7 +7,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 const bcrypt = require('bcryptjs'); //unencrypt
 const db = require('../models'); //access to user model
-const config = require('../config/jwtsecret');; //gives access to jwt secret
+const config = require('../config/jwtsecret'); //gives access to jwt secret
 
 
 
@@ -37,8 +37,8 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
                 }
 
                 //valid user 
-
-                return done(null, records[0]);
+                let user = records[0];
+                return done(null, user);
             })
 
         }
@@ -68,9 +68,11 @@ let jwtOptions = {
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
 
     try {
-        let user = await db.user.findByPk(payload.sub);
+        let user = await db.user.findByPk(payload.id);
         if (user) {
             //success
+            console.log(jwtOptions.jwtFromRequest);
+            // if (user.jwtToken === )
             done(null, user);
         }
         else {
