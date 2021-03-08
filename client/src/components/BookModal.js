@@ -2,14 +2,19 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleModal} from '../redux/actions/templateActions';
+import * as S from "../styles/Styles";
     
     
-    const BookModal = () => {
+    const BookModal = (props) => {
         const dispatch = useDispatch();
         const modalState = useSelector(state => state.modalShow);
+        const individBook = useSelector(state => state.individBook);
+        const PLACEHOLDER_IMAGE =
+        "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
+        const NO_DATE = "N/A"
         return (
             <>
-            <Modal
+            <Modal key={individBook.id}
                 onHide={() => dispatch(toggleModal())}
                 show={modalState}
                 size="lg"
@@ -17,10 +22,29 @@ import {toggleModal} from '../redux/actions/templateActions';
                 centered
             >
                 <Modal.Header  closeButton>
-                    <Modal.Title>Book title</Modal.Title>
+                    <Modal.Title>{individBook.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Book Description</p>
+                {individBook.imageLinks?.thumbnail ? (
+                    <img
+                        height="192px"
+                        key={`Media-${individBook.id}`}
+                        src={individBook.imageLinks?.thumbnail}
+                        alt={individBook.title}
+                    />
+                    ) : (
+                    <S.PlaceholderDivImg
+                        key={`Media-${individBook.id}`}
+                        bgImage={PLACEHOLDER_IMAGE}
+                    ></S.PlaceholderDivImg>
+                    )}
+                    <p>{individBook.description}</p>
+                    <p>Published By: {individBook.publisher}</p>
+                    {individBook.publishedDate ? (
+                        <p>Publish Date: {individBook.publishedDate}</p>
+                    ) : (
+                        <p>Publish Date: {NO_DATE}</p>
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => dispatch(toggleModal())}>Close</Button>
