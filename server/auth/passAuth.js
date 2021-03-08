@@ -7,7 +7,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 const bcrypt = require('bcryptjs'); //unencrypt
 const db = require('../models'); //access to user model
-const config = require('../secrets'); //gives access to jwt secret
+const config = require('../config/jwtsecret');; //gives access to jwt secret
 
 
 

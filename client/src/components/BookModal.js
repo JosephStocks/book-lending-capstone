@@ -4,17 +4,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import {toggleModal} from '../redux/actions/templateActions';
 import * as S from "../styles/Styles";
     
-    
     const BookModal = (props) => {
         const dispatch = useDispatch();
         const modalState = useSelector(state => state.modalShow);
         const individBook = useSelector(state => state.individBook);
+        console.log(individBook)
+        // const modalRef = React.useRef(null)
         const PLACEHOLDER_IMAGE =
         "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
         const NO_DATE = "N/A"
         return (
             <>
             <Modal key={individBook.id}
+                // ref={modalRef}
+                // animation={false}
                 onHide={() => dispatch(toggleModal())}
                 show={modalState}
                 size="lg"
@@ -39,7 +42,11 @@ import * as S from "../styles/Styles";
                     ></S.PlaceholderDivImg>
                     )}
                     <p>{individBook.description}</p>
-                    <p>Published By: {individBook.publisher}</p>
+                    {individBook.publisher ? (
+                        <p>Published By: {individBook.publisher}</p>
+                    ) : (
+                        <p>Published By: {NO_DATE}</p>
+                    )}
                     {individBook.publishedDate ? (
                         <p>Publish Date: {individBook.publishedDate}</p>
                     ) : (

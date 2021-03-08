@@ -5,24 +5,26 @@ import {
   bookSearchByTitle,
   bookSearchByAuthor,
 } from "../api-calls/3rd-party-apis";
-import Book from "./Book";
 import * as S from "../styles/Styles";
 import {Button} from 'react-bootstrap';
-
+import {useDispatch, useSelector} from 'react-redux';
+import Book from "./Book";
 import BookModal from './BookModal';
+import {searchFunction} from '../redux/actions/templateActions';
 
 export default function App() {
   const [searchText, setSearchText] = useState("");
-  const [books, setBooks] = useState([]);
+  const dispatch = useDispatch();
+  const searchResults = useSelector(state => state.searchResults)
 
   const search = () => {
     (async () => {
       try {
         let result = await bookSearchByTitle(searchText);
         console.log(result);
-        setBooks(result.items);
+        dispatch(searchFunction(result.items));
       } catch (error) {
-        setBooks([]);
+        dispatch(searchFunction([]));
         console.error(error);
         console.log("There must not be any results for that!");
       }
@@ -51,7 +53,7 @@ export default function App() {
       </S.Form>
       <div>
         <S.Grid>
-          {books.map((book) => (
+          {searchResults?.map((book) => (
             <Book book={book}/>
           ))}
         </S.Grid>

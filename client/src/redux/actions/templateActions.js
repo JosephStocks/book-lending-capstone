@@ -15,4 +15,11 @@ export const addIndividBook = (book) => {
     }
 }
 
+export const searchFunction = (book) => {
+    return{
+        type: "SEARCHFUNCTION",
+        book: book
+    }
+}
+
 
