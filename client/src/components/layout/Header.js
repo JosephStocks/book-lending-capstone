@@ -16,7 +16,7 @@ const Header = () => {
                     </Form> */}
                     <Nav.Link as={Link} to="/search">Search</Nav.Link>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                    <NavDropdown eventKey={1}
+                    <NavDropdown eventKey={1} //Causing Error in Console//
                             title={
                                 <div className="pull-left">
                                     <img className="thumbnail-image" 
