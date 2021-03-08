@@ -8,24 +8,29 @@ const initialState = {
 //purpose of reducer is to return a new global state
 //reducer must be passed into store
 const reducerTemplate = (state = initialState, action) => {
-    
-    switch(action.type){
+
+    switch (action.type) {
         case "TOGGLEMODAL":   //must match name of action.type in actions
-            return{
+            return {
                 ...state,
                 modalShow: !state.modalShow
             }
         case "ADDINDIVIDBOOK":
-            return{
+            return {
                 ...state,
                 individBook: action.book
             }
         case "SEARCHFUNCTION":
-            return{
+            return {
                 ...state,
                 searchResults: action.results
             }
-        
+        case "SAVETOKEN":
+            return {
+                ...state,
+                token: action.data
+            }
+
         default:
             return state;
     }
