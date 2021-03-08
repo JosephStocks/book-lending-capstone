@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
+// import { useDispatch, useSelector } from 'react-redux';
+// import { saveToken } from '../redux/actions/templateActions'
 
 const Registration = () => {
 
@@ -13,21 +15,24 @@ const Registration = () => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
+  // const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let registerUser = await axios.post('http://localhost:3005/register', {firstName:fName, lastName:lName, email, password})
+    let registerUser = await axios.post('http://localhost:3005/register', { firstName: fName, lastName: lName, email, password })
     console.log(registerUser)
+    // dispatch(saveToken(loginUser.data.token));
   }
   return (
     <>
 
       <Container>
 
-      <Row>
+        <Row>
 
-        <Col md={{ span: 4, offset: 4 }}>
+          <Col md={{ span: 4, offset: 4 }}>
 
-          <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} >
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>First Name</Form.Label>
@@ -36,7 +41,7 @@ const Registration = () => {
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter Last Name" value={lName} onChange={(e) => setlName(e.target.value)}  />
+                <Form.Control type="text" placeholder="Enter Last Name" value={lName} onChange={(e) => setlName(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
@@ -54,16 +59,16 @@ const Registration = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                  Submit
+                Submit
               </Button>
 
-          </Form>
+            </Form>
 
-        </Col>
+          </Col>
 
-      </Row>
+        </Row>
 
-    </Container>
+      </Container>
     </>
   );
 };

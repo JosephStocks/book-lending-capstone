@@ -1,33 +1,36 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { saveToken } from '../redux/actions/templateActions'
 
 const Login = () => {
 
 
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let loginUser = await axios.post('http://localhost:3005/signin', {email, password})
-    console.log(loginUser)
+    let loginUser = await axios.post('http://localhost:3005/signin', { email, password })
+    dispatch(saveToken(loginUser.data.token));
   }
 
   return (
     <>
 
-    <Container>
+      <Container>
 
-      <Row>
+        <Row>
 
-        <Col md={{ span: 4, offset: 4 }}>
+          <Col md={{ span: 4, offset: 4 }}>
 
-          <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -44,16 +47,16 @@ const Login = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                  Submit
+                Submit
               </Button>
 
-          </Form>
+            </Form>
 
-        </Col>
+          </Col>
 
-      </Row>
+        </Row>
 
-    </Container>
+      </Container>
 
     </>
   );

@@ -1,12 +1,16 @@
 import axios from "axios";
 
-export const bookAddPost = async (book) => {
+
+export const bookAddPost = async (book, token) => {
+
+
   let response = await axios.post(
     "http://localhost:3005/books",
     { book },
     {
       headers: {
         "content-type": "application/json",
+        "authorization": token,
       },
     }
   );

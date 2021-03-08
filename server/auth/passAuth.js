@@ -62,9 +62,13 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
 
     try {
         let user = await db.user.findByPk(payload.id);
+        let data = {
+            user,
+            req,
+        }
         if (user) {
             //success
-            done(null, user);
+            done(null, data);
         }
         else {
             //didn't find the user 

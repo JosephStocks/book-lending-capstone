@@ -11,6 +11,7 @@ let requireAuth = passport.authenticate('jwt', { session: false });
 
 
 router.get("/ownedbooks", async (req, res) => {
+
   let userID = req.params.userID;
   res.status(200).json(await showAllOwnedBooksByUser(userID));
 });
@@ -25,9 +26,14 @@ router.get("/wantbooks/:userID", async (req, res) => {
   res.status(200).json(await showAllWantToReadBooksByUser(userID));
 });
 
-router.post("/books", async (req, res) => {
-  let book = await addLargerImageLinks(req.body.book);
+router.post("/books", requireAuth, async (req, res) => {
+  // req.data.user.id
+  // req.data.req.books
+  console.log(req.data.req.books);
+  console.log(req.data.user.id);
 
+
+  let book = await addLargerImageLinks(req.body.book);
   let result = await createBookEntry(book);
   console.log(result);
   res.status(200).json(result);

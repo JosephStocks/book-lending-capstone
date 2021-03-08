@@ -1,24 +1,31 @@
 
 //this is an action creator and it returns an object
 export const toggleModal = () => {
-    
-    return{
+
+    return {
         type: "TOGGLEMODAL"
     }
 }
 
 export const addIndividBook = (book) => {
-    
-    return{
+
+    return {
         type: "ADDINDIVIDBOOK",
         book: book
     }
 }
 
 export const searchFunction = (results) => {
-    return{
+    return {
         type: "SEARCHFUNCTION",
         results: results
+    }
+}
+
+export const saveToken = (token) => {
+    return {
+        type: "SAVETOKEN",
+        data: token
     }
 }
 
