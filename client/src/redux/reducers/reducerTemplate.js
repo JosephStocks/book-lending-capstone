@@ -1,7 +1,8 @@
 //setting initial state
 const initialState = {
     modalShow: false,
-    individBook: []
+    individBook: [],
+    searchResults: []
 }
 
 //purpose of reducer is to return a new global state
@@ -14,10 +15,15 @@ const reducerTemplate = (state = initialState, action) => {
                 ...state,
                 modalShow: !state.modalShow
             }
-        case"ADDINDIVIDBOOK":
+        case "ADDINDIVIDBOOK":
             return{
                 ...state,
                 individBook: action.book
+            }
+        case "SEARCHFUNCTION":
+            return{
+                ...state,
+                searchResults: action.book
             }
         
         default:
