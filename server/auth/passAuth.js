@@ -16,17 +16,14 @@ let options = {
     usernameField: 'email'
 }
 
+// local signin strategy
 let localLogin = new LocalStrategy(options, async (email, password, done) => {
     try {
         // check to see if email is in our db 
-
         let records = await db.user.findAll({ where: { email: email } }); //array of objects
-
         if (records !== null) {
             //encrypt password and compare to password in db 
-
             bcrypt.compare(password, records[0].password, (err, isMatch) => {
-
                 //check if err object exists
                 if (err) {
                     return done(err);
@@ -35,25 +32,20 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
                 if (!isMatch) {
                     return done(null, false)
                 }
-
                 //valid user 
                 let user = records[0];
                 return done(null, user);
             })
-
         }
         else {
-
             //no email was found, exit with error
             return done(null, false);
         }
     }
     catch (error) {
-
         //something in dabatase retreival
         return done(error)
     }
-
 });
 
 
@@ -63,16 +55,15 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
  */
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: config.secret
+    secretOrKey: config.secret,
+    passReqToCallback: true
 }
-let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
+let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
 
     try {
         let user = await db.user.findByPk(payload.id);
         if (user) {
             //success
-            console.log(jwtOptions.jwtFromRequest);
-            // if (user.jwtToken === )
             done(null, user);
         }
         else {
