@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       googleAuth: DataTypes.STRING,
+      jwtToken: DataTypes.STRING,
     },
     {
       sequelize,
