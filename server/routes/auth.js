@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 require('../auth/passAuth'); //import all of passport auth stuff
 
-
+// create token and store in in the db
 const createToken = (user) => {
     // create token
     let jwtToken = jwt.sign({ id: user.id }, config.secret);
