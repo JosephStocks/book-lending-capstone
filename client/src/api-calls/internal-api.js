@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const bookAddPost = async (book) => {
   let response = await axios.post(
-    "http://localhost:3005/addbook",
+    "http://localhost:3005/books",
     { book },
     {
       headers: {
@@ -12,4 +12,22 @@ export const bookAddPost = async (book) => {
   );
 
   console.log(response?.data?.publishedDate);
+};
+
+export const bookDeleteRequest = async (type, id) => {
+  let response = await axios.delete("http://localhost:3005/books", {
+    data: {
+      idType: type,
+      id: id,
+    },
+  });
+  console.log(response);
+};
+
+export const bookDeleteRequestByDatabaseID = async (id) => {
+  return await bookDeleteRequest("id", id);
+};
+
+export const bookDeleteRequestByGoogleBookID = async (id) => {
+  return await bookDeleteRequest("googleBookID", id);
 };
