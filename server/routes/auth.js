@@ -5,7 +5,7 @@ const db = require("../models");
 const config = require('../config/jwtsecret');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-require('../auth/passAuth'); //import all of passport auth stuff
+require('../auth/passAuth'); //import all of passport auth strategy
 
 // create token and store in in the db
 const createToken = (user) => {
@@ -39,12 +39,10 @@ router.post("/register", async (req, res) => {
             let addUser = await db.user.create({ firstName, lastName, email, password });
             // create token
             let jwtToken = await createToken(addUser);
-            console.log(jwtToken);
             //send a jwt to client
             return res.json({ token: jwtToken });
         } else {
             //send back an error
-
             return res.status(422).send({ error: 'Email already exists' });
         }
     } catch (error) {
