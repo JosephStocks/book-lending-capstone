@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -6,6 +6,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Login = () => {
+
+
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password)
+
+  }
+
   return (
     <>
 
@@ -15,16 +26,16 @@ const Login = () => {
 
         <Col md={{ span: 4, offset: 4 }}>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setemail(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setpassword(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicCheckbox">
