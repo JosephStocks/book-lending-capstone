@@ -5,7 +5,7 @@ import {
   bookDeleteRequestByDatabaseID,
   bookDeleteRequestByGoogleBookID,
 } from "../api-calls/internal-api";
-import {toggleModal, addIndividBook} from '../redux/actions/templateActions';
+import { toggleModal, addIndividBook } from "../redux/actions/templateActions";
 
 import * as S from "../styles/Styles";
 
@@ -27,8 +27,6 @@ export default function Book({ book }, props) {
     textSnippet,
   } = book;
 
-  
-
   const PLACEHOLDER_IMAGE =
     "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
 
@@ -37,15 +35,13 @@ export default function Book({ book }, props) {
   const [descriptionLines, setDescriptionLines] = useState(0);
   const elementRef = useRef(null);
 
-  const toggleFunction = ()=>dispatch(toggleModal(true))
-  const addBookFunction = ()=>dispatch(addIndividBook(book))
+  const toggleFunction = () => dispatch(toggleModal(true));
+  const addBookFunction = () => dispatch(addIndividBook(book));
 
   const handleClick = () => {
     toggleFunction();
     addBookFunction();
-  }
-  
-
+  };
 
   useEffect(() => {
     setHeight(elementRef.current.clientHeight);
@@ -126,11 +122,7 @@ export default function Book({ book }, props) {
           >
             Add Book to Database
           </S.Button>
-<<<<<<< HEAD
-          <S.Button
-            key={`button2-${id}`}
-            onClick={() => dispatch(toggleModal(true))}
-          >
+          <S.Button key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
           <S.Button
@@ -141,11 +133,6 @@ export default function Book({ book }, props) {
             }}
           >
             Delete book from database
-=======
-          <S.Button key={`button2-${id}`} onClick={handleClick}>See More</S.Button>
-          <S.Button key={`button3-${id}`} size="sm">
-            Add To Want to Read
->>>>>>> main
           </S.Button>
         </S.ButtonGroup>
       </S.Card>
