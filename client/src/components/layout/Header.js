@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import * as S from "../../styles/Styles";
 
 import Avatar from '../../styles/images/avatar.png'
 
@@ -8,12 +9,9 @@ const Header = () => {
     return (
         <> 
             <Navbar bg="info" expand="lg" sticky="top">
-                <Navbar.Brand as={Link} to="/">ReadMe Book Swap</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><S.Font>ReadMe Book Swap</S.Font></Navbar.Brand>
                 <Navbar className="ml-auto" id="basic-navbar-nav">
-                    {/* <Form className="ml-auto" inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form> */}
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/search">Search</Nav.Link>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <NavDropdown eventKey={1} //Causing Error in Console//

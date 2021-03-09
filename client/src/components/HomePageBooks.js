@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faReact, faJsSquare, faCss3, faBootstrap, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {Container, Row, Col, Card, Button} from 'react-bootstrap';
 import * as S from "../styles/Styles";
 import Claude from '../styles/images/claude.jpeg'
@@ -10,14 +10,16 @@ import Jacob from '../styles/images/jacob2.jpeg'
 
 const HomePageBooks = () => {
     return (
-        <>  <S.GridAbout>
+        <> 
+        <S.H3 className="mt-5 mb-5">ReadMe Book Swap Was Created By</S.H3>
+        <S.GridAbout>
             <Card style={{ width: '12rem' }}>
                 <Card.Img variant="top" src={Joe} />
                 <Card.Body>
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Joseph Stocks</S.H4>
+                                    <p>Joseph Stocks</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -50,7 +52,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Claude Major</S.H4>
+                                    <p>Claude Major</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -83,7 +85,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Ian Haddock</S.H4>
+                                    <p>Ian Haddock</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -116,7 +118,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Jacob Deel</S.H4>
+                                    <p>Jacob Deel</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -144,9 +146,35 @@ const HomePageBooks = () => {
                 </Card.Body>
             </Card>
         </S.GridAbout>
-            
+        <S.H3 className="mt-5 mb-5">Using</S.H3>
+        <Container className="mb-5">
+            <Row className="mb-5">
+                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <FontAwesomeIcon className="ml-4" icon={faReact} size="4x"/>
+                    React
+                </Col>
+                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <FontAwesomeIcon className="ml-4 mr-1" icon={faJsSquare} size="4x"/>
+                    Javascript
+                </Col>
+                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <FontAwesomeIcon className="ml-4" icon={faCss3} size="4x"/>
+                    CSS3
+                </Col>
+            </Row>    
+            <Row>
+                <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+                    <FontAwesomeIcon className="ml-5 mr-2" icon={faBootstrap} size="4x"/>
+                    Bootstrap
+                </Col>
+                <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+                    <FontAwesomeIcon className="ml-5" icon={faGithub} size="4x"/>
+                    GitHub
+                </Col>
+            </Row>
+        </Container>
         </>
     )
 }
 
-export default HomePageBooks
+export default HomePageBooks;
