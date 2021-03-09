@@ -46,3 +46,14 @@ export const addBookToPersonalLists = async (book, whichList, token) => {
   );
   console.log(response);
 };
+
+export const fetchOwnedBooks = async (token) => {
+  let response = await axios.get("http://localhost:3005/ownedbooks", {
+    headers: {
+      "content-type": "application/json",
+      authorization: token,
+    },
+  });
+  // console.log(response);
+  return response.data;
+};

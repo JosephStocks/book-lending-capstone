@@ -3,6 +3,10 @@ const initialState = {
   modalShow: false,
   individBook: [],
   searchResults: [],
+  ownedBooks: [],
+  readBooks: [],
+  wantBooks: [],
+  token: "",
 };
 
 //purpose of reducer is to return a new global state
@@ -29,6 +33,11 @@ const reducerTemplate = (state = initialState, action) => {
       return {
         ...state,
         token: action.data,
+      };
+    case "SAVE_OWNED_BOOKS":
+      return {
+        ...state,
+        ownedBooks: action.data,
       };
 
     default:
