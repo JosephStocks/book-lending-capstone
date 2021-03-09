@@ -7,6 +7,7 @@ import {
   bookAddPost,
   bookDeleteRequestByDatabaseID,
   bookDeleteRequestByGoogleBookID,
+  addBookToPersonalLists,
 } from "../api-calls/internal-api";
 
 const BookModal = (props) => {
@@ -75,7 +76,7 @@ const BookModal = (props) => {
               key={`button1-${individBook.id}`}
               size="sm"
               onClick={() => {
-                bookAddPost(individBook, tokenFromState);
+                addBookToPersonalLists(individBook, "owned", tokenFromState);
               }}
             >
               I Own This Book
@@ -84,7 +85,7 @@ const BookModal = (props) => {
               key={`button2-${individBook.id}`}
               size="sm"
               onClick={() => {
-                bookAddPost(individBook, tokenFromState);
+                addBookToPersonalLists(individBook, "read", tokenFromState);
               }}
             >
               I've Read This Book
@@ -93,7 +94,7 @@ const BookModal = (props) => {
               key={`button3-${individBook.id}`}
               size="sm"
               onClick={() => {
-                bookAddPost(individBook, tokenFromState);
+                addBookToPersonalLists(individBook, "want", tokenFromState);
               }}
             >
               I Want To Read
