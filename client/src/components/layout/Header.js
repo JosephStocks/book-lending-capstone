@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import * as S from "../../styles/Styles";
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 import Avatar from '../../styles/images/avatar.png'
 import { useDispatch } from 'react-redux';
 import { saveToken, saveGoogleImg } from '../../redux/actions/templateActions'
@@ -17,7 +19,7 @@ const Header = () => {
     return (
         <>
             <Navbar bg="info" expand="lg" sticky="top">
-                <Navbar.Brand as={Link} to="/"><S.Font>ReadMe Book Swap</S.Font></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black"/>ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"}/></S.Font></Navbar.Brand>
                 <Navbar className="ml-auto" id="basic-navbar-nav">
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/search">Search</Nav.Link>

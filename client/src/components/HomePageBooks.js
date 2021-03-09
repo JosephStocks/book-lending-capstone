@@ -19,7 +19,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <p>Joseph Stocks</p>
+                                    Joseph Stocks
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -32,14 +32,14 @@ const HomePageBooks = () => {
                                     >
                                     <S.LinkStyle href="https://www.linkedin.com/in/joseph-stocks/" target="_blank">
                                         <FontAwesomeIcon icon={faLinkedin} size="1x" color="black"/>
-                                        <h5>Linkedin</h5>
+                                        <div>Linkedin</div>
                                     </S.LinkStyle>
                                     </S.CardText>
                                 </Col>
                                 <Col>
                                     <S.LinkStyle href="https://github.com/josephStocks" target="_blank">
                                         <FontAwesomeIcon icon={faGithub} size="1x" color="black"/>
-                                        <h5>GitHub</h5>
+                                        <div>GitHub</div>
                                     </S.LinkStyle>
                                 </Col>
                             </Row>
@@ -52,7 +52,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <p>Claude Major</p>
+                                    <div>Claude Major</div>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -65,14 +65,14 @@ const HomePageBooks = () => {
                                     >
                                     <S.LinkStyle href="https://www.linkedin.com/in/claumaj/" target="_blank">
                                         <FontAwesomeIcon icon={faLinkedin} size="1x" color="black"/>
-                                        <h5>Linkedin</h5>
+                                        <div>Linkedin</div>
                                     </S.LinkStyle>
                                     </S.CardText>
                                 </Col>
                                 <Col>
                                     <S.LinkStyle href="https://github.com/ClauMaj" target="_blank">
                                         <FontAwesomeIcon icon={faGithub} size="1x" color="black"/>
-                                        <h5>GitHub</h5>
+                                        <div>GitHub</div>
                                     </S.LinkStyle>
                                 </Col>
                             </Row>
@@ -85,7 +85,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <p>Ian Haddock</p>
+                                    <div>Ian Haddock</div>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -98,14 +98,14 @@ const HomePageBooks = () => {
                                     >
                                     <S.LinkStyle href="https://www.linkedin.com/in/ianhaddock99/" target="_blank">
                                         <FontAwesomeIcon icon={faLinkedin} size="1x" color="black"/>
-                                        <h5>Linkedin</h5>
+                                        <div>Linkedin</div>
                                     </S.LinkStyle>
                                     </S.CardText>
                                 </Col>
                                 <Col>
                                     <S.LinkStyle href="https://github.com/ianhaddock99" target="_blank">
                                         <FontAwesomeIcon icon={faGithub} size="1x" color="black"/>
-                                        <h5>GitHub</h5>
+                                        <div>GitHub</div>
                                     </S.LinkStyle>
                                 </Col>
                             </Row>
@@ -118,7 +118,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <p>Jacob Deel</p>
+                                    <div>Jacob Deel</div>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -131,14 +131,14 @@ const HomePageBooks = () => {
                                     >
                                     <S.LinkStyle href="https://www.linkedin.com/in/jacob-deel-093b401b9/" target="_blank">
                                         <FontAwesomeIcon icon={faLinkedin} size="1x" color="black"/>
-                                        <h5>Linkedin</h5>
+                                        <div>Linkedin</div>
                                     </S.LinkStyle>
                                     </S.CardText>
                                 </Col>
                                 <Col>
                                     <S.LinkStyle href="https://github.com/jacoblakedeel" target="_blank">
                                         <FontAwesomeIcon icon={faGithub} size="1x" color="black"/>
-                                        <h5>GitHub</h5>
+                                        <div>GitHub</div>
                                     </S.LinkStyle>
                                 </Col>
                             </Row>
