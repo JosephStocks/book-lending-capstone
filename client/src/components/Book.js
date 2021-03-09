@@ -10,7 +10,7 @@ import {
 } from "../api-calls/internal-api";
 import { toggleModal, addIndividBook, searchFunction } from "../redux/actions/templateActions";
 
-import * as S from "../styles/Styles";
+import * as S from "../styles/Styles"
 
 export default function Book({ book }, props) {
   let {
