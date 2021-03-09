@@ -6,14 +6,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
-import { useDispatch, useSelector } from 'react-redux';
-import { saveToken } from '../redux/actions/templateActions'
+import { useDispatch } from 'react-redux';
+import { saveToken, saveGoogleImg } from '../redux/actions/templateActions'
 import { GoogleLogin } from 'react-google-login';
 
 
 
 const Login = () => {
-
 
 
   const [email, setemail] = useState("")
@@ -34,8 +33,10 @@ const Login = () => {
     let email = response.profileObj.email;
     let firstName = response.profileObj.givenName;
     let lastName = response.profileObj.familyName;
+    let image = response.profileObj.imageUrl;
     let loginGoogleUser = await axios.post('http://localhost:3005/googlesignin', { email, firstName, lastName })
     dispatch(saveToken(loginGoogleUser.data.token));
+    dispatch(saveGoogleImg(image));
     console.log(loginGoogleUser.data.token);
   }
 

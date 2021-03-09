@@ -3,6 +3,7 @@ const initialState = {
   modalShow: false,
   individBook: [],
   searchResults: [],
+  profileImage: null,
 };
 
 //purpose of reducer is to return a new global state
@@ -29,6 +30,11 @@ const reducerTemplate = (state = initialState, action) => {
       return {
         ...state,
         token: action.data,
+      };
+    case "SAVEGOOGLEIMG":
+      return {
+        ...state,
+        profileImage: action.data,
       };
 
     default:
