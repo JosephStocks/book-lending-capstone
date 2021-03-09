@@ -14,6 +14,21 @@ import { GoogleLogin } from 'react-google-login';
 
 const Login = () => {
 
+
+
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+  const dispatch = useDispatch();
+
+
+  // local db login
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let loginUser = await axios.post('http://localhost:3005/signin', { email, password })
+    dispatch(saveToken(loginUser.data.token));
+  }
+
+  // google login
   const responseGoogle = async (response) => {
     console.log(response);
     let email = response.profileObj.email;
@@ -22,16 +37,6 @@ const Login = () => {
     let loginGoogleUser = await axios.post('http://localhost:3005/googlesignin', { email, firstName, lastName })
     dispatch(saveToken(loginGoogleUser.data.token));
     console.log(loginGoogleUser.data.token);
-  }
-
-  const [email, setemail] = useState("")
-  const [password, setpassword] = useState("")
-  const dispatch = useDispatch();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let loginUser = await axios.post('http://localhost:3005/signin', { email, password })
-    dispatch(saveToken(loginUser.data.token));
   }
 
   return (
