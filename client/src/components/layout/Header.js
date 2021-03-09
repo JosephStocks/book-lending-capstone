@@ -27,13 +27,20 @@ const Header = () => {
                     <NavDropdown eventKey={1} //Causing Error in Console//
                         title={
                             <div className="pull-left">
-                                <img className="thumbnail-image"
+                                <S.RoundImage className="thumbnail-image"
                                     src={profileImage || Avatar}
                                     alt="user pic"
                                     height="50px"
                                 />
                             </div>
                         } id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
+                        <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="User Name" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
                         <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
                         <NavDropdown.Divider />
