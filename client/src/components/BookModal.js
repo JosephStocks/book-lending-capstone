@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Row, Col, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '../redux/actions/templateActions';
 import * as S from "../styles/Styles";
@@ -35,30 +35,38 @@ const BookModal = (props) => {
                     <Modal.Title>{individBook.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {individBook.imageLinks?.small ? (
-                        <img
-                            // height="292px"
-                            key={`Media-${individBook.id}`}
-                            src={individBook.imageLinks?.small}
-                            alt={individBook.title}
-                        />
-                    ) : (
-                        <S.PlaceholderDivImg
-                            key={`Media-${individBook.id}`}
-                            bgImage={PLACEHOLDER_IMAGE}
-                        ></S.PlaceholderDivImg>
-                    )}
-                    <p>{individBook.description}</p>
-                    {individBook.publisher ? (
-                        <p>Published By: {individBook.publisher}</p>
-                    ) : (
-                        <p>Published By: {NO_DATE}</p>
-                    )}
-                    {individBook.publishedDate ? (
-                        <p>Publish Date: {individBook.publishedDate}</p>
-                    ) : (
-                        <p>Publish Date: {NO_DATE}</p>
-                    )}
+                    <Container>
+                        <Row>
+                            <Col xs={8} sm={8} md={8} lg={6}>
+                            {individBook.imageLinks?.small ? (
+                                <img
+                                    // height="292px"
+                                    key={`Media-${individBook.id}`}
+                                    src={individBook.imageLinks?.small}
+                                    alt={individBook.title}
+                                />
+                                ) : (
+                                    <S.PlaceholderDivImg
+                                        key={`Media-${individBook.id}`}
+                                        bgImage={PLACEHOLDER_IMAGE}
+                                    ></S.PlaceholderDivImg>
+                                )}
+                            </Col>
+                            <Col xs={4} sm={4} md={4} lg={6}>   
+                                <p>{individBook.description}</p>
+                                {individBook.publisher ? (
+                                <p>Published By: {individBook.publisher}</p>
+                                ) : (
+                                    <p>Published By: {NO_DATE}</p>
+                                )}
+                                {individBook.publishedDate ? (
+                                    <p>Publish Date: {individBook.publishedDate}</p>
+                                ) : (
+                                    <p>Publish Date: {NO_DATE}</p>
+                                )}    
+                            </Col>
+                        </Row>
+                    </Container>
                 </Modal.Body>
                 <Modal.Footer>
                     <S.Button
