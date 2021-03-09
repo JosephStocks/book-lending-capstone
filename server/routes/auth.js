@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs"); //encrypt passwords
+const crypto = require('crypto'); // random bytes
 const db = require("../models");
 const config = require('../config/jwtsecret');
 const jwt = require('jsonwebtoken');
@@ -58,6 +59,36 @@ router.post("/signin", requireSignin, (req, res) => {
     // send token to user
     res.json({ token: jwtToken });
 });
+
+router.post("/googlesignin", async (req, res) => {
+    //validate user in middleware
+    // create token and save to db
+    let firstName = req.body.firstName
+    let lastName = req.body.lastName
+    let email = req.body.email;
+    let randomPassword = crypto.randomBytes(10).toString('hex');
+    let password = bcrypt.hashSync(randomPassword, 8);
+    try {
+        let records = await db.user.findAll({ where: { googleAuth: email } });
+        if (records.length === 0) {
+            //add a new record
+            let addUser = await db.user.create({ firstName, lastName, password, googleAuth: email });
+            // create token
+            let jwtToken = await createToken(addUser);
+            //send a jwt to client
+            return res.json({ token: jwtToken });
+        } else {
+            //send a token for the existing user record
+            let jwtToken = await createToken(records[0]);
+            return res.json({ token: jwtToken });
+        }
+    } catch (error) {
+        //send back error, can't access database
+        return res.status(423).send({ error: `Can't access database` });
+    }
+});
+
+
 
 router.get("/", requireAuth, (req, res) => {
     res.send("success");
