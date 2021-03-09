@@ -12,13 +12,14 @@ import {
 const BookModal = (props) => {
     const dispatch = useDispatch();
     const modalState = useSelector(state => state.modalShow);
-    const individBook = useSelector(state => state.individBook);
+    const individBook = useSelector(state => state.individBook); //change to make sure not coming back as undefined in search const individBook = useSelector(state => state.individBook !== undefined && state.individBook || {});
     const tokenFromState = useSelector(state => state.token)
-    console.log(individBook)
+    
     // const modalRef = React.useRef(null)
     const PLACEHOLDER_IMAGE =
         "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
     const NO_DATE = "N/A"
+    
     return (
         <>
             <Modal key={individBook.id}
