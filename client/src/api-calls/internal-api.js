@@ -1,16 +1,13 @@
 import axios from "axios";
 
-
 export const bookAddPost = async (book, token) => {
-
-
   let response = await axios.post(
     "http://localhost:3005/books",
     { book },
     {
       headers: {
         "content-type": "application/json",
-        "authorization": token,
+        authorization: token,
       },
     }
   );
@@ -36,13 +33,14 @@ export const bookDeleteRequestByGoogleBookID = async (id) => {
   return await bookDeleteRequest("googleBookID", id);
 };
 
-export const addBookToPersonalLists = async (book, whichList) => {
+export const addBookToPersonalLists = async (book, whichList, token) => {
   let response = await axios.post(
     "http://localhost:3005/books",
     { book, whichList },
     {
       headers: {
         "content-type": "application/json",
+        authorization: token,
       },
     }
   );
