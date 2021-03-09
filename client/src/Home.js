@@ -18,8 +18,8 @@ const Home = () => {
         </Row>
         <Row className="mt-3">
           <Col>
-            <Button className="mr-3" as={Link} to="/register">register</Button>
-            <Button as={Link} to="/login">login</Button>
+            <Button className="mr-3" as={Link} to="/register">Register</Button>
+            <Button as={Link} to="/login">Login</Button>
           </Col>
         </Row>
         <Row className="mt-5">

@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveToken } from '../redux/actions/templateActions'
 import { GoogleLogin } from 'react-google-login';
+import {Link} from 'react-router-dom';
 
 
 
@@ -64,16 +65,24 @@ const Login = () => {
                 <Form.Check type="checkbox" label="Remember Me" />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button className="mr-3" variant="primary" type="submit">
                 Submit
               </Button>
-
+              <GoogleLogin
+              clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            /> 
+              <div className="mt-5">Don't Have An Account?</div>
+              <Button className="mr-5 mt-3" as={Link} to="/register">Register Here</Button>
             </Form>
 
           </Col>
 
         </Row>
-        <Row>
+        {/* <Row>
           <GoogleLogin
             clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
             buttonText="Login with Google"
@@ -81,7 +90,7 @@ const Login = () => {
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
           />
-        </Row>
+        </Row> */}
       </Container>
 
     </>
