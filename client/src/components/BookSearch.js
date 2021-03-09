@@ -7,16 +7,17 @@ import {
   addLargerImageLinks,
 } from "../api-calls/3rd-party-apis";
 import * as S from "../styles/Styles";
-import {Button} from 'react-bootstrap';
-import {useDispatch, useSelector} from 'react-redux';
+import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import Book from "./Book";
-import BookModal from './BookModal';
-import {searchFunction} from '../redux/actions/templateActions';
+import BookModal from "./BookModal";
+import { searchFunction } from "../redux/actions/templateActions";
 
 export default function App() {
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
-  const searchResults = useSelector(state => state.searchResults)
+  const searchResults = useSelector((state) => state.searchResults);
+  // const activateModal = useSelector((state) => state.activateModal);
 
   const search = () => {
     (async () => {
@@ -39,28 +40,29 @@ export default function App() {
 
   return (
     <>
-    <div style={{ padding: 0, margin: 0 }}>
-      <S.H2>Search for a book!</S.H2>
-      <S.Form onSubmit={handleSubmit}>
-        <input
-          value={searchText}
-          type="text"
-          id="search"
-          placeholder="Search for a book!"
-          onChange={(e) => setSearchText(e.target.value)}
-        />
+      <div style={{ padding: 0, margin: 0 }}>
+        <S.H2>Search for a book!</S.H2>
+        <S.Form onSubmit={handleSubmit}>
+          <input
+            value={searchText}
+            type="text"
+            id="search"
+            placeholder="Search for a book!"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
 
-        <button type="submit">Submit</button>
-      </S.Form>
-      <div>
-        <S.Grid>
-          {searchResults?.map((book, index) => (
-            <Book book={{...book, index}}/>
-          ))}
-        </S.Grid>
+          <button type="submit">Submit</button>
+        </S.Form>
+        <div>
+          <S.Grid>
+            {searchResults?.map((book, index) => (
+              <Book book={{ ...book, index }} />
+            ))}
+          </S.Grid>
+        </div>
       </div>
-    </div>
-    <BookModal />
+      {/* {activateModal ? <BookModal /> : null} */}
+      <BookModal />
     </>
   );
 }
