@@ -19,7 +19,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Joseph Stocks</S.H4>
+                                    <p>Joseph Stocks</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -52,7 +52,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Claude Major</S.H4>
+                                    <p>Claude Major</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -85,7 +85,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Ian Haddock</S.H4>
+                                    <p>Ian Haddock</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
@@ -118,7 +118,7 @@ const HomePageBooks = () => {
                 <Container>
                             <Row>
                                 <S.CardTitle className="mb-2" lines={2} key={1}>
-                                    <S.H4>Jacob Deel</S.H4>
+                                    <p>Jacob Deel</p>
                                 </S.CardTitle>
                             </Row>
                             <Row>
