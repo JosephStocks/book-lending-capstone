@@ -3,6 +3,10 @@ const initialState = {
   modalShow: false,
   individBook: [],
   searchResults: [],
+  ownedBooks: [],
+  readBooks: [],
+  wantBooks: [],
+  token: "",
   profileImage: null,
 };
 
@@ -31,6 +35,13 @@ const reducerTemplate = (state = initialState, action) => {
         ...state,
         token: action.data,
       };
+
+    case "SAVE_OWNED_BOOKS":
+      return {
+        ...state,
+        ownedBooks: action.data,
+      };
+
     case "SAVEGOOGLEIMG":
       return {
         ...state,
