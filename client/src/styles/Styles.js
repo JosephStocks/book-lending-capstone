@@ -188,6 +188,10 @@ export const LinkStyle = styled.a`
   color: black;
 `
 
+export const RoundImage = styled.img`
+  border-radius: 50%;
+`
+
 export const CardText = styled.p`
   padding: 0;
   overflow: hidden;
