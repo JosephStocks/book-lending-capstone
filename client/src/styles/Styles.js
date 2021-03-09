@@ -16,6 +16,13 @@ export const H2 = styled.h2`
   width: fit-content;
   margin-top: 1rem;
 `;
+export const H4 = styled.h4`
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: fit-content;
+  margin-top: 1rem;
+`;
 
 export const Grid = styled.div`
   display: grid;
@@ -44,10 +51,33 @@ export const Grid = styled.div`
   }
 `;
 
-export const Box = styled.div`
-  border-style: solid;
-  height: 300px;
-`
+export const GridAbout = styled.div`
+  display: grid;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  margin: 0.5rem;
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+`;
+
 
 export const PlaceholderDivImg = styled.div`
   width: 128px;
@@ -101,6 +131,26 @@ export const Card = styled.div`
     }
   }
 `;
+export const Card2 = styled.div`
+  display: flex;
+  height: 122px;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  border-radius: ${(props) => props.bRadius ?? "5px"};
+  background-color: white;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    ${ButtonGroup} {
+      display: block;
+    }
+  }
+`;
 
 export const CardTitle = styled.h5`
   flex-shrink: 0;
@@ -117,6 +167,10 @@ export const CardTitle = styled.h5`
     var(--line-height) * ${(props) => props.lines}
   ); /* fallback */
 `;
+
+export const LinkStyle = styled.a`
+  color: black;
+`
 
 export const CardText = styled.p`
   padding: 0;
