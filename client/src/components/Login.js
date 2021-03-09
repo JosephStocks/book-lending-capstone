@@ -6,14 +6,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
-import { useDispatch, useSelector } from 'react-redux';
-import { saveToken } from '../redux/actions/templateActions'
+import { useDispatch } from 'react-redux';
+import { saveToken, saveGoogleImg } from '../redux/actions/templateActions'
 import { GoogleLogin } from 'react-google-login';
+import {Link} from 'react-router-dom';
 
 
 
 const Login = () => {
-
 
 
   const [email, setemail] = useState("")
@@ -34,8 +34,10 @@ const Login = () => {
     let email = response.profileObj.email;
     let firstName = response.profileObj.givenName;
     let lastName = response.profileObj.familyName;
+    let image = response.profileObj.imageUrl;
     let loginGoogleUser = await axios.post('http://localhost:3005/googlesignin', { email, firstName, lastName })
     dispatch(saveToken(loginGoogleUser.data.token));
+    dispatch(saveGoogleImg(image));
     console.log(loginGoogleUser.data.token);
   }
 
@@ -64,16 +66,24 @@ const Login = () => {
                 <Form.Check type="checkbox" label="Remember Me" />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button className="mr-3" variant="primary" type="submit">
                 Submit
               </Button>
-
+              <GoogleLogin
+              clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            /> 
+              <div className="mt-5">Don't Have An Account?</div>
+              <Button className="mr-5 mt-3" as={Link} to="/register">Register Here</Button>
             </Form>
 
           </Col>
 
         </Row>
-        <Row>
+        {/* <Row>
           <GoogleLogin
             clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
             buttonText="Login with Google"
@@ -81,7 +91,7 @@ const Login = () => {
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
           />
-        </Row>
+        </Row> */}
       </Container>
 
     </>

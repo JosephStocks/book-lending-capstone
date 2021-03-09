@@ -7,6 +7,7 @@ const initialState = {
   readBooks: [],
   wantBooks: [],
   token: "",
+  profileImage: null,
 };
 
 //purpose of reducer is to return a new global state
@@ -34,10 +35,17 @@ const reducerTemplate = (state = initialState, action) => {
         ...state,
         token: action.data,
       };
+
     case "SAVE_OWNED_BOOKS":
       return {
         ...state,
         ownedBooks: action.data,
+      };
+
+    case "SAVEGOOGLEIMG":
+      return {
+        ...state,
+        profileImage: action.data,
       };
 
     default:

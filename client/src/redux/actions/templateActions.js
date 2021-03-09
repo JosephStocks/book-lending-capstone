@@ -32,3 +32,10 @@ export const saveOwnedBooks = (books) => {
     data: books,
   };
 };
+
+export const saveGoogleImg = (image) => {
+  return {
+    type: "SAVEGOOGLEIMG",
+    data: image
+  }
+}
