@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from 'react-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -7,9 +8,21 @@ import Col from 'react-bootstrap/Col';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveToken } from '../redux/actions/templateActions'
+import { GoogleLogin } from 'react-google-login';
+
+
 
 const Login = () => {
 
+  const responseGoogle = async (response) => {
+    console.log(response);
+    let email = response.profileObj.email;
+    let firstName = response.profileObj.givenName;
+    let lastName = response.profileObj.familyName;
+    let loginGoogleUser = await axios.post('http://localhost:3005/googlesignin', { email, firstName, lastName })
+    dispatch(saveToken(loginGoogleUser.data.token));
+    console.log(loginGoogleUser.data.token);
+  }
 
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -55,7 +68,15 @@ const Login = () => {
           </Col>
 
         </Row>
-
+        <Row>
+          <GoogleLogin
+            clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
+        </Row>
       </Container>
 
     </>
