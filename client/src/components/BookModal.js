@@ -22,7 +22,7 @@ const BookModal = (props) => {
 
   return (
     <>
-      {individBook === undefined || individBook.length !== 0 ? (
+      {individBook !== undefined && individBook.length !== 0 ? (
         <Modal
           key={individBook.id}
           // ref={modalRef}

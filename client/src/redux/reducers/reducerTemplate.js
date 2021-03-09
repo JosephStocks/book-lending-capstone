@@ -3,7 +3,6 @@ const initialState = {
   modalShow: false,
   individBook: [],
   searchResults: [],
-  activateModal: false,
 };
 
 //purpose of reducer is to return a new global state
