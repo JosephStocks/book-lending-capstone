@@ -28,5 +28,11 @@ export const saveToken = (token) => {
         data: token
     }
 }
+export const saveGoogleImg = (image) => {
+    return {
+        type: "SAVEGOOGLEIMG",
+        data: image
+    }
+}
 
 
