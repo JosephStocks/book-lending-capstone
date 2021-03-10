@@ -10,7 +10,8 @@ import { useDispatch } from 'react-redux';
 import { saveToken, saveGoogleImg } from '../../redux/actions/templateActions'
 
 const Header = () => {
-    const profileImage = useSelector(state => state.profileImage)
+    const profileImage = useSelector(state => state.profileImage);
+
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(saveToken(''));
