@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { saveToken, saveGoogleImg } from '../redux/actions/templateActions'
+import { saveToken, saveGoogleImg, setGoogleAuth } from '../redux/actions/templateActions'
 import { GoogleLogin } from 'react-google-login';
 import {Link} from 'react-router-dom';
 
@@ -38,6 +38,7 @@ const Login = () => {
     let loginGoogleUser = await axios.post('http://localhost:3005/googlesignin', { email, firstName, lastName })
     dispatch(saveToken(loginGoogleUser.data.token));
     dispatch(saveGoogleImg(image));
+    dispatch(setGoogleAuth(true));
     console.log(loginGoogleUser.data.token);
   }
 

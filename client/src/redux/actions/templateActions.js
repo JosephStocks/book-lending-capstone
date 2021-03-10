@@ -39,3 +39,10 @@ export const saveGoogleImg = (image) => {
     data: image
   }
 }
+
+export const setGoogleAuth = (boolean) => {
+  return {
+    type: "SETGOOGLEAUTH",
+    data: boolean
+  }
+}
