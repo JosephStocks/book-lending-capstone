@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, Row, Col, Container } from "react-bootstrap";
+import { Modal, Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../redux/actions/templateActions";
 import * as S from "../styles/Styles";
@@ -9,17 +9,26 @@ import {
   bookDeleteRequestByGoogleBookID,
   addBookToPersonalLists,
 } from "../api-calls/internal-api";
+import SaveButtons from './SaveButtons'
 
 const BookModal = (props) => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalShow);
-  const individBook = useSelector((state) => state.individBook); //change to make sure not coming back as undefined in search const individBook = useSelector(state => state.individBook !== undefined && state.individBook || {});
+  const individBook = useSelector((state) => state.individBook); 
   const tokenFromState = useSelector((state) => state.token);
 
   // const modalRef = React.useRef(null)
   const PLACEHOLDER_IMAGE =
     "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
   const NO_DATE = "N/A";
+
+  let saveButtons;
+    if(tokenFromState !== "" ){
+        saveButtons = <SaveButtons/>
+    }
+    else{
+      saveButtons = null
+    }
 
   return (
     <>
@@ -72,33 +81,7 @@ const BookModal = (props) => {
             </Container>
           </Modal.Body>
           <Modal.Footer>
-            <S.Button
-              key={`button1-${individBook.id}`}
-              size="sm"
-              onClick={() => {
-                addBookToPersonalLists(individBook, "owned", tokenFromState);
-              }}
-            >
-              I Own This Book
-            </S.Button>
-            <S.Button
-              key={`button2-${individBook.id}`}
-              size="sm"
-              onClick={() => {
-                addBookToPersonalLists(individBook, "read", tokenFromState);
-              }}
-            >
-              I've Read This Book
-            </S.Button>
-            <S.Button
-              key={`button3-${individBook.id}`}
-              size="sm"
-              onClick={() => {
-                addBookToPersonalLists(individBook, "want", tokenFromState);
-              }}
-            >
-              I Want To Read
-            </S.Button>
+            {saveButtons}
           </Modal.Footer>
         </Modal>
       ) : null}
