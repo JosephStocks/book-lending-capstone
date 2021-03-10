@@ -8,45 +8,34 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 import Avatar from '../../styles/images/avatar.png'
 import { useDispatch } from 'react-redux';
 import { saveToken, saveGoogleImg } from '../../redux/actions/templateActions'
+import LogInButton from '../layout/LogInButton'
+import GoogleHeader from '../layout/GoogleHeader'
+import LocalHeader from '../layout/LocalHeader'
 
 const Header = () => {
+    const token = useSelector(state => state.token)
+    const googleAuth = useSelector(state => state.googleAuth)
     const profileImage = useSelector(state => state.profileImage)
     const dispatch = useDispatch();
-    const handleLogout = () => {
-        dispatch(saveToken(''));
-        dispatch(saveGoogleImg(''));
+
+
+    let whichButtons;
+    if(token !== "" && googleAuth === true){
+        whichButtons = <GoogleHeader/>
     }
+    else if(token !== "" && googleAuth === false){
+        whichButtons = <LocalHeader/>
+    }
+    else{
+        whichButtons = <LogInButton/>
+    }
+
     return (
         <>
             <Navbar bg="info" expand="lg" sticky="top">
                 <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black"/>ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"}/></S.Font></Navbar.Brand>
                 <Navbar className="ml-auto" id="basic-navbar-nav">
-                    <Nav.Link as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/search">Search</Nav.Link>
-                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                    <NavDropdown eventKey={1} //Causing Error in Console//
-                        title={
-                            <div className="pull-left">
-                                <S.RoundImage className="thumbnail-image"
-                                    src={profileImage || Avatar}
-                                    alt="user pic"
-                                    height="50px"
-                                />
-                            </div>
-                        } id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
-                        <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
-                    </NavDropdown>
-                    <NavDropdown title="User Name" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
-                        <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
-                    </NavDropdown>
+                    {whichButtons}
                 </Navbar>
             </Navbar>
         </>

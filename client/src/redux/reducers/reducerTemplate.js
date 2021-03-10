@@ -8,6 +8,7 @@ const initialState = {
   wantBooks: [],
   token: "",
   profileImage: null,
+  googleAuth: false
 };
 
 //purpose of reducer is to return a new global state
@@ -46,6 +47,12 @@ const reducerTemplate = (state = initialState, action) => {
       return {
         ...state,
         profileImage: action.data,
+      };
+
+    case "SETGOOGLEAUTH":
+      return {
+        ...state,
+        googleAuth: action.data,
       };
 
     default:
