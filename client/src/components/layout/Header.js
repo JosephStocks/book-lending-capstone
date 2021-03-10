@@ -13,6 +13,7 @@ import GoogleHeader from '../layout/GoogleHeader'
 import LocalHeader from '../layout/LocalHeader'
 
 const Header = () => {
+    const profileImage = useSelector(state => state.profileImage);
     const token = useSelector(state => state.token)
     const googleAuth = useSelector(state => state.googleAuth)
     const profileImage = useSelector(state => state.profileImage)
