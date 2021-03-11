@@ -8,12 +8,12 @@ const initialState = {
   wantBooks: [],
   token: "",
   profileImage: null,
-  googleAuth: false
+  googleAuth: false,
 };
 
 //purpose of reducer is to return a new global state
 //reducer must be passed into store
-const reducerTemplate = (state = initialState, action) => {
+const baseReducer = (state = initialState, action) => {
   switch (action.type) {
     case "TOGGLEMODAL": //must match name of action.type in actions
       return {
@@ -43,6 +43,18 @@ const reducerTemplate = (state = initialState, action) => {
         ownedBooks: action.data,
       };
 
+    case "SAVE_READ_BOOKS":
+      return {
+        ...state,
+        readBooks: action.data,
+      };
+
+    case "SAVE_WANTTOREAD_BOOKS":
+      return {
+        ...state,
+        wantBooks: action.data,
+      };
+
     case "SAVEGOOGLEIMG":
       return {
         ...state,
@@ -60,4 +72,4 @@ const reducerTemplate = (state = initialState, action) => {
   }
 };
 
-export default reducerTemplate;
+export default baseReducer;

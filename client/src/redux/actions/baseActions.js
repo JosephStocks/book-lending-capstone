@@ -33,16 +33,30 @@ export const saveOwnedBooks = (books) => {
   };
 };
 
+export const saveReadBooks = (books) => {
+  return {
+    type: "SAVE_READ_BOOKS",
+    data: books,
+  };
+};
+
+export const saveWantBooks = (books) => {
+  return {
+    type: "SAVE_WANTTOREAD_BOOKS",
+    data: books,
+  };
+};
+
 export const saveGoogleImg = (image) => {
   return {
     type: "SAVEGOOGLEIMG",
-    data: image
-  }
-}
+    data: image,
+  };
+};
 
 export const setGoogleAuth = (boolean) => {
   return {
     type: "SETGOOGLEAUTH",
-    data: boolean
-  }
-}
+    data: boolean,
+  };
+};

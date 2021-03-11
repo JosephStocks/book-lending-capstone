@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 import Home from "./Home";
 import BaseLayout from "./components/layout/BaseLayout";
-import reducer from "./redux/reducers/reducerTemplate";
+import reducer from "./redux/reducers/baseReducer";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import BookSearch from "./components/BookSearch";
