@@ -31,8 +31,9 @@ export default function GoogleHeader() {
       <Nav.Link className="mt-3 mr-4" as={Link} to="/about">
         About The App
       </Nav.Link>
+      <div style={{width: "95px"}}>
       <NavDropdown
-        className="mr-4"
+        className="mr-4 menu"
         align="none"
         eventkey={1} //Causing Error in Console//
         title={
@@ -48,11 +49,13 @@ export default function GoogleHeader() {
         id="basic-nav-dropdown"
       >
         <NavDropdown.Item href="/">My DashBoard</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
           Logout
         </NavDropdown.Item>
+        
       </NavDropdown>
+      </div>
       
     </>
   );
