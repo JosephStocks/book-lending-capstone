@@ -9,14 +9,18 @@ import {
   saveGoogleImg,
   setGoogleAuth,
 } from "../../redux/actions/baseActions";
+import { useHistory } from "react-router-dom";
 
 export default function GoogleHeader() {
   const profileImage = useSelector((state) => state.profileImage);
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const handleLogout = () => {
     dispatch(saveToken({ token: "", firstName: "", lastName: "" }));
     dispatch(saveGoogleImg(""));
     dispatch(setGoogleAuth(false));
+    history.replace("/");
   };
 
   return (

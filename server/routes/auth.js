@@ -38,10 +38,8 @@ router.post("/register", async (req, res) => {
         if (records.length === 0) {
             //add a new record
             let addUser = await db.user.create({ firstName, lastName, email, password });
-            // create token
-            let jwtToken = await createToken(addUser);
-            //send a jwt to client
-            return res.json({ token: jwtToken, firstName: addUser.firstName, lastName: addUser.lastName });
+            //send a response
+            return res.status(200).send({ succes: "User registered!" });
         } else {
             //send back an error
             return res.status(422).send({ error: 'Email already exists' });

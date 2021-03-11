@@ -5,16 +5,17 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { saveToken } from '../redux/actions/baseActions'
+import { useHistory } from "react-router-dom";
+
 
 const Registration = () => {
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const history = useHistory();
 
-  // const dispatch = useDispatch();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,8 @@ const Registration = () => {
       password,
     });
     console.log(registerUser);
-    // dispatch(saveToken(loginUser.data.token));
+    history.replace("/login");
+
   };
   return (
     <>

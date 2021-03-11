@@ -9,27 +9,29 @@ import LogInButton from '../layout/LogInButton'
 import GoogleHeader from '../layout/GoogleHeader'
 import LocalHeader from '../layout/LocalHeader'
 
+
 const Header = () => {
     const profileImage = useSelector(state => state.profileImage);
     const token = useSelector(state => state.token)
     const googleAuth = useSelector(state => state.googleAuth)
 
 
+
     let whichButtons;
-    if(token !== "" && googleAuth === true){
-        whichButtons = <GoogleHeader/>
+    if (token !== "" && googleAuth === true) {
+        whichButtons = <GoogleHeader />
     }
-    else if(token !== "" && googleAuth === false){
-        whichButtons = <LocalHeader/>
+    else if (token !== "" && googleAuth === false) {
+        whichButtons = <LocalHeader />
     }
-    else{
-        whichButtons = <LogInButton/>
+    else {
+        whichButtons = <LogInButton />
     }
 
     return (
         <>
             <Navbar bg="info" expand="lg" sticky="top">
-                <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black"/>ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"}/></S.Font></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black" />ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"} /></S.Font></Navbar.Brand>
                 <Navbar className="ml-auto" id="basic-navbar-nav">
                     {whichButtons}
                 </Navbar>

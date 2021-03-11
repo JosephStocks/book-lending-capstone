@@ -15,7 +15,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
             (token) ?
                 <Component />
                 :
-                history.replace("/");
+                history.replace("/login");
         }}
         />
     )
