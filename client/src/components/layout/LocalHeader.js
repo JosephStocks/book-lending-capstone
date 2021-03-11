@@ -6,8 +6,9 @@ import { saveToken, saveGoogleImg } from "../../redux/actions/baseActions";
 
 export default function LocalHeader() {
   const dispatch = useDispatch();
+  const loggedUser = useSelector(state => state.loggedUser)
   const handleLogout = () => {
-    dispatch(saveToken(""));
+    dispatch(saveToken({ token: "", firstName: "", lastName: "" }));
     dispatch(saveGoogleImg(""));
   };
 
@@ -20,7 +21,7 @@ export default function LocalHeader() {
         Search
       </Nav.Link>
 
-      <NavDropdown title="User Name" id="basic-nav-dropdown">
+      <NavDropdown title={loggedUser.firstName?.charAt(0).toUpperCase() + loggedUser.firstName?.slice(1)} id="basic-nav-dropdown">
         <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
         <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
         <NavDropdown.Divider />
