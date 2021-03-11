@@ -11,7 +11,7 @@ import Login from "./components/Login";
 import Registration from "./components/Registration";
 import BookSearch from "./components/BookSearch";
 import PersonalPage from "./components/PersonalPage";
-import Account from "./components/Account";
+import About from "./components/About";
 import Friends from "./components/Friends";
 import "./styles/app.scss";
 
@@ -60,7 +60,7 @@ ReactDOM.render(
             <Route exact path="/login" component={Login} />
             <Route exact path="/search" component={BookSearch} />
             <Route exact path="/personal" component={PersonalPage} />
-            <Route exact path="/account" component={Account} />
+            <Route exact path="/about" component={About} />
             <Route exact path="/friends" component={Friends} />
           </Switch>
         </BaseLayout>
