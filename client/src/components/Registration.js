@@ -5,7 +5,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-// import { useDispatch, useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { GoogleLogin } from "react-google-login";
+import {
+  saveToken,
+  saveGoogleImg,
+  setGoogleAuth,
+} from "../redux/actions/baseActions";
 // import { saveToken } from '../redux/actions/baseActions'
 
 const Registration = () => {
@@ -14,7 +21,7 @@ const Registration = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +34,23 @@ const Registration = () => {
     console.log(registerUser);
     // dispatch(saveToken(loginUser.data.token));
   };
+
+  // google login
+  const responseGoogle = async (response) => {
+    console.log(response);
+    let email = response.profileObj.email;
+    let firstName = response.profileObj.givenName;
+    let lastName = response.profileObj.familyName;
+    let image = response.profileObj.imageUrl;
+    let loginGoogleUser = await axios.post(
+      "http://localhost:3005/googlesignin",
+      { email, firstName, lastName }
+    );
+    dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
+    dispatch(saveGoogleImg(image));
+    dispatch(setGoogleAuth(true));
+  }
+
   return (
     <>
       <Container>
@@ -81,8 +105,24 @@ const Registration = () => {
                 Submit
               </Button>
             </Form>
+            <div className="mt-5">Already Have an Account?</div>
           </Col>
         </Row>
+        <Row className="mt-3">
+          <Col md={{ span: 4, offset: 4 }}>
+            <GoogleLogin
+                  className="mr-3"
+                  clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
+                  buttonText="Login with Google"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
+            <span>or</span>
+            <Button className="ml-3" as={Link} to="/login">Login</Button>
+          </Col>
+        </Row>
+            
       </Container>
     </>
   );

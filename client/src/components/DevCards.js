@@ -8,7 +8,7 @@ import Ian from '../styles/images/ian.jpeg'
 import Joe from '../styles/images/joe.jpeg'
 import Jacob from '../styles/images/jacob2.jpeg'
 
-const HomePageBooks = () => {
+const DevCards = () => {
     return (
         <> 
         <S.H3 className="mt-5 mb-5">ReadMe Book Swap Was Created By</S.H3>
@@ -177,4 +177,4 @@ const HomePageBooks = () => {
     )
 }
 
-export default HomePageBooks;
+export default DevCards;
