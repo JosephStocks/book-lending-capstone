@@ -9,6 +9,7 @@ import BaseLayout from "./components/layout/BaseLayout";
 import reducer from "./redux/reducers/baseReducer";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import BookSearch from "./components/BookSearch";
 import PersonalPage from "./components/PersonalPage";
 import Account from "./components/Account";
@@ -59,7 +60,7 @@ ReactDOM.render(
             <Route exact path="/register" component={Registration} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/search" component={BookSearch} />
-            <Route exact path="/personal" component={PersonalPage} />
+            <ProtectedRoute exact path="/personal" component={PersonalPage} />
             <Route exact path="/account" component={Account} />
             <Route exact path="/friends" component={Friends} />
           </Switch>
