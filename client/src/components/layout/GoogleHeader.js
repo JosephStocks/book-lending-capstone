@@ -32,6 +32,7 @@ export default function GoogleHeader() {
         About The App
       </Nav.Link>
       <NavDropdown
+        className="mr-4"
         align="none"
         eventkey={1} //Causing Error in Console//
         title={
