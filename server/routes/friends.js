@@ -10,21 +10,13 @@ require("../auth/passAuth"); //import all of passport auth strategy
 // jwt auth
 let requireAuth = passport.authenticate("jwt", { session: false });
 
-router.post("/books", requireAuth, async (req, res) => {
-  let { book, whichList } = req.body;
-  let userID = req.user.id;
-
-  let response = await findOrCreateBookEntry(book);
-  console.log(Object.keys(response));
-  let bookID = response.dataValues.id;
-
-  response = await findOrCreatePersonalListFunctionMapping[whichList](
-    userID,
-    bookID
-  );
-
-  // console.log(response);
-  res.status(200).json(response);
+router.post("/friends", requireAuth, async (req, res) => {
+  try {
+    let response = await dummyFunction(req.user.id);
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 module.exports = router;
