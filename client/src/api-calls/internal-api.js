@@ -1,4 +1,25 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
+import react from "react";
+
+// axios.interceptors.request.use((config) => {
+//   config.foo = 123;
+// });
+
+// const instance = axios.create();
+// instance.interceptors.request.use((config) => {
+//   config.foo = 456;
+// });
+
+// axios.get("/foo"); // config.foo === 123 -> true
+// instance.get("/foo"); // config.foo === 456 -> true
+// let token = useSelector((state) => state.token);
+
+// import React from "react";
+
+// export default function componentName() {
+//   return <></>;
+// }
 
 export const bookAddPost = async (book, token) => {
   let response = await axios.post(

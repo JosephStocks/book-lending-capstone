@@ -15,6 +15,7 @@ import {
 import { GoogleLogin } from "react-google-login";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setemail] = useState("");
@@ -29,7 +30,13 @@ const Login = () => {
       email,
       password,
     });
-    dispatch(saveToken({ token: loginUser.data.token, firstName: loginUser.data.firstName, lastName: loginUser.data.lastName }));
+    dispatch(
+      saveToken({
+        token: loginUser.data.token,
+        firstName: loginUser.data.firstName,
+        lastName: loginUser.data.lastName,
+      })
+    );
     history.replace("/");
   };
 
@@ -44,7 +51,13 @@ const Login = () => {
       "http://localhost:3005/googlesignin",
       { email, firstName, lastName }
     );
-    dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
+    dispatch(
+      saveToken({
+        token: loginGoogleUser.data.token,
+        firstName: loginGoogleUser.data.firstName,
+        lastName: loginGoogleUser.data.lastName,
+      })
+    );
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
     history.replace("/");
