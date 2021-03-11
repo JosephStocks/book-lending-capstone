@@ -1,6 +1,13 @@
 $body-bg: #EDEEC9;
 
+.siteFont{
+    font-family: 'Literata', serif;
+}
 
+.menu{
+    position: relative;
+    left: -500;
+}
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Literata:wght@200&display=swap');

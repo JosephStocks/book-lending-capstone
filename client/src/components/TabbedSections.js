@@ -48,7 +48,7 @@ export default function TabbedSections() {
       <S.H2 className="mb-5">Dashboard</S.H2>
       <hr/>
       <Tabs
-        className="mb-5"
+        className="mb-5 siteFont"
         id="controlled-tab-example"
         activeKey={key}
         onSelect={(k) => setKey(k)}
