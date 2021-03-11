@@ -10,6 +10,13 @@ require("../auth/passAuth"); //import all of passport auth strategy
 // jwt auth
 let requireAuth = passport.authenticate("jwt", { session: false });
 
-
+router.post("/friends", requireAuth, async (req, res) => {
+  try {
+    let response = await dummyFunction(req.user.id);
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 module.exports = router;
