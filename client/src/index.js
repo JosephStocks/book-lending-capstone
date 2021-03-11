@@ -16,6 +16,7 @@ import About from "./components/About";
 import Friends from "./components/Friends";
 import "./styles/app.scss";
 
+
 const saveToLocalStorage = (reduxGlobalState) => {
   //serialization = converting js object to a string
   try {
