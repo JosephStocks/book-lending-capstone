@@ -8,7 +8,7 @@ const {
   showAllWantToReadBooksByUser,
   findOrCreateBookEntry,
   findOrCreatePersonalListFunctionMapping,
-} = require("../database/logic");
+} = require("../database/bookLogic");
 // auth
 const passport = require("passport");
 require("../auth/passAuth"); //import all of passport auth strategy

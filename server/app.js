@@ -19,6 +19,7 @@ app.use(function (req, res, next) {
 //routes
 app.use(require("./routes/auth"));
 app.use(require("./routes/books"));
+app.use(require("./routes/friends"));
 
 // server
 PORT = process.env.PORT || 3005;

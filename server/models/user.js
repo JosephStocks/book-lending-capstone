@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       user.hasMany(models.OwnedBooks, { foreignKey: "lendToID" });
       user.hasMany(models.ReadBooks, { foreignKey: "userID" });
       user.hasMany(models.WantToReadBooks, { foreignKey: "userID" });
+      user.hasMany(models.pendingFriendRequests, { foreignKey: "fromUserID" });
+      user.hasMany(models.pendingFriendRequests, { foreignKey: "toUserID" });
     }
   }
   user.init(
