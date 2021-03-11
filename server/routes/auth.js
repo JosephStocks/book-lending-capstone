@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
             // create token
             let jwtToken = await createToken(addUser);
             //send a jwt to client
-            return res.json({ token: jwtToken });
+            return res.json({ token: jwtToken, firstName: addUser.firstName, lastName: addUser.lastName });
         } else {
             //send back an error
             return res.status(422).send({ error: 'Email already exists' });
@@ -57,7 +57,7 @@ router.post("/signin", requireSignin, (req, res) => {
     // create token and save to db
     let jwtToken = createToken(req.user);
     // send token to user
-    res.json({ token: jwtToken });
+    res.json({ token: jwtToken, firstName: req.user.firstName, lastName: req.user.lastName });
 });
 
 router.post("/googlesignin", async (req, res) => {
@@ -76,11 +76,11 @@ router.post("/googlesignin", async (req, res) => {
             // create token
             let jwtToken = await createToken(addUser);
             //send a jwt to client
-            return res.json({ token: jwtToken });
+            return res.json({ token: jwtToken, firstName, lastName });
         } else {
             //send a token for the existing user record
             let jwtToken = await createToken(records[0]);
-            return res.json({ token: jwtToken });
+            return res.json({ token: jwtToken, firstName: records[0].firstName, lastName: records[0].lastName });
         }
     } catch (error) {
         //send back error, can't access database

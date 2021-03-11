@@ -14,7 +14,7 @@ export default function GoogleHeader() {
   const profileImage = useSelector((state) => state.profileImage);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(saveToken(""));
+    dispatch(saveToken({ token: "", firstName: "", lastName: "" }));
     dispatch(saveGoogleImg(""));
     dispatch(setGoogleAuth(false));
   };
