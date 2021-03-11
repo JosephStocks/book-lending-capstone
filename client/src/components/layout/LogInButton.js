@@ -9,6 +9,7 @@ export default function LogInButton() {
     <>
         <Nav.Link as={Link} to="/">Home</Nav.Link>
         <Nav.Link as={Link} to="/search">Search</Nav.Link>
+        <Nav.Link as={Link} to="/about">About The App</Nav.Link>
         <Nav.Link as={Link} to="/login">Login/Register</Nav.Link>
     </>
   );

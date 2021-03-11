@@ -24,12 +24,14 @@ export default function LocalHeader() {
       <Nav.Link as={Link} to="/search">
         Search
       </Nav.Link>
+      <Nav.Link as={Link} to="/about">
+      About The App
+      </Nav.Link>
 
       <NavDropdown title={loggedUser.firstName?.charAt(0).toUpperCase() + loggedUser.firstName?.slice(1)} id="basic-nav-dropdown">
         <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
         <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="/account">My Account</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
           Logout
         </NavDropdown.Item>

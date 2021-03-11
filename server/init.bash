@@ -13,11 +13,14 @@
 # sequelize model:generate --name booksTable \
 # --attributes title:string,author:string,category:string,isbn:integer
 
-sequelize model:generate --name OwnedBooks \
---attributes userID:integer,bookID:integer,lendToID:integer
+# sequelize model:generate --name OwnedBooks \
+# --attributes userID:integer,bookID:integer,lendToID:integer
 
-sequelize model:generate --name WantToReadBooks \
---attributes userID:integer,bookID:integer
+# sequelize model:generate --name WantToReadBooks \
+# --attributes userID:integer,bookID:integer
 
-sequelize model:generate --name ReadBooks \
---attributes userID:integer,bookID:integer
+# sequelize model:generate --name ReadBooks \
+# --attributes userID:integer,bookID:integer
+
+sequelize model:generate --name pendingFriendRequests \
+--attributes fromUserID:integer,toUserID:integer
