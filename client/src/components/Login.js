@@ -79,7 +79,9 @@ const Login = () => {
               <Button className="mr-3" variant="primary" type="submit">
                 Submit
               </Button>
+              <span>or</span>
               <GoogleLogin
+                className="ml-2"
                 clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 onSuccess={responseGoogle}
