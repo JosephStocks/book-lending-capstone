@@ -27,7 +27,7 @@ const Login = () => {
       email,
       password,
     });
-    dispatch(saveToken(loginUser.data.token));
+    dispatch(saveToken({ token: loginUser.data.token, firstName: loginUser.data.firstName, lastName: loginUser.data.lastName }));
   };
 
   // google login
@@ -41,10 +41,9 @@ const Login = () => {
       "http://localhost:3005/googlesignin",
       { email, firstName, lastName }
     );
-    dispatch(saveToken(loginGoogleUser.data.token));
+    dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
-    console.log(loginGoogleUser.data.token);
   };
 
   return (
@@ -80,7 +79,9 @@ const Login = () => {
               <Button className="mr-3" variant="primary" type="submit">
                 Submit
               </Button>
+              <span>or</span>
               <GoogleLogin
+                className="ml-3"
                 clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 onSuccess={responseGoogle}
