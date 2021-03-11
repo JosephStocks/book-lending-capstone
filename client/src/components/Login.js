@@ -14,11 +14,13 @@ import {
 } from "../redux/actions/baseActions";
 import { GoogleLogin } from "react-google-login";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // local db login
   const handleSubmit = async (e) => {
@@ -28,6 +30,7 @@ const Login = () => {
       password,
     });
     dispatch(saveToken({ token: loginUser.data.token, firstName: loginUser.data.firstName, lastName: loginUser.data.lastName }));
+    history.replace("/");
   };
 
   // google login
@@ -44,6 +47,7 @@ const Login = () => {
     dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
+    history.replace("/");
   };
 
   return (
@@ -81,7 +85,7 @@ const Login = () => {
               </Button>
               <span>or</span>
               <GoogleLogin
-                className="ml-3"
+                className="ml-2"
                 clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 onSuccess={responseGoogle}

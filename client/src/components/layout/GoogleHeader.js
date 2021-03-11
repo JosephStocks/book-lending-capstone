@@ -9,21 +9,22 @@ import {
   saveGoogleImg,
   setGoogleAuth,
 } from "../../redux/actions/baseActions";
+import { useHistory } from "react-router-dom";
 
 export default function GoogleHeader() {
   const profileImage = useSelector((state) => state.profileImage);
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const handleLogout = () => {
     dispatch(saveToken({ token: "", firstName: "", lastName: "" }));
     dispatch(saveGoogleImg(""));
     dispatch(setGoogleAuth(false));
+    history.replace("/");
   };
 
   return (
     <>
-      <Nav.Link as={Link} to="/">
-        Home
-      </Nav.Link>
       <Nav.Link as={Link} to="/search">
         Search
       </Nav.Link>
@@ -31,7 +32,7 @@ export default function GoogleHeader() {
         About The App
       </Nav.Link>
       <NavDropdown
-        eventKey={1} //Causing Error in Console//
+        eventkey={1} //Causing Error in Console//
         title={
           <div className="pull-left">
             <S.RoundImage
@@ -44,8 +45,7 @@ export default function GoogleHeader() {
         }
         id="basic-nav-dropdown"
       >
-        <NavDropdown.Item href="/personal">My Books</NavDropdown.Item>
-        <NavDropdown.Item href="/friends">My Friends</NavDropdown.Item>
+        <NavDropdown.Item href="/">My DashBoard</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
           Logout

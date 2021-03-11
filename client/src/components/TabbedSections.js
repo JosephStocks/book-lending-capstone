@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
+import Friends from './Friends';
 import {
   fetchOwnedBooks,
   fetchReadBooks,
@@ -46,7 +44,11 @@ export default function TabbedSections() {
 
   return (
     <>
+      <hr/>
+      <S.H2 className="mb-5">Dashboard</S.H2>
+      <hr/>
       <Tabs
+        className="mb-5"
         id="controlled-tab-example"
         activeKey={key}
         onSelect={(k) => setKey(k)}
@@ -77,6 +79,9 @@ export default function TabbedSections() {
                 ))
               : null}
           </S.Grid>
+        </Tab>
+        <Tab eventKey="friends" title="Friends">
+            <Friends/>
         </Tab>
       </Tabs>
     </>

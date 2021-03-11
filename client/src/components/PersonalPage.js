@@ -4,7 +4,7 @@ import TabbedSections from './TabbedSections';
 const PersonalPage = () => {
     return (
         <>
-            <TabbedSections/>
+            <TabbedSections />
         </>
     )
 }
