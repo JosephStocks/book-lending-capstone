@@ -1,9 +1,6 @@
 import React from "react";
-import {Button, Row, Col, Container} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import BooksPhoto from './styles/images/books.jpg';
-import Welcome from './components/Welcome'
-import Friends from './components/Friends'
+import Welcome from './components/Welcome';
+import TabbedSections from './components/TabbedSections';
 import * as S from './styles/Styles';
 import { useSelector } from "react-redux";
 
@@ -19,7 +16,7 @@ const Home = () => {
         whichHomePage = <Welcome/>
     }
     else{
-        whichHomePage = <Friends/>
+        whichHomePage = <TabbedSections/>
     }
 
 
