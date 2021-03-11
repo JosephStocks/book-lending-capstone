@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleModal } from "../redux/actions/templateActions";
+import { toggleModal } from "../redux/actions/baseActions";
 import * as S from "../styles/Styles";
 import {
   bookAddPost,
@@ -9,12 +9,12 @@ import {
   bookDeleteRequestByGoogleBookID,
   addBookToPersonalLists,
 } from "../api-calls/internal-api";
-import SaveButtons from './SaveButtons'
+import SaveButtons from "./SaveButtons";
 
 const BookModal = (props) => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalShow);
-  const individBook = useSelector((state) => state.individBook); 
+  const individBook = useSelector((state) => state.individBook);
   const tokenFromState = useSelector((state) => state.token);
 
   // const modalRef = React.useRef(null)
@@ -23,12 +23,11 @@ const BookModal = (props) => {
   const NO_DATE = "N/A";
 
   let saveButtons;
-    if(tokenFromState !== "" ){
-        saveButtons = <SaveButtons/>
-    }
-    else{
-      saveButtons = null
-    }
+  if (tokenFromState !== "") {
+    saveButtons = <SaveButtons />;
+  } else {
+    saveButtons = null;
+  }
 
   return (
     <>
@@ -80,9 +79,7 @@ const BookModal = (props) => {
               </Row>
             </Container>
           </Modal.Body>
-          <Modal.Footer>
-            {saveButtons}
-          </Modal.Footer>
+          <Modal.Footer>{saveButtons}</Modal.Footer>
         </Modal>
       ) : null}
     </>

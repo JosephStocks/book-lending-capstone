@@ -11,7 +11,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Book from "./Book";
 import BookModal from "./BookModal";
-import { searchFunction } from "../redux/actions/templateActions";
+import { searchFunction } from "../redux/actions/baseActions";
 
 export default function App() {
   const [searchText, setSearchText] = useState("");

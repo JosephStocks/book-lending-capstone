@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addLargerImageLinks,
-} from "../api-calls/3rd-party-apis";
+import { addLargerImageLinks } from "../api-calls/3rd-party-apis";
 import {
   bookAddPost,
   bookDeleteRequestByDatabaseID,
   bookDeleteRequestByGoogleBookID,
 } from "../api-calls/internal-api";
-import { toggleModal, addIndividBook, searchFunction } from "../redux/actions/templateActions";
+import {
+  toggleModal,
+  addIndividBook,
+  searchFunction,
+} from "../redux/actions/baseActions";
 
-import * as S from "../styles/Styles"
+import * as S from "../styles/Styles";
 
 export default function Book({ book }, props) {
   let {
@@ -41,7 +43,7 @@ export default function Book({ book }, props) {
 
   const toggleFunction = () => dispatch(toggleModal(true));
   const addBookFunction = () => dispatch(addIndividBook(book));
-  let searchResults = useSelector(state => state.searchResults);
+  let searchResults = useSelector((state) => state.searchResults);
 
   const handleClick = async () => {
     book = await addLargerImageLinks(book);
@@ -49,7 +51,6 @@ export default function Book({ book }, props) {
     dispatch(searchFunction(searchResults));
     toggleFunction();
     addBookFunction();
-    
   };
 
   useEffect(() => {
