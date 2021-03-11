@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { saveToken, saveGoogleImg } from "../../redux/actions/baseActions";
+import { useHistory } from "react-router-dom";
 
 export default function LocalHeader() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const loggedUser = useSelector(state => state.loggedUser)
+
   const handleLogout = () => {
     dispatch(saveToken({ token: "", firstName: "", lastName: "" }));
     dispatch(saveGoogleImg(""));
+    history.replace("/");
   };
 
   return (

@@ -5,7 +5,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleLogin } from "react-google-login";
 import {
@@ -20,7 +22,7 @@ const Registration = () => {
   const [lName, setlName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -32,7 +34,8 @@ const Registration = () => {
       password,
     });
     console.log(registerUser);
-    // dispatch(saveToken(loginUser.data.token));
+    history.replace("/login");
+
   };
 
   // google login
@@ -111,18 +114,18 @@ const Registration = () => {
         <Row className="mt-3">
           <Col md={{ span: 4, offset: 4 }}>
             <GoogleLogin
-                  className="mr-3"
-                  clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
-                  buttonText="Login with Google"
-                  onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
-                  cookiePolicy={"single_host_origin"}
-                />
+              className="mr-3"
+              clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
             <span>or</span>
             <Button className="ml-3" as={Link} to="/login">Login</Button>
           </Col>
         </Row>
-            
+
       </Container>
     </>
   );
