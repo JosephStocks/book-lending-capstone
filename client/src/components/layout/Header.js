@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar } from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import * as S from "../../styles/Styles";
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,12 +29,16 @@ const Header = () => {
 
     return (
         <>
-            <Navbar bg="info" expand="lg" sticky="top">
-                <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black" />ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"} /></S.Font></Navbar.Brand>
-                <Navbar className="ml-auto" id="basic-navbar-nav">
+            <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+            <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black" />ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"} /></S.Font></Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="ml-auto">
                     {whichButtons}
-                </Navbar>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
+            
         </>
     )
 }

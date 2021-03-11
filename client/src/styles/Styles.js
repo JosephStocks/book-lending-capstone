@@ -184,6 +184,11 @@ export const CardTitle = styled.h5`
   ); /* fallback */
 `;
 
+
+
+export const GoogleImage = styled.div`
+  display: flex;
+`
 export const LinkStyle = styled.a`
   color: black;
 `

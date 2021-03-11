@@ -25,23 +25,24 @@ export default function GoogleHeader() {
 
   return (
     <>
-      <Nav.Link as={Link} to="/search">
+      <Nav.Link className="mt-3 mr-4" as={Link} to="/search">
         Search
       </Nav.Link>
-      <Nav.Link as={Link} to="/about">
+      <Nav.Link className="mt-3 mr-4" as={Link} to="/about">
         About The App
       </Nav.Link>
       <NavDropdown
+        align="none"
         eventkey={1} //Causing Error in Console//
         title={
-          <div className="pull-left">
+          <S.GoogleImage className="pull-left">
             <S.RoundImage
               className="thumbnail-image"
               src={profileImage || Avatar}
               alt="user pic"
               height="50px"
             />
-          </div>
+          </S.GoogleImage>
         }
         id="basic-nav-dropdown"
       >
@@ -51,6 +52,7 @@ export default function GoogleHeader() {
           Logout
         </NavDropdown.Item>
       </NavDropdown>
+      
     </>
   );
 }
