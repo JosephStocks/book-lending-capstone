@@ -1,43 +1,24 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
-import react from "react";
+import { loadTokenFromLocalStorage } from "../redux/store";
 
-// axios.interceptors.request.use((config) => {
-//   config.foo = 123;
-// });
+// Adds token to every http request using this axios instance
+const axiosInstance = axios.create();
+axiosInstance.interceptors.request.use(function (config) {
+  config.headers.Authorization = loadTokenFromLocalStorage();
 
-// const instance = axios.create();
-// instance.interceptors.request.use((config) => {
-//   config.foo = 456;
-// });
+  return config;
+});
 
-// axios.get("/foo"); // config.foo === 123 -> true
-// instance.get("/foo"); // config.foo === 456 -> true
-// let token = useSelector((state) => state.token);
-
-// import React from "react";
-
-// export default function componentName() {
-//   return <></>;
-// }
-
-export const bookAddPost = async (book, token) => {
-  let response = await axios.post(
-    "http://localhost:3005/books",
-    { book },
-    {
-      headers: {
-        "content-type": "application/json",
-        authorization: token,
-      },
-    }
-  );
+export const bookAddPost = async (book) => {
+  let response = await axiosInstance.post("http://localhost:3005/books", {
+    book,
+  });
 
   console.log(response?.data?.publishedDate);
 };
 
 export const bookDeleteRequest = async (type, id) => {
-  let response = await axios.delete("http://localhost:3005/books", {
+  let response = await axiosInstance.delete("http://localhost:3005/books", {
     data: {
       idType: type,
       id: id,
@@ -54,39 +35,30 @@ export const bookDeleteRequestByGoogleBookID = async (id) => {
   return await bookDeleteRequest("googleBookID", id);
 };
 
-export const addBookToPersonalLists = async (book, whichList, token) => {
-  let response = await axios.post(
-    "http://localhost:3005/books",
-    { book, whichList },
-    {
-      headers: {
-        "content-type": "application/json",
-        authorization: token,
-      },
-    }
-  );
+export const addBookToPersonalLists = async (book, whichList) => {
+  let response = await axiosInstance.post("http://localhost:3005/books", {
+    book,
+    whichList,
+  });
   console.log(response);
 };
 
-export const fetchOwnedBooks = async (token) => {
-  return await fetchSpecifiedPersonalBookList("ownedbooks", token);
+export const fetchOwnedBooks = async () => {
+  return await fetchSpecifiedPersonalBookList("ownedbooks");
 };
 
-export const fetchReadBooks = async (token) => {
-  return await fetchSpecifiedPersonalBookList("readbooks", token);
+export const fetchReadBooks = async () => {
+  return await fetchSpecifiedPersonalBookList("readbooks");
 };
 
-export const fetchWantBooks = async (token) => {
-  return await fetchSpecifiedPersonalBookList("wantbooks", token);
+export const fetchWantBooks = async () => {
+  return await fetchSpecifiedPersonalBookList("wantbooks");
 };
 
-const fetchSpecifiedPersonalBookList = async (relativePath, token) => {
-  let response = await axios.get(`http://localhost:3005/${relativePath}`, {
-    headers: {
-      "content-type": "application/json",
-      authorization: token,
-    },
-  });
+const fetchSpecifiedPersonalBookList = async (relativePath) => {
+  let response = await axiosInstance.get(
+    `http://localhost:3005/${relativePath}`
+  );
   return response.data;
 };
 

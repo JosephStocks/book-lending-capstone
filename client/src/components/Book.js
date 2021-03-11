@@ -14,7 +14,7 @@ import {
 
 import * as S from "../styles/Styles";
 
-export default function Book({ book }, props) {
+export default function Book({ book, onPersonalPage }, props) {
   let {
     id,
     selfLink,
@@ -46,8 +46,10 @@ export default function Book({ book }, props) {
   let searchResults = useSelector((state) => state.searchResults);
 
   const handleClick = async () => {
-    book = await addLargerImageLinks(book);
-    searchResults[book.index] = book;
+    if (onPersonalPage === undefined || onPersonalPage === false) {
+      book = await addLargerImageLinks(book);
+      searchResults[book.index] = book;
+    }
     dispatch(searchFunction(searchResults));
     toggleFunction();
     addBookFunction();

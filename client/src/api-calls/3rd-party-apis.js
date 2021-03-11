@@ -87,7 +87,6 @@ export const addLargerImageLinks = async (originalBook) => {
       },
     });
     let imageLinks = result.data.volumeInfo.imageLinks;
-    console.log(imageLinks);
     return { ...originalBook, imageLinks };
   } catch (error) {
     console.error(error);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Friends from './Friends';
+import Friends from "./Friends";
 import {
   fetchOwnedBooks,
   fetchReadBooks,
@@ -14,8 +14,8 @@ import {
   saveReadBooks,
   saveWantBooks,
 } from "../redux/actions/baseActions";
-import { bookSearchByAuthor } from "../api-calls/3rd-party-apis";
 import Book from "./Book";
+import BookModal from "./BookModal";
 import * as S from "../styles/Styles";
 
 export default function TabbedSections() {
@@ -29,10 +29,10 @@ export default function TabbedSections() {
   useEffect(() => {
     (async () => {
       try {
-        let ownedBooks = await cleanFetchedBooks(await fetchOwnedBooks(token));
+        let ownedBooks = await cleanFetchedBooks(await fetchOwnedBooks());
         dispatch(saveOwnedBooks(ownedBooks));
-        let readBooks = await cleanFetchedBooks(await fetchReadBooks(token));
-        let wantBooks = await cleanFetchedBooks(await fetchWantBooks(token));
+        let readBooks = await cleanFetchedBooks(await fetchReadBooks());
+        let wantBooks = await cleanFetchedBooks(await fetchWantBooks());
         dispatch(saveReadBooks(readBooks));
         dispatch(saveWantBooks(wantBooks));
       } catch (error) {
@@ -44,9 +44,9 @@ export default function TabbedSections() {
 
   return (
     <>
-      <hr/>
+      <hr />
       <S.H2 className="mb-5">Dashboard</S.H2>
-      <hr/>
+      <hr />
       <Tabs
         className="mb-5 siteFont"
         id="controlled-tab-example"
@@ -57,7 +57,7 @@ export default function TabbedSections() {
           <S.Grid>
             {ownedBooks !== undefined && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                  <Book book={{ ...book, index }} />
+                  <Book book={{ ...book, index }} onPersonalPage />
                 ))
               : null}
           </S.Grid>
@@ -66,7 +66,7 @@ export default function TabbedSections() {
           <S.Grid>
             {readBooks !== undefined && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                  <Book book={{ ...book, index }} />
+                  <Book book={{ ...book, index }} onPersonalPage />
                 ))
               : null}
           </S.Grid>
@@ -75,15 +75,16 @@ export default function TabbedSections() {
           <S.Grid>
             {wantBooks !== undefined && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                  <Book book={{ ...book, index }} />
+                  <Book book={{ ...book, index }} onPersonalPage />
                 ))
               : null}
           </S.Grid>
         </Tab>
         <Tab eventKey="friends" title="Friends">
-            <Friends/>
+          <Friends />
         </Tab>
       </Tabs>
+      <BookModal />
     </>
   );
 }

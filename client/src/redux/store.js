@@ -21,6 +21,10 @@ const loadFromLocalStorage = (params) => {
   }
 };
 
+export const loadTokenFromLocalStorage = () => {
+  return store.getState().token;
+};
+
 const persistedState = loadFromLocalStorage();
 
 //initializing redux store
