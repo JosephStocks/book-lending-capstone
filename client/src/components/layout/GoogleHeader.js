@@ -28,7 +28,7 @@ export default function GoogleHeader() {
         Search
       </Nav.Link>
       <NavDropdown
-        eventKey={1} //Causing Error in Console//
+        eventkey={1} //Causing Error in Console//
         title={
           <div className="pull-left">
             <S.RoundImage
