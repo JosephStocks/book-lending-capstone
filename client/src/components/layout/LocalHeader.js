@@ -18,14 +18,14 @@ export default function LocalHeader() {
 
   return (
     <>
-      <Nav.Link as={Link} to="/search">
+      <Nav.Link className="mr-3" as={Link} to="/search">
         Search
       </Nav.Link>
-      <Nav.Link as={Link} to="/about">
+      <Nav.Link className="mr-3" as={Link} to="/about">
       About The App
       </Nav.Link>
 
-      <NavDropdown title={loggedUser.firstName?.charAt(0).toUpperCase() + loggedUser.firstName?.slice(1)} id="basic-nav-dropdown">
+      <NavDropdown className="mr-3" title={loggedUser.firstName?.charAt(0).toUpperCase() + loggedUser.firstName?.slice(1)} id="basic-nav-dropdown">
         <NavDropdown.Item href="/">My Dashboard</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
