@@ -31,7 +31,7 @@ export default function GoogleHeader() {
         About The App
       </Nav.Link>
       <NavDropdown
-        eventKey={1} //Causing Error in Console//
+        eventkey={1} //Causing Error in Console//
         title={
           <div className="pull-left">
             <S.RoundImage
