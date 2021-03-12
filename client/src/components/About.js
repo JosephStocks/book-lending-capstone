@@ -11,8 +11,8 @@ const Account = () => {
         <Container>
             <Row className="mt-5">
             <Col>
-                <div><h1>ReadMe Book Swap</h1><h5>is a social media site for book lovers and new readers alike! Read Me provides a space for literary discussion and connecting with other readers. Write your own review or story about how a book changed your life and share it with others through our book swap feature.
-                    Wherever you are in your reading journey, ReadMe Book Swap is here to help you document, share, and explore new literary adventures.</h5>
+                <div><h1>ReadMe Book Swap</h1><h5>is an app for book lovers and new readers alike! RMBS provides a space for connecting with other readers. Offer up a book you love and share it with others through our book swap feature.
+                    Wherever you are in your reading journey, ReadMe Book Swap is here to help you share and explore new literary adventures.</h5>
                 </div>
             </Col>
             </Row>
