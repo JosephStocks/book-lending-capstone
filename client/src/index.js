@@ -29,11 +29,10 @@ ReactDOM.render(
             <Route exact path="/" component={Home} />
             <Route path="/register" component={Registration} />
             <Route path="/login" component={Login} />
-            <Route path="/search" component={BookSearch} />
-            {/* <ProtectedRoute path="/personal" component={PersonalPage} /> */}
-            <Route path="/personal" component={PersonalPage} />
+            <ProtectedRoute path="/search" component={BookSearch} />
+            <ProtectedRoute path="/personal" component={PersonalPage} />
             <Route path="/about" component={About} />
-            <Route path="/friends" component={Friends} />
+            <ProtectedRoute path="/friends" component={Friends} />
           </Switch>
         </BaseLayout>
       </Router>

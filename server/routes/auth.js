@@ -22,20 +22,7 @@ const createToken = (user) => {
 let requireSignin = passport.authenticate('local', { session: false });
 
 // jwt auth
-let requireAuth = passport.authenticate('jwt', { session: false }, function (err, user, info) {
-    console.log(err);
-    console.log(user);
-    console.log(info);
-    // If authentication failed, `user` will be set to false. If an exception occurred, `err` will be set.
-    if (err || !user || _.isEmpty(user)) {
-        // PASS THE ERROR OBJECT TO THE NEXT ROUTE i.e THE APP'S COMMON ERROR HANDLING MIDDLEWARE
-        return next(info);
-    } else {
-        return next();
-    }
-});
-
-
+let requireAuth = passport.authenticate('jwt', { session: false });
 
 
 router.get("/", requireAuth, (req, res) => {
