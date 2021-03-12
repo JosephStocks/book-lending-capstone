@@ -60,6 +60,7 @@ const Registration = () => {
     dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
+    history.replace("/");
   }
 
   return (
@@ -68,7 +69,7 @@ const Registration = () => {
         <Row>
           <Col md={{ span: 4, offset: 4 }}>
             <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formFirstName">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -78,7 +79,7 @@ const Registration = () => {
                 />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formLastName">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -88,7 +89,7 @@ const Registration = () => {
                 />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type="email"

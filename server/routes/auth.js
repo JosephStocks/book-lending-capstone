@@ -42,21 +42,21 @@ let requireAuth = passport.authenticate('jwt', { session: false });
 //     })(req, res, next);
 // })
 
-router.post('/messages', (req, res, next) => {
-    passport.authenticate('local', { session: false }, (err, user, info) => {
-        if (err) {
-            return res.status(405).json({ token: "", message: "Problem accessing database" })
-        }
-        if (!user) {
-            return res.status(410).json({ token: "", message: info.message })
-        }
-        req.logIn(user, (err) => {
-            return
-        }
-        )
+// router.post('/messages', (req, res, next) => {
+//     passport.authenticate('local', { session: false }, (err, user, info) => {
+//         if (err) {
+//             return res.status(405).json({ token: "", message: "Problem accessing database" })
+//         }
+//         if (!user) {
+//             return res.status(410).json({ token: "", message: info.message })
+//         }
+//         req.logIn(user, (err) => {
+//             return
+//         }
+//         )
 
-    })(req, res, next)
-})
+//     })(req, res, next)
+// })
 
 
 router.get("/", requireAuth, (req, res) => {
@@ -80,17 +80,17 @@ router.post("/register", async (req, res) => {
         let localRecords = await db.user.findAll({ where: { email: email } });
         let googleRecords = await db.user.findAll({ where: { googleAuth: email } });
 
-        if (localRecords.length === 0 && googleRecords === 0) {
+        if (localRecords.length === 0 && googleRecords.length === 0) {
             //add a new record
             let createEntry = await db.user.create({ firstName, lastName, email, password });
             //send a response
             return res.status(210).send({ success: "User created!" });
         }
-        else if ((localRecords.length === 0 && googleRecords !== 0)) {
+        else if ((localRecords.length === 0 && googleRecords.length !== 0)) {
             console.log("inside");
             let updateGoogleRecord = await db.user.update({ email, password }, { where: { googleAuth: email } })
             //send a response
-            return res.status(210).send({ success: "User created!" });
+            return res.status(210).send({ success: "User updated!" });
         }
         else {
             //send back an error
@@ -122,7 +122,7 @@ router.post("/googlesignin", async (req, res) => {
     try {
         let localRecords = await db.user.findAll({ where: { email: email } });
         let googleRecords = await db.user.findAll({ where: { googleAuth: email } });
-        if (localRecords.length === 0 && googleRecords === 0) {
+        if (localRecords.length === 0 && googleRecords.length === 0) {
             //add a new record
             let addGoogleUser = await db.user.create({ firstName, lastName, password, googleAuth: email });
             // create token
@@ -130,7 +130,7 @@ router.post("/googlesignin", async (req, res) => {
             //send a jwt to client
             return res.json({ token: jwtToken, firstName, lastName });
         }
-        else if ((localRecords.length === 0 && googleRecords !== 0)) {
+        else if ((localRecords.length === 0 && googleRecords.length !== 0)) {
             let updateGoogleRecord = await db.user.update({ email, password }, { where: { googleAuth: email } })
             //send a response
             let jwtToken = await createToken(updateGoogleRecord);
