@@ -57,12 +57,13 @@ ReactDOM.render(
         <BaseLayout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/register" component={Registration} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/search" component={BookSearch} />
-            <ProtectedRoute exact path="/personal" component={PersonalPage} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/friends" component={Friends} />
+            <Route path="/register" component={Registration} />
+            <Route path="/login" component={Login} />
+            <Route path="/search" component={BookSearch} />
+            {/* <ProtectedRoute path="/personal" component={PersonalPage} /> */}
+            <Route path="/personal" component={PersonalPage} />
+            <Route path="/about" component={About} />
+            <Route path="/friends" component={Friends} />
           </Switch>
         </BaseLayout>
       </Router>

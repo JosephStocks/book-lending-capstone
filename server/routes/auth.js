@@ -19,9 +19,30 @@ const createToken = (user) => {
 }
 
 // local auth (email/pass) form db
-let requireSignin = passport.authenticate('local', { session: false });
+let requireSignin = passport.authenticate('local', {
+    failureRedirect: '/handleError',
+    failureFlash: true,
+    session: false
+});
+
 // jwt auth
-let requireAuth = passport.authenticate('jwt', { session: false });
+let requireAuth = passport.authenticate('jwt', {
+    failureRedirect: '/handleError',
+    failureFlash: true,
+    session: false
+});
+
+
+router.get("/handleError", (req, res) => {
+    console.log(req);
+    res.send("success");
+});
+
+router.get("/", requireAuth, (req, res) => {
+    // console.log(req.authInfo);
+    res.send("success");
+});
+
 
 // user registration
 router.post("/register", async (req, res) => {
@@ -87,10 +108,6 @@ router.post("/googlesignin", async (req, res) => {
 });
 
 
-
-router.get("/", requireAuth, (req, res) => {
-    res.send("success");
-});
 
 
 

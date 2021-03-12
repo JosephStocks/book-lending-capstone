@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
+var flash = require('connect-flash');
 
 //body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+//flash
+app.use(flash());
 
 // Enable CORS
 app.use(function (req, res, next) {
