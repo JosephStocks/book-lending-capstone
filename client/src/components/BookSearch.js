@@ -7,7 +7,7 @@ import {
   addLargerImageLinks,
 } from "../api-calls/3rd-party-apis";
 import * as S from "../styles/Styles";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import Book from "./Book";
 import BookModal from "./BookModal";
@@ -47,11 +47,11 @@ export default function App() {
             value={searchText}
             type="text"
             id="search"
-            placeholder="Search for a book!"
+            placeholder="Any Book!"
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <button type="submit">Submit</button>
+          <Button className="ml-3" type="submit">Submit</Button>
         </S.Form>
         <div>
           <S.Grid>
