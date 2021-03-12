@@ -1,21 +1,23 @@
 import React from 'react'
 import { useSelector } from "react-redux";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
     const token = useSelector(state => state.token);
-    const history = useHistory();
 
     return (
-        // (token) ?
-        //     <Component />
-        //     :
-        //     history.replace("/")
-        < Route {...rest} render={() => {
-            (token) ?
-                <Component />
-                :
-                history.replace("/login");
+        < Route {...rest} render={(props) => {
+            console.log('in protected');
+            if (token) {
+                return <PrRoute  {...props} />
+            }
+            else {
+                return <Redirect
+                    to={{
+                        pathname: '/login',
+                        state: { from: props.location }
+                    }} />
+            }
         }}
         />
     )
