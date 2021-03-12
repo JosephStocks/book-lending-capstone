@@ -30,7 +30,7 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
                 }
                 //mismatch passwords
                 if (!isMatch) {
-                    return done(null, false, { message: 'Wrong password!' })
+                    return done(null, false, { message: "Passwords don't match!" })
                 }
                 //valid user 
                 let user = records[0];
@@ -46,7 +46,7 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
     catch (error) {
         //something in dabatase retreival
         //res.status(423).send({ error: `Can't access database` });
-        return done(error, { message: "Can't access database!" })
+        return done(null, false, { message: "Can't access database!" })
     }
 });
 
@@ -75,7 +75,7 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
         }
     }
     catch (error) {
-        return done(error, { message: "Can't access database!" })
+        return done(error)
     }
 
 });

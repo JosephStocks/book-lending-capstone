@@ -25,19 +25,33 @@ const Login = () => {
 
   // local db login
   const handleSubmit = async (e) => {
+    console.log("before");
     e.preventDefault();
-    let loginUser = await axios.post("http://localhost:3005/signin", {
-      email,
-      password,
-    });
-    dispatch(
-      saveToken({
-        token: loginUser.data.token,
-        firstName: loginUser.data.firstName,
-        lastName: loginUser.data.lastName,
-      })
-    );
-    history.replace("/");
+    let loginUser = '';
+    console.log("before");
+    try {
+      loginUser = await axios.post("http://localhost:3005/signin", {
+        email,
+        password,
+      });
+      console.log(loginUser);
+      console.log("after");
+      dispatch(
+        saveToken({
+          token: loginUser.data.token,
+          firstName: loginUser.data.firstName,
+          lastName: loginUser.data.lastName,
+        })
+      );
+      history.replace("/");
+    }
+
+    catch (err) {
+      console.log(loginUser);
+      console.log(err.response);
+    }
+
+
   };
 
   // google login
