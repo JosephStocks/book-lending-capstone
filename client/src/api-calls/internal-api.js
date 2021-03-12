@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { loadTokenFromLocalStorage } from "../redux/store";
 
 // Adds token to every http request using this axios instance
@@ -36,11 +37,27 @@ export const bookDeleteRequestByGoogleBookID = async (id) => {
 };
 
 export const addBookToPersonalLists = async (book, whichList) => {
-  let response = await axiosInstance.post("http://localhost:3005/books", {
-    book,
-    whichList,
-  });
-  console.log(response);
+  try {
+    let response = await axiosInstance.post("http://localhost:3005/books", {
+      book,
+      whichList,
+    });
+    console.log(response);
+    let capitalizedPersonalList =
+      whichList[0].toUpperCase() + whichList.slice(1);
+    if (response.data[1]) {
+      toast.success(
+        `${book.title} was added to your ${capitalizedPersonalList} List`
+      );
+    } else {
+      toast.warn(
+        `${book.title} is already in your ${capitalizedPersonalList} List`
+      );
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("There was an ERROR saving your book!");
+  }
 };
 
 export const fetchOwnedBooks = async () => {
@@ -56,10 +73,14 @@ export const fetchWantBooks = async () => {
 };
 
 const fetchSpecifiedPersonalBookList = async (relativePath) => {
-  let response = await axiosInstance.get(
-    `http://localhost:3005/${relativePath}`
-  );
-  return response.data;
+  try {
+    let response = await axiosInstance.get(
+      `http://localhost:3005/${relativePath}`
+    );
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 // book.authors: "["Wise Publications"]"

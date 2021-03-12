@@ -37,7 +37,7 @@ export default function TabbedSections() {
         dispatch(saveWantBooks(wantBooks));
       } catch (error) {
         console.error(error);
-        console.log("There must not be any results for that!");
+        console.log("There was an issue grabbing your books from the server!");
       }
     })();
   }, [token, dispatch]);

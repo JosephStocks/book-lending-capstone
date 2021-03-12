@@ -23,7 +23,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <ToastContainer />
+        <ToastContainer hideProgressBar />
         <BaseLayout>
           <Switch>
             <Route exact path="/" component={Home} />
