@@ -229,6 +229,10 @@ export const LinkStyle = styled.a`
   color: black;
 `
 
+export const RoundImageHeader = styled.img`
+  border-radius: 50%;
+`
+
 export const RoundImage = styled.img`
   height: 200px;
   width: 100%;

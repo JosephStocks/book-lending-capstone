@@ -38,7 +38,7 @@ export default function GoogleHeader() {
         eventkey={1} //Causing Error in Console//
         title={
           <S.GoogleImage className="pull-left">
-            <S.RoundImage
+            <S.RoundImageHeader
               className="thumbnail-image"
               src={profileImage || Avatar}
               alt="user pic"
