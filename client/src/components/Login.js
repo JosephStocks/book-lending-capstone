@@ -43,6 +43,9 @@ const Login = () => {
           lastName: loginUser.data.lastName,
         })
       );
+      toast.success(
+        `Welcome ${loginUser.data.firstName}!`
+      );
       history.replace("/");
     }
 
@@ -74,8 +77,17 @@ const Login = () => {
     );
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
+    toast.success(
+      `Welcome ${firstName}!`
+    );
     history.replace("/");
   };
+
+  const googleFail = async (err) => {
+    toast.warn(
+      `Something went wrong during google authentication.`
+    );
+  }
 
   return (
     <>
@@ -116,7 +128,7 @@ const Login = () => {
                 clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 onSuccess={responseGoogle}
-                onFailure={responseGoogle}
+                onFailure={googleFail}
                 cookiePolicy={"single_host_origin"}
               />
               <div className="mt-5">Don't Have An Account?</div>
@@ -126,15 +138,6 @@ const Login = () => {
             </Form>
           </Col>
         </Row>
-        {/* <Row>
-          <GoogleLogin
-            clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
-          />
-        </Row> */}
       </Container>
     </>
   );
