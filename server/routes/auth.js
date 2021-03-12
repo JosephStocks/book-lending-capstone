@@ -67,7 +67,6 @@ router.get("/", requireAuth, (req, res) => {
 
 // user registration
 router.post("/register", async (req, res) => {
-    console.log("before");
     // get data from req
     let firstName = req.body.firstName
     let lastName = req.body.lastName
@@ -79,7 +78,6 @@ router.post("/register", async (req, res) => {
     try {
         let localRecords = await db.user.findAll({ where: { email: email } });
         let googleRecords = await db.user.findAll({ where: { googleAuth: email } });
-
         if (localRecords.length === 0 && googleRecords.length === 0) {
             //add a new record
             let createEntry = await db.user.create({ firstName, lastName, email, password });
@@ -87,19 +85,17 @@ router.post("/register", async (req, res) => {
             return res.status(210).send({ success: "User created!" });
         }
         else if ((localRecords.length === 0 && googleRecords.length !== 0)) {
-            console.log("inside");
             let updateGoogleRecord = await db.user.update({ email, password }, { where: { googleAuth: email } })
             //send a response
             return res.status(210).send({ success: "User updated!" });
         }
         else {
             //send back an error
-            console.log("err");
-            return res.status(422).send({ error: 'Email already exists' });
+            return res.status(422).send({ error: 'Email address already exists in the database.' });
         }
     } catch (error) {
         //send back error, can't access database
-        return res.status(423).send(error);
+        return res.status(423).send({ error: 'There was a problem accessing the database.' });
     }
 });
 

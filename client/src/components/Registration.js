@@ -15,7 +15,7 @@ import {
   saveGoogleImg,
   setGoogleAuth,
 } from "../redux/actions/baseActions";
-// import { saveToken } from '../redux/actions/baseActions'
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const [fName, setfName] = useState("");
@@ -28,7 +28,6 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let registerUser = '';
-    console.log("in reg");
     try {
       registerUser = await axios.post("http://localhost:3005/register", {
         firstName: fName,
@@ -37,11 +36,15 @@ const Registration = () => {
         password,
       });
       console.log(registerUser);
+      toast.success(
+        <div>Account successfully created. <br />Welcome to ReadMe BookSwap!</div>
+      );
       history.replace("/login");
     }
     catch (err) {
-      console.log(registerUser);
-      console.log(err.response);
+      toast.warn(
+        `${err.response.data.error}`
+      );
     }
 
   };
@@ -60,7 +63,16 @@ const Registration = () => {
     dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
+    toast.success(
+      `Welcome ${firstName}!`
+    );
     history.replace("/");
+  }
+
+  const googleFail = async (err) => {
+    toast.warn(
+      `Something went wrong during google authentication.`
+    );
   }
 
   return (
@@ -127,7 +139,7 @@ const Registration = () => {
               clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
               buttonText="Login with Google"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              onFailure={googleFail}
               cookiePolicy={"single_host_origin"}
             />
             <span>or</span>
