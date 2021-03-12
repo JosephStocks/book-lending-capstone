@@ -1,73 +1,96 @@
-# Test from Ian
+## ReadMe BookSwap
 
 
-# Getting Started with Create React App
+## URL <>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+ This is an app for book lovers and new readers alike! RMBS provides a space for connecting with other readers. Offer up a book you love and share it with others through our book swap feature. Wherever you are in your reading journey, ReadMe Book Swap is here to help you share and explore new literary adventures.
 
-In the project directory, you can run:
 
-### `npm start`
+<img src="./client/public/Front.png" width="700" height="500">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+**How To Use App**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Account Login Name/Email:  test@me.com
+- Password for Account: 1234
 
-### `npm run build`
+To use the app simply click on the link provided above. User can choose to register and login or can use the login and password that are provided directly above. Once logged in the user can search for certain books. To see the details of the book card just simply click the "See More" button on the card of the book and a modal dialog box will appear with the specific information regarding that book. If the user decides they want to add this to any of their lists, they can hit either "I own this book", "I have read this book", or "I want to read this book". Once the user has added to the appropriate group the user can then navigate to the corresponding page which is located within the "My Dashboard" dropdown menu. Here they can see each individual page that will correspond to any books that have been saved. When the user is finished, they can simply logout. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Tech Stack**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React.js, Redux.js, Bootstrap, Sass, SQL, Sequelize, Passport
+- API : Google Books API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**MVP**
 
-### `npm run eject`
+Our base goal was to give the user the ability the register a username and password, login and choose a book from the search results so that they can add a chosen book to an "I own this book", "I have read this book", or "I want to read this book" list. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="./client/public/Search.png" width="700" height="500">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="./client/public/Dashboard.png" width="700" height="500">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Stretch Goals**
 
-## Learn More
+Leaving reviews and comments on books.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Code Snippets**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+More Code:
+```
+   
+```
 
-### Code Splitting
+Conditional Rendering for navbar if user is logged in or logged out:
+```
+let whichButtons;
+    if (token !== “” && googleAuth === true) {
+        whichButtons = <GoogleHeader />
+    }
+    else if (token !== “” && googleAuth === false) {
+        whichButtons = <LocalHeader />
+    }
+    else {
+        whichButtons = <LogInButton />
+    }
+    return (
+        <>
+            <Navbar collapseOnSelect expand=“lg” bg=“info” variant=“dark”>
+            <Navbar.Brand as={Link} to=“/”><S.Font><FontAwesomeIcon className=“mr-1” icon={faBook} size=“1x” color=“black” />ReadMe Book Swap<FontAwesomeIcon className=“ml-1" icon={faBook} size=“1x” color=“black” flip={“horizontal”} /></S.Font></Navbar.Brand>
+                <Navbar.Toggle aria-controls=“responsive-navbar-nav” />
+                <Navbar.Collapse id=“responsive-navbar-nav”>
+                    <Nav className=“ml-auto mr-5">
+                    {whichButtons}
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </>
+    )
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
 
-### Analyzing the Bundle Size
+Mode Code:
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+**Screen Shots and GIFS**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Search Capabilities
+![movie-matrix-search2](https://user-images.githubusercontent.com/26754072/106790757-9a11b780-6619-11eb-85cb-5bdaa59e0e17.gif)  
+  
+Saving Cards to Personal Lists
+![movie-matrix-saving](https://user-images.githubusercontent.com/26754072/106791021-0096d580-661a-11eb-8f54-07f7f66a9bee.gif)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+**Developer Team**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Joe Stocks: 
+- Jacob Deel: UX, Design, Responsiveness
+- Claude Major: 
+- Ian Haddock: UX, Design, Responsiveness
