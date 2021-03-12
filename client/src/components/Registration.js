@@ -60,6 +60,7 @@ const Registration = () => {
     dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
+    history.replace("/");
   }
 
   return (
