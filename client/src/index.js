@@ -23,16 +23,16 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <ToastContainer />
+        <ToastContainer hideProgressBar />
         <BaseLayout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/register" component={Registration} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/search" component={BookSearch} />
-            <ProtectedRoute exact path="/personal" component={PersonalPage} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/friends" component={Friends} />
+            <Route path="/register" component={Registration} />
+            <Route path="/login" component={Login} />
+            <ProtectedRoute path="/search" component={BookSearch} />
+            <ProtectedRoute path="/personal" component={PersonalPage} />
+            <Route path="/about" component={About} />
+            <ProtectedRoute path="/friends" component={Friends} />
           </Switch>
         </BaseLayout>
       </Router>

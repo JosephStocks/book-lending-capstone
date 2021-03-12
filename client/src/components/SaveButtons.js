@@ -1,22 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import * as S from "../styles/Styles";
-
-import {
-  addBookToPersonalLists,
-} from "../api-calls/internal-api";
-// import 'react-toastify/dist/ReactToastify.css';
-
 import { addBookToPersonalLists } from "../api-calls/internal-api";
-import { toast } from "react-toastify";
-
 
 export default function SaveButtons() {
   const individBook = useSelector((state) => state.individBook);
-  const tokenFromState = useSelector((state) => state.token);
-
-
-  // const notify = () => toast("Wow so easy!");
 
   return (
     <>
@@ -24,7 +12,7 @@ export default function SaveButtons() {
         key={`button1-${individBook.id}`}
         size="sm"
         onClick={() => {
-          addBookToPersonalLists(individBook, "owned", tokenFromState);
+          addBookToPersonalLists(individBook, "owned");
         }}
       >
         I Own This Book
@@ -33,7 +21,7 @@ export default function SaveButtons() {
         key={`button2-${individBook.id}`}
         size="sm"
         onClick={() => {
-          addBookToPersonalLists(individBook, "read", tokenFromState);
+          addBookToPersonalLists(individBook, "read");
         }}
       >
         I've Read This Book
@@ -42,7 +30,7 @@ export default function SaveButtons() {
         key={`button3-${individBook.id}`}
         size="sm"
         onClick={() => {
-          addBookToPersonalLists(individBook, "want", tokenFromState);
+          addBookToPersonalLists(individBook, "want");
         }}
       >
         I Want To Read

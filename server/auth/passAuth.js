@@ -30,21 +30,23 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
                 }
                 //mismatch passwords
                 if (!isMatch) {
-                    return done(null, false)
+                    return done(null, false, { message: 'Wrong password!' })
                 }
                 //valid user 
                 let user = records[0];
-                return done(null, user);
+                return done(null, user, { message: 'Login success!' });
             })
         }
         else {
             //no email was found, exit with error
-            return done(null, false);
+            // res.status(423).send({ error: `Invalid credentials` });
+            return done(null, false, { message: 'User not found!' });
         }
     }
     catch (error) {
         //something in dabatase retreival
-        return done(error)
+        //res.status(423).send({ error: `Can't access database` });
+        return done(error, { message: "Can't access database!" })
     }
 });
 
@@ -65,15 +67,15 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
 
         if (user) {
             //success
-            done(null, user);
+            done(null, user, { message: "User found!" });
         }
         else {
             //didn't find the user 
-            done(null, false)
+            done(null, false, { message: "Could not find user!" })
         }
     }
     catch (error) {
-        return done(error)
+        return done(error, { message: "Can't access database!" })
     }
 
 });

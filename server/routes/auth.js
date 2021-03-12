@@ -20,8 +20,16 @@ const createToken = (user) => {
 
 // local auth (email/pass) form db
 let requireSignin = passport.authenticate('local', { session: false });
+
 // jwt auth
 let requireAuth = passport.authenticate('jwt', { session: false });
+
+
+router.get("/", requireAuth, (req, res) => {
+    // console.log(req.authInfo);
+    res.send("success");
+});
+
 
 // user registration
 router.post("/register", async (req, res) => {
@@ -39,7 +47,7 @@ router.post("/register", async (req, res) => {
             //add a new record
             let addUser = await db.user.create({ firstName, lastName, email, password });
             //send a response
-            return res.status(200).send({ succes: "User registered!" });
+            return res.status(210).send({ succes: "User registered!" });
         } else {
             //send back an error
             return res.status(422).send({ error: 'Email already exists' });
@@ -85,14 +93,6 @@ router.post("/googlesignin", async (req, res) => {
         return res.status(423).send({ error: `Can't access database` });
     }
 });
-
-
-
-router.get("/", requireAuth, (req, res) => {
-    res.send("success");
-});
-
-
 
 
 module.exports = router;
