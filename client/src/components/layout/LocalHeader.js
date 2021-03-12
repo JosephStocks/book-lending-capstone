@@ -19,7 +19,7 @@ export default function LocalHeader() {
   return (
     <>
       <Nav.Link className="mr-3" as={Link} to="/search">
-        Search
+        Book Search
       </Nav.Link>
       <Nav.Link className="mr-3" as={Link} to="/about">
       About The App

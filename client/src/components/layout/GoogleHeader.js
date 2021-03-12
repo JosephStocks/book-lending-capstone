@@ -26,7 +26,7 @@ export default function GoogleHeader() {
   return (
     <>
       <Nav.Link className="mt-3 mr-4" as={Link} to="/search">
-        Search
+        Book Search
       </Nav.Link>
       <Nav.Link className="mt-3 mr-4" as={Link} to="/about">
         About The App

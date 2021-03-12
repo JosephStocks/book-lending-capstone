@@ -9,29 +9,19 @@ const Welcome = () => {
     return (
         <>
         <Container>
-            <Row>
-                <Col md={{ span: 4 }}>
+            <S.Grid>
                 <S.H2>
                     Welcome To ReadMe BookSwap
                 </S.H2>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={{span: 2}} md={{ span: 4, offset: 2 }}>
-                <S.RoundImage
-                    className="thumbnail-image"
-                    src={BooksPhoto}
-                    alt="user pic"
-                    height="350px"
-                    />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                <Button className="mr-3" as={Link} to="/register">Register</Button>
-                <Button as={Link} to="/login">Login</Button>
-                </Col>
-            </Row>
+            </S.Grid>
+            <S.RoundImage
+                src={BooksPhoto}
+                alt="user pic"
+                />
+            <S.WelcomeGrid className="mt-5">
+                <Button variant="outline-info" as={Link} to="/register">Register</Button>
+                <Button variant="outline-info" as={Link} to="/login">Login</Button>
+            </S.WelcomeGrid>
         </Container>
         </>
     )

@@ -103,7 +103,33 @@ export const GridAbout = styled.div`
   }
 `;
 
+export const WelcomeGrid = styled.div`
+  display: grid;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  margin: 0.5rem;
+  font-family: 'Literata', serif;
 
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
 
 export const PlaceholderDivImg = styled.div`
   width: 128px;
@@ -204,7 +230,32 @@ export const LinkStyle = styled.a`
 `
 
 export const RoundImage = styled.img`
+  height: 200px;
+  width: 100%;
   border-radius: 50%;
+
+  @media (min-width: 576px) {
+    height: 200px;
+    border-radius: 50%;
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    height: 300px;
+    border-radius: 50%;
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    height: 400px;
+    border-radius: 50%;
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    height: 500px;
+    border-radius: 50%;
+  }
 `
 
 export const CardText = styled.p`
