@@ -138,8 +138,8 @@ router.post("/googlesignin", async (req, res) => {
             return res.json({ token: jwtToken, firstName, lastName });
         } else {
             //send a token for the existing user record
-            let jwtToken = await createToken(records[0]);
-            return res.json({ token: jwtToken, firstName: records[0].firstName, lastName: records[0].lastName });
+            let jwtToken = await createToken(googleRecords[0]);
+            return res.json({ token: jwtToken, firstName: googleRecords[0].firstName, lastName: googleRecords[0].lastName });
         }
     } catch (error) {
         //send back error, can't access database
