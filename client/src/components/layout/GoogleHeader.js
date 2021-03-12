@@ -48,9 +48,9 @@ export default function GoogleHeader() {
         }
         id="basic-nav-dropdown"
       >
-        <NavDropdown.Item href="/">My DashBoard</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/">My DashBoard</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+          <NavDropdown.Item onClick={handleLogout}>
           Logout
         </NavDropdown.Item>
         

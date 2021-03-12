@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 const FriendCard = () => {
     return (
