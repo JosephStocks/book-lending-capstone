@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import FriendCard from './FriendCard';
 import * as S from '../styles/Styles';
-import {Button, Form, FormControl, Container, Card} from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookReader } from '@fortawesome/free-solid-svg-icons';
+import {Button, Form, Container, Card} from "react-bootstrap";
 import FriendsResults from './FriendsResults'
 
 const Friends = () => {
