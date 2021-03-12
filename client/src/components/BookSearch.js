@@ -51,7 +51,7 @@ export default function App() {
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <Button className="ml-3" type="submit">Submit</Button>
+          <Button className="ml-3" variant="outline-info" type="submit">Submit</Button>
         </S.Form>
         <div>
           <S.Grid>

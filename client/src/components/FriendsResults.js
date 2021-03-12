@@ -15,47 +15,7 @@ const FriendsResults = () => {
                         <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
                     </Card.Body>
                     <Card.Body>
-                        <Button variant="primary">Friend Request</Button>
-                    </Card.Body>
-                    {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-                </Card>
-                <Card className="text-center mt-5 mb-5">
-                    <Card.Header>Name of Friend</Card.Header>
-                    <Card.Body>
-                        <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
-                    </Card.Body>
-                    <Card.Body>
-                        <Button variant="primary">Friend Request</Button>
-                    </Card.Body>
-                    {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-                </Card>
-                <Card className="text-center mt-5 mb-5">
-                    <Card.Header>Name of Friend</Card.Header>
-                    <Card.Body>
-                        <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
-                    </Card.Body>
-                    <Card.Body>
-                        <Button variant="primary">Friend Request</Button>
-                    </Card.Body>
-                    {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-                </Card>
-                <Card className="text-center mt-5 mb-5">
-                    <Card.Header>Name of Friend</Card.Header>
-                    <Card.Body>
-                        <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
-                    </Card.Body>
-                    <Card.Body>
-                        <Button variant="primary">Friend Request</Button>
-                    </Card.Body>
-                    {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-                </Card>
-                <Card className="text-center mt-5 mb-5">
-                    <Card.Header>Name of Friend</Card.Header>
-                    <Card.Body>
-                        <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
-                    </Card.Body>
-                    <Card.Body>
-                        <Button variant="primary">Friend Request</Button>
+                        <Button variant="primary">Send Friend Request</Button>
                     </Card.Body>
                     {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
                 </Card>

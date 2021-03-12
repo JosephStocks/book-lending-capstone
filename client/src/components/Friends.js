@@ -34,6 +34,17 @@ const Friends = () => {
     return (
         <> 
         <Container>
+            <S.Grid>
+                <Card style={{width: 300}} className="text-center mt-5 mb-5">
+                    <Card.Header>
+                        <S.Grid></S.Grid>
+                        <S.H5>Friend Request From "Name"</S.H5>
+                        <Button className="mr-3" variant="outline-success" type="button">Accept</Button>
+                        <Button variant="outline-danger" type="button">Decline</Button>
+                    </Card.Header>              
+                </Card>
+            </S.Grid>
+            
             <S.H4>Find New Friends</S.H4>
             <Form className="justify-content-center" onSubmit={handleSubmit} inline>
                 <S.Grid>
