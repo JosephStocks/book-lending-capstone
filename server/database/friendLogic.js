@@ -1,5 +1,6 @@
 const db = require("../models");
 const axios = require("axios");
+const Sequelize = require("sequelize");
 
 const fetchFriendsFromDatabase = async (userID) => {
   return await db.friendsRelations.findAll({
@@ -8,7 +9,7 @@ const fetchFriendsFromDatabase = async (userID) => {
     },
     include: [
       {
-        model: db.books,
+        model: db.user,
       },
     ],
     raw: true,
@@ -36,20 +37,20 @@ const fetchUserFromDatabaseByGoogleAuthEmail = async (email) => {
 const searchUsersFromDatabaseByNameOREmail = async (query) => {
   return await db.user.findAll({
     where: {
-      [Op.or]: {
-        namesQuery: sequelize.where(
-          sequelize.fn(
+      [Sequelize.Op.or]: {
+        namesQuery: Sequelize.where(
+          Sequelize.fn(
             "concat",
-            sequelize.col("firstName"),
+            Sequelize.col("firstName"),
             " ",
-            sequelize.col("lastName")
+            Sequelize.col("lastName")
           ),
           {
-            [Op.ilike]: `%${query}%`,
+            [Sequelize.Op.iLike]: `%${query}%`,
           }
         ),
-        email: { [Op.ilike]: `%${query}%` },
-        googleAuth: { [Op.ilike]: `%${query}%` },
+        email: { [Sequelize.Op.iLike]: `%${query}%` },
+        googleAuth: { [Sequelize.Op.iLike]: `%${query}%` },
       },
     },
   });

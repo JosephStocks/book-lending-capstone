@@ -16,10 +16,11 @@ require("../auth/passAuth"); //import all of passport auth strategy
 let requireAuth = passport.authenticate("jwt", { session: false });
 
 // Search for potential friends by name or local email or google email
-router.get("/users/:searchquery", requireAuth, async (req, res) => {
+router.post("/users", requireAuth, async (req, res) => {
   try {
+    console.log(req.body.searchQuery);
     let records = await searchUsersFromDatabaseByNameOREmail(
-      req.params.searchQuery
+      req.body.searchQuery
     );
     res.status(200).json(records);
   } catch (err) {
