@@ -27,14 +27,22 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let registerUser = await axios.post("http://localhost:3005/register", {
-      firstName: fName,
-      lastName: lName,
-      email,
-      password,
-    });
-    console.log(registerUser);
-    history.replace("/login");
+    let registerUser = '';
+    console.log("in reg");
+    try {
+      registerUser = await axios.post("http://localhost:3005/register", {
+        firstName: fName,
+        lastName: lName,
+        email,
+        password,
+      });
+      console.log(registerUser);
+      history.replace("/login");
+    }
+    catch (err) {
+      console.log(registerUser);
+      console.log(err.response);
+    }
 
   };
 
