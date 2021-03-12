@@ -19,24 +19,24 @@ const createToken = (user) => {
 }
 
 // local auth (email/pass) form db
-let requireSignin = passport.authenticate('local', {
-    failureRedirect: '/handleError',
-    failureFlash: true,
-    session: false
-});
+let requireSignin = passport.authenticate('local', { session: false });
 
 // jwt auth
-let requireAuth = passport.authenticate('jwt', {
-    failureRedirect: '/handleError',
-    failureFlash: true,
-    session: false
+let requireAuth = passport.authenticate('jwt', { session: false }, function (err, user, info) {
+    console.log(err);
+    console.log(user);
+    console.log(info);
+    // If authentication failed, `user` will be set to false. If an exception occurred, `err` will be set.
+    if (err || !user || _.isEmpty(user)) {
+        // PASS THE ERROR OBJECT TO THE NEXT ROUTE i.e THE APP'S COMMON ERROR HANDLING MIDDLEWARE
+        return next(info);
+    } else {
+        return next();
+    }
 });
 
 
-router.get("/handleError", (req, res) => {
-    console.log(req);
-    res.send("success");
-});
+
 
 router.get("/", requireAuth, (req, res) => {
     // console.log(req.authInfo);
@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
             //add a new record
             let addUser = await db.user.create({ firstName, lastName, email, password });
             //send a response
-            return res.status(200).send({ succes: "User registered!" });
+            return res.status(210).send({ succes: "User registered!" });
         } else {
             //send back an error
             return res.status(422).send({ error: 'Email already exists' });
@@ -106,10 +106,6 @@ router.post("/googlesignin", async (req, res) => {
         return res.status(423).send({ error: `Can't access database` });
     }
 });
-
-
-
-
 
 
 module.exports = router;
