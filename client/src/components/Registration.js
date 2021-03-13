@@ -35,7 +35,6 @@ const Registration = () => {
         email,
         password,
       });
-      console.log(registerUser);
       toast.success(
         <div>Account successfully created. <br />Welcome to ReadMe BookSwap!</div>
       );
@@ -51,7 +50,6 @@ const Registration = () => {
 
   // google login
   const responseGoogle = async (response) => {
-    console.log(response);
     let email = response.profileObj.email;
     let firstName = response.profileObj.givenName;
     let lastName = response.profileObj.familyName;

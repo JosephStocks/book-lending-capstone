@@ -13,15 +13,16 @@ const config = require('../config/jwtsecret'); //gives access to jwt secret
 
 //options to override username field
 let options = {
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true,
 }
 
 // local signin strategy
-let localLogin = new LocalStrategy(options, async (email, password, done) => {
+let localLogin = new LocalStrategy(options, async (req, email, password, done) => {
     try {
         // check to see if email is in our db 
         let records = await db.user.findAll({ where: { email: email } }); //array of objects
-        if (records !== null) {
+        if (records.length !== 0) {
             //encrypt password and compare to password in db 
             bcrypt.compare(password, records[0].password, (err, isMatch) => {
                 //check if err object exists
@@ -34,19 +35,18 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
                 }
                 //valid user 
                 let user = records[0];
-                return done(null, user, { message: 'Login success!' });
+                return done(null, user);
             })
         }
         else {
             //no email was found, exit with error
-            // res.status(423).send({ error: `Invalid credentials` });
             return done(null, false, { message: 'User not found!' });
         }
     }
     catch (error) {
         //something in dabatase retreival
         //res.status(423).send({ error: `Can't access database` });
-        return done(null, false, { message: "Can't access database!" })
+        return done(error)
     }
 });
 

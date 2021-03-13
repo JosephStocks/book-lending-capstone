@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
+const passport = require('passport');
 
 
 //body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
+app.use(passport.initialize());
 // Enable CORS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
