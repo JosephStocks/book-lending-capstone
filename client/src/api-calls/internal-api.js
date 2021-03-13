@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { loadTokenFromLocalStorage } from "../redux/store";
+import capitalize from "../helper-functions/capitalize";
 
 // Adds token to every http request using this axios instance
 const axiosInstance = axios.create();
@@ -43,15 +44,13 @@ export const addBookToPersonalLists = async (book, whichList) => {
       whichList,
     });
     console.log(response);
-    let capitalizedPersonalList =
-      whichList[0].toUpperCase() + whichList.slice(1);
     if (response.data[1]) {
       toast.success(
-        `${book.title} was added to your ${capitalizedPersonalList} List`
+        `${book.title} was added to your ${capitalize(whichList)} List`
       );
     } else {
       toast.warn(
-        `${book.title} is already in your ${capitalizedPersonalList} List`
+        `${book.title} is already in your ${capitalize(whichList)} List`
       );
     }
   } catch (err) {

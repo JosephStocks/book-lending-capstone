@@ -20,3 +20,23 @@ export const fetchUserSearchResults = async (searchQuery) => {
     // toast.error("");
   }
 };
+
+export const sendFriendRequest = async (pendingFriendUserID) => {
+  try {
+    return await axiosInstance.post("http://localhost:3005/friends/pending", {
+      pendingFriendUserID: pendingFriendUserID,
+    });
+  } catch (err) {
+    console.error(err);
+    // toast.error("");
+  }
+};
+
+export const fetchPendingFriendRequests = async (pendingFriendUserID) => {
+  try {
+    return await axiosInstance.get("http://localhost:3005/friends/pending");
+  } catch (err) {
+    console.error(err);
+    // toast.error("");
+  }
+};

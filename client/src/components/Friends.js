@@ -1,20 +1,25 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import FriendCard from "./FriendCard";
 import * as S from "../styles/Styles";
 import { Button, Form, Container, Card } from "react-bootstrap";
 import FriendsResults from "./FriendsResults";
-import { fetchUserSearchResults } from "../api-calls/friends";
+import { fetchUserSearchResults } from "../api-calls/friends-api";
 
 const Friends = () => {
   const [searchText, setSearchText] = useState("");
   const [searchFriends, setSearchFriends] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const pendingRequests = useSelector((state) => state.pendingFriendRequests);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let response = await fetchUserSearchResults(searchText);
+      setSearchResults(response.data);
       console.log(response);
     } catch (err) {
+      setSearchResults([]);
       console.error(err);
     }
     setSearchFriends(true);
@@ -25,12 +30,14 @@ const Friends = () => {
     setSearchText("");
   };
 
-  let searchResults;
+  let searchResultsDisplay;
 
   if (searchFriends === true) {
-    searchResults = <FriendsResults />;
+    searchResultsDisplay = (
+      <FriendsResults friendSearchResults={searchResults} />
+    );
   } else {
-    searchResults = null;
+    searchResultsDisplay = null;
   }
 
   return (
@@ -60,6 +67,7 @@ const Friends = () => {
               id="search"
               placeholder="Search"
               onChange={(e) => setSearchText(e.target.value)}
+              style={{ padding: "0 0.55rem" }}
             />
             <Button variant="outline-info" type="submit">
               Search
@@ -69,7 +77,7 @@ const Friends = () => {
             </Button>
           </S.Grid>
         </Form>
-        {searchResults}
+        {searchResultsDisplay}
         <S.H2 className="mt-5 mb-5">Your Friends</S.H2>
         <Container>
           <S.Grid>

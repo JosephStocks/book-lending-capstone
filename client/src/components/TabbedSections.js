@@ -9,6 +9,7 @@ import {
   fetchWantBooks,
   cleanFetchedBooks,
 } from "../api-calls/internal-api";
+import { sendFriendRequest } from "../api-calls/friends-api";
 import {
   saveOwnedBooks,
   saveReadBooks,
@@ -40,12 +41,20 @@ export default function TabbedSections() {
         console.log("There was an issue grabbing your books from the server!");
       }
     })();
+
+    (async () => {
+      try {
+        let ownedBooks = await fetchFriendRequests();
+        dispatch(saveOwnedBooks(ownedBooks));
+      } catch (error) {
+        console.error(error);
+        console.log("There was an issue fetching your friend requests!");
+      }
+    })();
   }, [token, dispatch]);
 
   return (
     <>
-
-
       <hr />
       <S.H2 className="mb-5">Dashboard</S.H2>
       <hr />
@@ -59,8 +68,8 @@ export default function TabbedSections() {
           <S.Grid>
             {ownedBooks !== undefined && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>
@@ -68,8 +77,8 @@ export default function TabbedSections() {
           <S.Grid>
             {readBooks !== undefined && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>
@@ -77,8 +86,8 @@ export default function TabbedSections() {
           <S.Grid>
             {wantBooks !== undefined && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>

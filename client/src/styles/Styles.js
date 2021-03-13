@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import { default as UnstyledButton } from "react-bootstrap/Button";
 
 export const Font = styled.div`
-  font-family: 'Literata', serif;
-`
+  /* font-family: 'Literata', serif; */
+`;
 
 export const Form = styled.form`
   margin-left: auto;
@@ -18,7 +18,7 @@ export const H2 = styled.h2`
   display: block;
   width: fit-content;
   margin-top: 1rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 `;
 export const H3 = styled.h3`
   margin-left: auto;
@@ -27,7 +27,7 @@ export const H3 = styled.h3`
   width: fit-content;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 `;
 export const H4 = styled.h4`
   margin-left: auto;
@@ -36,7 +36,7 @@ export const H4 = styled.h4`
   width: fit-content;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 `;
 export const H5 = styled.h5`
   margin-left: auto;
@@ -45,7 +45,7 @@ export const H5 = styled.h5`
   width: fit-content;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 `;
 
 export const Grid = styled.div`
@@ -54,7 +54,7 @@ export const Grid = styled.div`
   column-gap: 1rem;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   margin: 0.5rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 
   @media (min-width: 576px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -81,7 +81,7 @@ export const GridAbout = styled.div`
   column-gap: 1rem;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   margin: 0.5rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 
   @media (min-width: 576px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -109,7 +109,7 @@ export const WelcomeGrid = styled.div`
   column-gap: 1rem;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   margin: 0.5rem;
-  font-family: 'Literata', serif;
+  /* font-family: 'Literata', serif; */
 
   @media (min-width: 576px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -220,18 +220,16 @@ export const CardTitle = styled.h5`
   ); /* fallback */
 `;
 
-
-
 export const GoogleImage = styled.div`
   display: flex;
-`
+`;
 export const LinkStyle = styled.a`
   color: black;
-`
+`;
 
 export const RoundImageHeader = styled.img`
   border-radius: 50%;
-`
+`;
 
 export const RoundImage = styled.img`
   height: 200px;
@@ -260,7 +258,7 @@ export const RoundImage = styled.img`
     height: 500px;
     border-radius: 50%;
   }
-`
+`;
 
 export const CardText = styled.p`
   padding: 0;

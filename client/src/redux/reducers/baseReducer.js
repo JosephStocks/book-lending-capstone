@@ -9,7 +9,8 @@ const initialState = {
   token: "",
   profileImage: null,
   googleAuth: false,
-  loggedUser: { firstName: "", lastName: "" }
+  loggedUser: { firstName: "", lastName: "" },
+  pendingFriendRequests: [],
 };
 
 //purpose of reducer is to return a new global state
@@ -36,7 +37,10 @@ const baseReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.data.token,
-        loggedUser: { firstName: action.data.firstName, lastName: action.data.lastName }
+        loggedUser: {
+          firstName: action.data.firstName,
+          lastName: action.data.lastName,
+        },
       };
 
     case "SAVE_OWNED_BOOKS":
@@ -67,6 +71,12 @@ const baseReducer = (state = initialState, action) => {
       return {
         ...state,
         googleAuth: action.data,
+      };
+
+    case "SET_PENDING_FRIEND_REQUESTS":
+      return {
+        ...state,
+        pendingFriendRequests: action.data,
       };
 
     default:
