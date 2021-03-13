@@ -27,7 +27,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     console.log("before");
     e.preventDefault();
-    let loginUser = '';
+    let loginUser = "";
     console.log("before");
     try {
       loginUser = await axios.post("http://localhost:3005/signin", {
@@ -43,18 +43,12 @@ const Login = () => {
           lastName: loginUser.data.lastName,
         })
       );
-      toast.success(
-        `Welcome ${loginUser.data.firstName}!`
-      );
+      toast.success(`Welcome ${loginUser.data.firstName}!`);
       history.replace("/");
-    }
-
-    catch (err) {
+    } catch (err) {
       console.log(loginUser);
       console.log(err.response);
     }
-
-
   };
 
   // google login
@@ -77,17 +71,13 @@ const Login = () => {
     );
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
-    toast.success(
-      `Welcome ${firstName}!`
-    );
+    toast.success(`Welcome ${firstName}!`);
     history.replace("/");
   };
 
   const googleFail = async (err) => {
-    toast.warn(
-      `Something went wrong during google authentication.`
-    );
-  }
+    toast.warn(`Something went wrong during google authentication.`);
+  };
 
   return (
     <>
@@ -120,20 +110,20 @@ const Login = () => {
               </Form.Group>
 
               <Button className="mr-3" variant="primary" type="submit">
-                Submit
+                Log In
               </Button>
               <span>or</span>
               <GoogleLogin
                 className="ml-2"
                 clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
-                buttonText="Login with Google"
+                buttonText="Log In with Google"
                 onSuccess={responseGoogle}
                 onFailure={googleFail}
                 cookiePolicy={"single_host_origin"}
               />
               <div className="mt-5">Don't Have An Account?</div>
               <Button className="mr-5 mt-3" as={Link} to="/register">
-                Register Here
+                Sign Up
               </Button>
             </Form>
           </Col>

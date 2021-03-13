@@ -32,9 +32,13 @@ export const sendFriendRequest = async (pendingFriendUserID) => {
   }
 };
 
-export const fetchPendingFriendRequests = async (pendingFriendUserID) => {
+export const fetchPendingFriendRequests = async () => {
   try {
-    return await axiosInstance.get("http://localhost:3005/friends/pending");
+    let response = await axiosInstance.get(
+      "http://localhost:3005/friends/pending"
+    );
+    // console.log(response);
+    return response.data;
   } catch (err) {
     console.error(err);
     // toast.error("");

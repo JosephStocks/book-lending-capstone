@@ -7,6 +7,7 @@ const searchUsersFromDatabaseByNameOREmailEXCLUDEUserID = async (
   query,
   userID
 ) => {
+  query = query.trim();
   return await db.user.findAll({
     where: {
       [Sequelize.Op.or]: {
@@ -47,10 +48,36 @@ const fetchSentFriendRequests = async (userID) => {
     },
     include: [
       {
+        as: "receiver",
         model: db.user,
+        attributes: ["firstName", "lastName", "email", "googleAuth"],
       },
     ],
     raw: true,
+  });
+};
+
+const cleanSentFriendRequestObjects = (sentFriendRequests) => {
+  return sentFriendRequests.map((request) => {
+    let {
+      fromUserID,
+      toUserID,
+      "receiver.firstName": toUserFirstName,
+      "receiver.lastName": toUserLastName,
+      "receiver.email": toUserEmail,
+      "receiver.googleAuth": toUserGoogleAuth,
+    } = request;
+    // use the google auth email if this person never logged in locally with the same email
+    if (toUserEmail == null || toUserEmail.length === 0) {
+      toUserEmail = toUserGoogleAuth;
+    }
+    return {
+      fromUserID,
+      toUserID,
+      toUserFirstName,
+      toUserLastName,
+      toUserEmail,
+    };
   });
 };
 
@@ -61,11 +88,44 @@ const fetchReceivedFriendRequests = async (userID) => {
     },
     include: [
       {
+        as: "sender",
         model: db.user,
+        attributes: ["firstName", "lastName", "email", "googleAuth"],
       },
     ],
     raw: true,
   });
+};
+
+const cleanReceivedFriendRequestObjects = (sentFriendRequests) => {
+  return sentFriendRequests.map((request) => {
+    let {
+      fromUserID,
+      toUserID,
+      "sender.firstName": fromUserFirstName,
+      "sender.lastName": fromUserLastName,
+      "sender.email": fromUserEmail,
+      "sender.googleAuth": fromUserGoogleAuth,
+    } = request;
+    // use the google auth email if this person never logged in locally with the same email
+    if (fromUserEmail == null || fromUserEmail.length === 0) {
+      fromUserEmail = fromUserGoogleAuth;
+    }
+    return {
+      toUserID,
+      fromUserID,
+      fromUserFirstName,
+      fromUserLastName,
+      fromUserEmail,
+    };
+  });
+};
+
+acceptPendingFriendRequest;
+const acceptPendingFriendRequest = (userID, friendRequestSenderID) => {
+  // 1. Delete from pending friend request list
+  // 2. Create entry in friendRelations table: 'userID' = userID AND 'friendUserID' = friendRequestSenderID
+  // 3.
 };
 
 const fetchFriendsFromDatabase = async (userID) => {
@@ -103,7 +163,9 @@ const fetchUserFromDatabaseByGoogleAuthEmail = async (email) => {
 module.exports.searchUsersFromDatabaseByNameOREmailEXCLUDEUserID = searchUsersFromDatabaseByNameOREmailEXCLUDEUserID;
 module.exports.createPendingFriendRequest = createPendingFriendRequest;
 module.exports.fetchSentFriendRequests = fetchSentFriendRequests;
+module.exports.cleanSentFriendRequestObjects = cleanSentFriendRequestObjects;
 module.exports.fetchReceivedFriendRequests = fetchReceivedFriendRequests;
+module.exports.cleanReceivedFriendRequestObjects = cleanReceivedFriendRequestObjects;
 module.exports.fetchFriendsFromDatabase = fetchFriendsFromDatabase;
 module.exports.fetchUserFromDatabaseByLocalEmail = fetchUserFromDatabaseByLocalEmail;
 module.exports.fetchUserFromDatabaseByGoogleAuthEmail = fetchUserFromDatabaseByGoogleAuthEmail;

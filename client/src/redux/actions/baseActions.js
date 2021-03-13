@@ -61,9 +61,16 @@ export const setGoogleAuth = (boolean) => {
   };
 };
 
-export const setPendingFriendRequests = (boolean) => {
+export const setPendingSentFriendRequests = (requests) => {
   return {
-    type: "SET_PENDING_FRIEND_REQUESTS",
-    data: boolean,
+    type: "SET_PENDING_SENT_FRIEND_REQUESTS",
+    data: requests,
+  };
+};
+
+export const setPendingReceivedFriendRequests = (requests) => {
+  return {
+    type: "SET_PENDING_RECEIVED_FRIEND_REQUESTS",
+    data: requests,
   };
 };

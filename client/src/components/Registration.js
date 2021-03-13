@@ -7,8 +7,8 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleLogin } from "react-google-login";
 import {
   saveToken,
@@ -27,7 +27,7 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let registerUser = '';
+    let registerUser = "";
     try {
       registerUser = await axios.post("http://localhost:3005/register", {
         firstName: fName,
@@ -37,16 +37,15 @@ const Registration = () => {
       });
       console.log(registerUser);
       toast.success(
-        <div>Account successfully created. <br />Welcome to ReadMe BookSwap!</div>
+        <div>
+          Account successfully created. <br />
+          Welcome to ReadMe BookSwap!
+        </div>
       );
       history.replace("/login");
+    } catch (err) {
+      toast.warn(`${err.response.data.error}`);
     }
-    catch (err) {
-      toast.warn(
-        `${err.response.data.error}`
-      );
-    }
-
   };
 
   // google login
@@ -60,20 +59,22 @@ const Registration = () => {
       "http://localhost:3005/googlesignin",
       { email, firstName, lastName }
     );
-    dispatch(saveToken({ token: loginGoogleUser.data.token, firstName: loginGoogleUser.data.firstName, lastName: loginGoogleUser.data.lastName }));
+    dispatch(
+      saveToken({
+        token: loginGoogleUser.data.token,
+        firstName: loginGoogleUser.data.firstName,
+        lastName: loginGoogleUser.data.lastName,
+      })
+    );
     dispatch(saveGoogleImg(image));
     dispatch(setGoogleAuth(true));
-    toast.success(
-      `Welcome ${firstName}!`
-    );
+    toast.success(`Welcome ${firstName}!`);
     history.replace("/");
-  }
+  };
 
   const googleFail = async (err) => {
-    toast.warn(
-      `Something went wrong during google authentication.`
-    );
-  }
+    toast.warn(`Something went wrong during google authentication.`);
+  };
 
   return (
     <>
@@ -126,7 +127,7 @@ const Registration = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                Submit
+                Sign Up
               </Button>
             </Form>
             <div className="mt-5">Already Have an Account?</div>
@@ -137,16 +138,17 @@ const Registration = () => {
             <GoogleLogin
               className="mr-3"
               clientId="837075299630-6jtpjjls23ddgp155v1g0ennvcihqubm.apps.googleusercontent.com"
-              buttonText="Login with Google"
+              buttonText="Log In with Google"
               onSuccess={responseGoogle}
               onFailure={googleFail}
               cookiePolicy={"single_host_origin"}
             />
             <span>or</span>
-            <Button className="ml-3" as={Link} to="/login">Login</Button>
+            <Button className="ml-3" as={Link} to="/login">
+              Log In
+            </Button>
           </Col>
         </Row>
-
       </Container>
     </>
   );

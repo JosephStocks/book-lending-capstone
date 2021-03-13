@@ -6,6 +6,10 @@ const {
   fetchFriendsFromDatabase,
   searchUsersFromDatabaseByNameOREmailEXCLUDEUserID,
   createPendingFriendRequest,
+  fetchSentFriendRequests,
+  cleanSentFriendRequestObjects,
+  fetchReceivedFriendRequests,
+  cleanReceivedFriendRequestObjects,
   fetchUserFromDatabaseByLocalEmail,
   fetchUserFromDatabaseByGoogleAuthEmail,
 } = require("../database/friendLogic");
@@ -43,11 +47,31 @@ router.post("/friends/pending", requireAuth, async (req, res) => {
   }
 });
 
+// accept friend request
+router.post("/friends/accept", requireAuth, async (req, res) => {
+  try {
+    let response = await acceptPendingFriendRequest(
+      req.user.id,
+      req.body.pendingFromFriendUserID
+    );
+    console.log(response);
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.get("/friends/pending", requireAuth, async (req, res) => {
   try {
-    let sentRequests = await fetchSentFriendRequests(req.user.id);
-    let receivedRequests = await fetchReceivedFriendRequests(req.user.id);
-    res.status(200).json(response);
+    let sentRequests = cleanSentFriendRequestObjects(
+      await fetchSentFriendRequests(req.user.id)
+    );
+    console.log(sentRequests);
+    let receivedRequests = cleanReceivedFriendRequestObjects(
+      await fetchReceivedFriendRequests(req.user.id)
+    );
+    console.log(receivedRequests);
+    res.status(200).json({ sentRequests, receivedRequests });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

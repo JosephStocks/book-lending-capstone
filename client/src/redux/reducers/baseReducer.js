@@ -10,7 +10,8 @@ const initialState = {
   profileImage: null,
   googleAuth: false,
   loggedUser: { firstName: "", lastName: "" },
-  pendingFriendRequests: [],
+  pendingSentFriendRequests: [],
+  pendingReceivedFriendRequests: [],
 };
 
 //purpose of reducer is to return a new global state
@@ -73,10 +74,16 @@ const baseReducer = (state = initialState, action) => {
         googleAuth: action.data,
       };
 
-    case "SET_PENDING_FRIEND_REQUESTS":
+    case "SET_PENDING_SENT_FRIEND_REQUESTS":
       return {
         ...state,
-        pendingFriendRequests: action.data,
+        pendingSentFriendRequests: action.data,
+      };
+
+    case "SET_PENDING_RECEIVED_FRIEND_REQUESTS":
+      return {
+        ...state,
+        pendingReceivedFriendRequests: action.data,
       };
 
     default:

@@ -9,11 +9,13 @@ import {
   fetchWantBooks,
   cleanFetchedBooks,
 } from "../api-calls/internal-api";
-import { sendFriendRequest } from "../api-calls/friends-api";
+import { fetchPendingFriendRequests } from "../api-calls/friends-api";
 import {
   saveOwnedBooks,
   saveReadBooks,
   saveWantBooks,
+  setPendingReceivedFriendRequests,
+  setPendingSentFriendRequests,
 } from "../redux/actions/baseActions";
 import Book from "./Book";
 import BookModal from "./BookModal";
@@ -44,8 +46,15 @@ export default function TabbedSections() {
 
     (async () => {
       try {
-        let ownedBooks = await fetchFriendRequests();
-        dispatch(saveOwnedBooks(ownedBooks));
+        let {
+          receivedRequests: receivedFriendRequests,
+          sentRequests: sentFriendRequests,
+        } = await fetchPendingFriendRequests();
+        console.log(sentFriendRequests);
+        console.log(receivedFriendRequests);
+        // dispatch(saveOwnedBooks(ownedBooks));
+        dispatch(setPendingReceivedFriendRequests(receivedFriendRequests));
+        dispatch(setPendingSentFriendRequests(sentFriendRequests));
       } catch (error) {
         console.error(error);
         console.log("There was an issue fetching your friend requests!");
