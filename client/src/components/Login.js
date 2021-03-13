@@ -25,17 +25,13 @@ const Login = () => {
 
   // local db login
   const handleSubmit = async (e) => {
-    console.log("before");
     e.preventDefault();
     let loginUser = '';
-    console.log("before");
     try {
       loginUser = await axios.post("http://localhost:3005/signin", {
         email,
         password,
       });
-      console.log(loginUser);
-      console.log("after");
       dispatch(
         saveToken({
           token: loginUser.data.token,
@@ -48,10 +44,10 @@ const Login = () => {
       );
       history.replace("/");
     }
-
     catch (err) {
-      console.log(loginUser);
-      console.log(err.response);
+      toast.warn(
+        `${err.response.data.message}!`
+      );
     }
 
 
@@ -59,7 +55,6 @@ const Login = () => {
 
   // google login
   const responseGoogle = async (response) => {
-    console.log(response);
     let email = response.profileObj.email;
     let firstName = response.profileObj.givenName;
     let lastName = response.profileObj.familyName;
