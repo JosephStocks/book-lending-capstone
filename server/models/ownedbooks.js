@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      OwnedBooks.belongsTo(models.user, { foreignKey: "userID" });
+      OwnedBooks.belongsTo(models.user, {  as: "owner", foreignKey: "userID" });
       OwnedBooks.belongsTo(models.books, { foreignKey: "bookID" });
-      OwnedBooks.belongsTo(models.user, { foreignKey: "lendToID" });
+      OwnedBooks.belongsTo(models.user, {  as: "borrower", foreignKey: "lendToID" });
     }
   }
   OwnedBooks.init(

@@ -155,12 +155,16 @@ const fetchFriendsFromDatabase = async (userID) => {
     include: [
       {
         model: db.user,
-        includes: {
-          model: db.ownedBooks,
+        include: {
+          as: "owner",
+          model: db.OwnedBooks,
+          include: {
+            model: db.books,
+          },
         },
       },
     ],
-    raw: true,
+    // raw: true,
   });
 };
 
