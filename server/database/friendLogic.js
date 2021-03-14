@@ -155,12 +155,30 @@ const fetchFriendsFromDatabase = async (userID) => {
     include: [
       {
         model: db.user,
-        includes: {
-          model: db.ownedBooks,
+        attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+        include: {
+          as: "owner",
+          model: db.OwnedBooks,
+          attributes: ["userID", "bookID", "lendToID"],
+          include: {
+            model: db.books,
+            attributes: [
+              "id",
+              "title",
+              "authors",
+              "categories",
+              "isbn",
+              "description",
+              "imageLinks",
+              "googleBookID",
+              "publisher",
+              "publishedDate",
+            ],
+          },
         },
       },
     ],
-    raw: true,
+    // raw: true,
   });
 };
 
