@@ -31,32 +31,32 @@ export default function GoogleHeader() {
       <Nav.Link className="mt-3 mr-4" as={Link} to="/about">
         About The App
       </Nav.Link>
-      <div style={{width: "95px"}}>
-      <NavDropdown
-        className="mr-4 menu"
-        align="none"
-        eventkey={1} //Causing Error in Console//
-        title={
-          <S.GoogleImage className="pull-left">
-            <S.RoundImageHeader
-              className="thumbnail-image"
-              src={profileImage || Avatar}
-              alt="user pic"
-              height="50px"
-            />
-          </S.GoogleImage>
-        }
-        id="basic-nav-dropdown"
-      >
-        <NavDropdown.Item as={Link} to="/">My DashBoard</NavDropdown.Item>
+      <div style={{ width: "95px" }}>
+        <NavDropdown
+          className="mr-4 menu"
+          align="none"
+          eventkey={1} //Causing Error in Console//
+          title={
+            <S.GoogleImage className="pull-left" style={{ display: "inline-block" }}>
+              <S.RoundImageHeader
+                className="thumbnail-image"
+                src={profileImage || Avatar}
+                alt="user pic"
+                height="50px"
+              />
+            </S.GoogleImage>
+          }
+          id="basic-nav-dropdown"
+        >
+          <NavDropdown.Item as={Link} to="/">My DashBoard</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={handleLogout}>
-          Logout
+            Logout
         </NavDropdown.Item>
-        
-      </NavDropdown>
+
+        </NavDropdown>
       </div>
-      
+
     </>
   );
 }
