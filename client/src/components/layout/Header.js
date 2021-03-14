@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import * as S from "../../styles/Styles";
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 import LogInButton from '../layout/LogInButton'
 import GoogleHeader from '../layout/GoogleHeader'
 import LocalHeader from '../layout/LocalHeader'
+import Logo from '../../styles/images/bookLogo.png'
 
 
 const Header = () => {
@@ -30,15 +31,15 @@ const Header = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
-            <Navbar.Brand as={Link} to="/"><S.Font><FontAwesomeIcon className="mr-1" icon={faBook} size="1x" color="black" />ReadMe Book Swap<FontAwesomeIcon className="ml-1" icon={faBook} size="1x" color="black" flip={"horizontal"} /></S.Font></Navbar.Brand>
+                <Navbar.Brand className="ml-3"><Link to="/"><img src={Logo} alt="logo" /></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto mr-5">
-                    {whichButtons}
+                        {whichButtons}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            
+
         </>
     )
 }
