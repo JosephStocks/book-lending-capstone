@@ -14,8 +14,9 @@ const PotentialFriendCard = ({ user }) => {
         <Card.Body className="p-2">
           <Button
             variant="primary"
-            onClick={() => {
-              sendFriendRequest(user.id);
+            onClick={async () => {
+              await sendFriendRequest(user.id);
+              // research the query and update state search results
             }}
           >
             Send Friend Request

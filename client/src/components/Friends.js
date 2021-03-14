@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import FriendCard from "./FriendCard";
 import * as S from "../styles/Styles";
 import { Button, Form, Container, Card } from "react-bootstrap";
@@ -7,12 +7,15 @@ import FriendsResults from "./FriendsResults";
 import {
   fetchUserSearchResults,
   acceptFriendRequest,
+  fetchPendingFriendRequestsANDDispatchToRedux,
 } from "../api-calls/friends-api";
+
+import { setPotentialFriendsSearchResults } from "../redux/actions/baseActions";
 
 const Friends = () => {
   const [searchText, setSearchText] = useState("");
   const [searchFriends, setSearchFriends] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
   const pendingSentFriendRequests = useSelector(
     (state) => state.pendingSentFriendRequests
   );
@@ -20,14 +23,20 @@ const Friends = () => {
     (state) => state.pendingReceivedFriendRequests
   );
 
+  const dispatch = useDispatch();
+
+  const searchResults = useSelector(
+    (state) => state.potentialFriendsSearchResults
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let response = await fetchUserSearchResults(searchText);
-      setSearchResults(response.data);
+      dispatch(setPotentialFriendsSearchResults(response.data));
       console.log(response);
     } catch (err) {
-      setSearchResults([]);
+      dispatch(setPotentialFriendsSearchResults([]));
       console.error(err);
     }
     setSearchFriends(true);
@@ -88,6 +97,7 @@ const Friends = () => {
                         <Button
                           onClick={async () => {
                             await acceptFriendRequest(fromUserID);
+                            fetchPendingFriendRequestsANDDispatchToRedux();
                           }}
                           className="mr-3"
                           variant="outline-success"

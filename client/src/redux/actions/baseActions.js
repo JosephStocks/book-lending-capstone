@@ -74,3 +74,10 @@ export const setPendingReceivedFriendRequests = (requests) => {
     data: requests,
   };
 };
+
+export const setPotentialFriendsSearchResults = (searchResults) => {
+  return {
+    type: "SET_POTENTIAL_FRIENDS_SEARCH_RESULTS",
+    data: searchResults,
+  };
+};
