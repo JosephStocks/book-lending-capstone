@@ -10,9 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       pendingFriendRequests.belongsTo(models.user, {
+        as: "sender",
         foreignKey: "fromUserID",
       });
-      pendingFriendRequests.belongsTo(models.user, { foreignKey: "toUserID" });
+      pendingFriendRequests.belongsTo(models.user, {
+        as: "receiver",
+        foreignKey: "toUserID",
+      });
     }
   }
   pendingFriendRequests.init(

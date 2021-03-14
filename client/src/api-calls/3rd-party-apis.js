@@ -53,21 +53,25 @@ const baseSearch = async (query) => {
   return await axios.get("https://www.googleapis.com/books/v1/volumes", {
     params: {
       ...defaultParams,
-      q: query,
+      q: query.trim(),
     },
   });
 };
 
 export const bookSearchByISBN = async (isbn) => {
-  return flattenDeeplyNestedObject(await baseSearch(`isbn:"${isbn}"`)).data;
+  return flattenDeeplyNestedObject(await baseSearch(`isbn:"${isbn.trim()}"`))
+    .data;
 };
 
 export const bookSearchByTitle = async (title) => {
-  return flattenDeeplyNestedObject(await baseSearch(`intitle:${title}`)).data;
+  return flattenDeeplyNestedObject(await baseSearch(`intitle:${title.trim()}`))
+    .data;
 };
 
 export const bookSearchByAuthor = async (author) => {
-  return flattenDeeplyNestedObject(await baseSearch(`inauthor:${author}`)).data;
+  return flattenDeeplyNestedObject(
+    await baseSearch(`inauthor:${author.trim()}`)
+  ).data;
 };
 
 export const searchMapping = {

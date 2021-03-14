@@ -11,12 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       user.hasMany(models.friendsRelations, { foreignKey: "userID" });
       user.hasMany(models.friendsRelations, { foreignKey: "friendUserID" });
-      user.hasMany(models.OwnedBooks, { foreignKey: "userID" });
-      user.hasMany(models.OwnedBooks, { foreignKey: "lendToID" });
+      user.hasMany(models.OwnedBooks, { as: "owner", foreignKey: "userID" });
+      user.hasMany(models.OwnedBooks, {
+        as: "borrower",
+        foreignKey: "lendToID",
+      });
       user.hasMany(models.ReadBooks, { foreignKey: "userID" });
       user.hasMany(models.WantToReadBooks, { foreignKey: "userID" });
-      user.hasMany(models.pendingFriendRequests, { foreignKey: "fromUserID" });
-      user.hasMany(models.pendingFriendRequests, { foreignKey: "toUserID" });
+      user.hasMany(models.pendingFriendRequests, {
+        as: "sender",
+        foreignKey: "fromUserID",
+      });
+      user.hasMany(models.pendingFriendRequests, {
+        as: "receiver",
+        foreignKey: "toUserID",
+      });
     }
   }
   user.init(

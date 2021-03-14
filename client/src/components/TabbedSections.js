@@ -9,14 +9,18 @@ import {
   fetchWantBooks,
   cleanFetchedBooks,
 } from "../api-calls/internal-api";
+import { fetchPendingFriendRequests } from "../api-calls/friends-api";
 import {
   saveOwnedBooks,
   saveReadBooks,
   saveWantBooks,
+  setPendingReceivedFriendRequests,
+  setPendingSentFriendRequests,
 } from "../redux/actions/baseActions";
 import Book from "./Book";
 import BookModal from "./BookModal";
 import * as S from "../styles/Styles";
+import { fetchPendingFriendRequestsANDDispatchToRedux } from "../api-calls/friends-api";
 
 export default function TabbedSections() {
   const [key, setKey] = useState("myBooks");
@@ -40,12 +44,14 @@ export default function TabbedSections() {
         console.log("There was an issue grabbing your books from the server!");
       }
     })();
+
+    (async () => {
+      await fetchPendingFriendRequestsANDDispatchToRedux();
+    })();
   }, [token, dispatch]);
 
   return (
     <>
-
-
       <hr />
       <S.H2 className="mb-5">Dashboard</S.H2>
       <hr />
@@ -59,8 +65,8 @@ export default function TabbedSections() {
           <S.Grid>
             {ownedBooks !== undefined && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>
@@ -68,8 +74,8 @@ export default function TabbedSections() {
           <S.Grid>
             {readBooks !== undefined && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>
@@ -77,8 +83,8 @@ export default function TabbedSections() {
           <S.Grid>
             {wantBooks !== undefined && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
         </Tab>

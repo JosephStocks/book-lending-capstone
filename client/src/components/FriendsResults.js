@@ -1,28 +1,20 @@
-import { faBookReader } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import {Button, Row, Col, Container, Card} from "react-bootstrap";
-import * as S from '../styles/Styles';
+import React from "react";
+import { Container } from "react-bootstrap";
+import * as S from "../styles/Styles";
+import PotentialFriendCard from "./PotentialFriendCard";
 
-const FriendsResults = () => {
-    return (
-        <> 
-        <Container>
-            <S.Grid>
-                <Card className="text-center mt-5 mb-5">
-                    <Card.Header>Name of Friend</Card.Header>
-                    <Card.Body>
-                        <FontAwesomeIcon icon={faBookReader} size="3x" color="teal"/>
-                    </Card.Body>
-                    <Card.Body>
-                        <Button variant="primary">Send Friend Request</Button>
-                    </Card.Body>
-                    {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-                </Card>
-            </S.Grid>
-        </Container>
-        </>
-    )
-}
+const FriendsResults = ({ friendSearchResults }) => {
+  return (
+    <>
+      <Container>
+        <S.Grid>
+          {friendSearchResults.map((user, index) => (
+            <PotentialFriendCard key={index} user={user} />
+          ))}
+        </S.Grid>
+      </Container>
+    </>
+  );
+};
 
-export default FriendsResults
+export default FriendsResults;
