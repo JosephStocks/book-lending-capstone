@@ -25,17 +25,15 @@ const Login = () => {
 
   // local db login
   const handleSubmit = async (e) => {
-    console.log("before");
     e.preventDefault();
     let loginUser = "";
     console.log("before");
+
     try {
       loginUser = await axios.post("http://localhost:3005/signin", {
         email,
         password,
       });
-      console.log(loginUser);
-      console.log("after");
       dispatch(
         saveToken({
           token: loginUser.data.token,
@@ -45,15 +43,17 @@ const Login = () => {
       );
       toast.success(`Welcome ${loginUser.data.firstName}!`);
       history.replace("/");
-    } catch (err) {
-      console.log(loginUser);
-      console.log(err.response);
+    }
+    catch (err) {
+      toast.warn(
+        `${err.response.data.message}!`
+      );
+
     }
   };
 
   // google login
   const responseGoogle = async (response) => {
-    console.log(response);
     let email = response.profileObj.email;
     let firstName = response.profileObj.givenName;
     let lastName = response.profileObj.familyName;

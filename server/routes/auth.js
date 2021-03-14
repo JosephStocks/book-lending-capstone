@@ -18,52 +18,14 @@ const createToken = (user) => {
     return jwtToken
 }
 
-// local auth (email/pass) form db
-let requireSignin = passport.authenticate('local', { session: false });
 
 // jwt auth
 let requireAuth = passport.authenticate('jwt', { session: false });
-
-
-// router.post('/signin',  (req, res, next) => {
-//     passport.authenticate('local', {session: false}, (err, user, info)=>{
-//         if(err){
-//             return res.status(213).send({error: info.message})
-//         }
-//         if(!user){
-//             //console.log('error occurred');
-//             return res.json({token: "", message: info.message})
-//         }
-//         req.logIn(user, function(err) {
-//             if (err) { return next(err); }
-//             console.log(info);
-//             return res.json({token: token(req.user.id), message: info.message})
-//           });
-//     })(req, res, next);
-// })
-
-// router.post('/messages', (req, res, next) => {
-//     passport.authenticate('local', { session: false }, (err, user, info) => {
-//         if (err) {
-//             return res.status(405).json({ token: "", message: "Problem accessing database" })
-//         }
-//         if (!user) {
-//             return res.status(410).json({ token: "", message: info.message })
-//         }
-//         req.logIn(user, (err) => {
-//             return
-//         }
-//         )
-
-//     })(req, res, next)
-// })
-
 
 router.get("/", requireAuth, (req, res) => {
     // console.log(req.authInfo);
     res.send("success");
 });
-
 
 // user registration
 router.post("/register", async (req, res) => {
@@ -99,12 +61,29 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/signin", requireSignin, (req, res) => {
-    //validate user in middleware
-    // create token and save to db
-    let jwtToken = createToken(req.user);
-    // send token to user
-    res.json({ token: jwtToken, firstName: req.user.firstName, lastName: req.user.lastName });
+
+
+router.post("/signin", (req, res, next) => {
+
+    passport.authenticate('local', { session: false }, (err, user, info) => {
+        if (err) {
+            return res.status(405).json({ message: "User not found!" })
+        }
+        if (!user) {
+            return res.status(410).json({ message: info.message })
+        }
+        req.logIn(user, { session: false }, (err) => {
+            if (err) {
+                return res.status(410).json({ token: "", message: "Something went wrong!" })
+            }
+            //validate user in middleware
+            // create token and save to db
+            let jwtToken = createToken(user);
+            // send token to user
+            return res.json({ token: jwtToken, firstName: req.user.firstName, lastName: req.user.lastName });
+        });
+    })(req, res, next);
+
 });
 
 router.post("/googlesignin", async (req, res) => {
