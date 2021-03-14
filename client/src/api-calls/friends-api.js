@@ -4,6 +4,7 @@ import store, { loadTokenFromLocalStorage } from "../redux/store";
 import {
   setPendingReceivedFriendRequests,
   setPendingSentFriendRequests,
+  setAllFriendRelationsIDs,
 } from "../redux/actions/baseActions";
 
 // Adds token to every http request using this axios instance
@@ -73,8 +74,8 @@ export const fetchPendingFriendRequestsANDDispatchToRedux = async () => {
       receivedRequests: receivedFriendRequests,
       sentRequests: sentFriendRequests,
     } = await fetchPendingFriendRequests();
-    console.log(sentFriendRequests);
-    console.log(receivedFriendRequests);
+    // console.log(sentFriendRequests);
+    // console.log(receivedFriendRequests);
     // dispatch(saveOwnedBooks(ownedBooks));
     store.dispatch(setPendingReceivedFriendRequests(receivedFriendRequests));
     store.dispatch(setPendingSentFriendRequests(sentFriendRequests));
@@ -84,8 +85,19 @@ export const fetchPendingFriendRequestsANDDispatchToRedux = async () => {
   }
 };
 
+export const fetchAllFriendRelationsIDsANDDispatch = async () => {
+  console.log("FETCH ALL IDS - 1");
+  try {
+    let allFriendsRelationsIDs = await axiosInstance.get(
+      "http://localhost:3005/friends/fullstatus"
+    );
+    allFriendsRelationsIDs = allFriendsRelationsIDs.data;
+    console.log(allFriendsRelationsIDs);
+    console.log("FETCH ALL IDS - 2");
 
-
-
-
-
+    store.dispatch(setAllFriendRelationsIDs(allFriendsRelationsIDs));
+  } catch (error) {
+    console.error(error);
+    console.log("There was an issue fetching your friend requests!");
+  }
+};

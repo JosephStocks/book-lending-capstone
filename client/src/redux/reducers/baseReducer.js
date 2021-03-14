@@ -13,11 +13,11 @@ const initialState = {
   pendingSentFriendRequests: [],
   pendingReceivedFriendRequests: [],
   potentialFriendsSearchResults: [],
-  allFriendRelationsIDs: {
-    allFriendsIDs: [],
+  allFriendRelationIDs: {
+    allFriendIDs: [],
     sentFriendRequestIDs: [],
-    receivedFriendRequestsIDs: [],
-  }
+    receivedFriendRequestIDs: [],
+  },
 };
 
 //purpose of reducer is to return a new global state
@@ -100,7 +100,7 @@ const baseReducer = (state = initialState, action) => {
     case "SET_ALL_FRIEND_RELATIONS_IDS":
       return {
         ...state,
-        allFriendRelationsIDs: action.data,
+        allFriendRelationIDs: action.data,
       };
 
     default:

@@ -89,14 +89,21 @@ router.get("/friends", requireAuth, async (req, res) => {
 });
 
 router.get("/friends/fullstatus", requireAuth, async (req, res) => {
+  console.log("ON SERVER - ALL IDS");
   try {
     [
-      sentRequests,
-      receivedRequests,
-      friends,
+      sentFriendRequestIDs,
+      receivedFriendRequestIDs,
+      allFriendIDs,
     ] = await fetchSentReceivedRequestsANDfriendsforUser(req.user.id);
-    res.status(200).json({ sentRequests, receivedRequests, friends });
+
+    res.status(200).json({
+      sentFriendRequestIDs,
+      receivedFriendRequestIDs,
+      allFriendIDs,
+    });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
 });
