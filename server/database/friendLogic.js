@@ -29,6 +29,23 @@ const searchUsersFromDatabaseByNameOREmailEXCLUDEUserID = async (
         id: userID,
       },
     },
+    attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+    include: [
+      {
+        as: "sender",
+        model: db.pendingFriendRequests,
+        // attributes: ["firstName", "lastName", "email", "googleAuth"],
+      },
+      {
+        as: "receiver",
+        model: db.pendingFriendRequests,
+        // attributes: ["firstName", "lastName", "email", "googleAuth"],
+      },
+      {
+        model: db.friendsRelations,
+        // attributes: ["firstName", "lastName", "email", "googleAuth"],
+      },
+    ],
   });
 };
 
@@ -200,6 +217,63 @@ const fetchUserFromDatabaseByGoogleAuthEmail = async (email) => {
   });
 };
 
+const fetchSentReceivedRequestsANDfriendsforUser = async (userID) => {
+  //Sent
+  let sentRequests = await db.pendingFriendRequests.findAll({
+    where: {
+      fromUserID: userID,
+    },
+    attributes: ["toUserID"],
+    // include: [
+    //   {
+    //     as: "receiver",
+    //     model: db.user,
+    //     attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+    //   },
+    // ],
+    raw: true,
+  });
+
+  sentRequests = sentRequests.map((request) => request.toUserID);
+
+  // REceived
+  let receivedRequests = await db.pendingFriendRequests.findAll({
+    where: {
+      toUserID: userID,
+    },
+    attributes: ["fromUserID"],
+    // include: [
+    //   {
+    //     as: "sender",
+    //     model: db.user,
+    //     attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+    //   },
+    // ],
+    // raw: true,
+  });
+
+  receivedRequests = receivedRequests.map((request) => request.fromUserID);
+
+  //Friends
+  let friends = await db.friendsRelations.findAll({
+    where: {
+      userID: userID,
+    },
+    attributes: ["friendUserID"],
+    // include: [
+    //   {
+    //     model: db.user,
+    //     attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+    //   },
+    // ],
+    // raw: true,
+  });
+
+  friends = friends.map((friend) => friend.friendUserID);
+
+  return [sentRequests, receivedRequests, friends];
+};
+
 module.exports.searchUsersFromDatabaseByNameOREmailEXCLUDEUserID = searchUsersFromDatabaseByNameOREmailEXCLUDEUserID;
 module.exports.createPendingFriendRequest = createPendingFriendRequest;
 module.exports.fetchSentFriendRequests = fetchSentFriendRequests;
@@ -210,3 +284,4 @@ module.exports.acceptPendingFriendRequest = acceptPendingFriendRequest;
 module.exports.fetchFriendsFromDatabase = fetchFriendsFromDatabase;
 module.exports.fetchUserFromDatabaseByLocalEmail = fetchUserFromDatabaseByLocalEmail;
 module.exports.fetchUserFromDatabaseByGoogleAuthEmail = fetchUserFromDatabaseByGoogleAuthEmail;
+module.exports.fetchSentReceivedRequestsANDfriendsforUser = fetchSentReceivedRequestsANDfriendsforUser;
