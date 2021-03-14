@@ -81,9 +81,9 @@ export const setPotentialFriendsSearchResults = (searchResults) => {
     data: searchResults,
   };
 };
-export const allFriendRelationsIDs = (friendRelations) => {
+export const setAllFriendRelationsIDs = (friendRelationIDs) => {
   return {
     type: "SET_ALL_FRIEND_RELATIONS_IDS",
-    data: friendRelations,
+    data: friendRelationIDs,
   };
 };

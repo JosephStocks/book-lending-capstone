@@ -8,6 +8,7 @@ import {
   fetchUserSearchResults,
   acceptFriendRequest,
   fetchPendingFriendRequestsANDDispatchToRedux,
+  fetchAllFriendRelationsIDsANDDispatch,
 } from "../api-calls/friends-api";
 
 import { setPotentialFriendsSearchResults } from "../redux/actions/baseActions";
@@ -33,6 +34,7 @@ const Friends = () => {
     e.preventDefault();
     try {
       let response = await fetchUserSearchResults(searchText);
+      await fetchAllFriendRelationsIDsANDDispatch();
       dispatch(setPotentialFriendsSearchResults(response.data));
       console.log(response);
     } catch (err) {

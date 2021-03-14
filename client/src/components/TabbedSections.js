@@ -9,7 +9,7 @@ import {
   fetchWantBooks,
   cleanFetchedBooks,
 } from "../api-calls/internal-api";
-import { fetchPendingFriendRequests } from "../api-calls/friends-api";
+// import { fetchPendingFriendRequests } from "../api-calls/friends-api";
 import {
   saveOwnedBooks,
   saveReadBooks,
@@ -20,7 +20,10 @@ import {
 import Book from "./Book";
 import BookModal from "./BookModal";
 import * as S from "../styles/Styles";
-import { fetchPendingFriendRequestsANDDispatchToRedux } from "../api-calls/friends-api";
+import {
+  fetchPendingFriendRequestsANDDispatchToRedux,
+  fetchAllFriendRelationsIDsANDDispatch,
+} from "../api-calls/friends-api";
 
 export default function TabbedSections() {
   const [key, setKey] = useState("myBooks");
@@ -47,6 +50,7 @@ export default function TabbedSections() {
 
     (async () => {
       await fetchPendingFriendRequestsANDDispatchToRedux();
+      await fetchAllFriendRelationsIDsANDDispatch();
     })();
   }, [token, dispatch]);
 
