@@ -28,9 +28,9 @@ const PotentialFriendCard = ({ user }) => {
   // render based on friendship status
   let showFriendshipStatus = "";
   if (friendshipState === "alreadyfriends") {
-    showFriendshipStatus = <p>Already friends</p>;
+    showFriendshipStatus = <Button variant="outline-info" disabled>Already friends</Button>;
   } else if (friendshipState === "friendRequestSent") {
-    showFriendshipStatus = <p>Friend request sent</p>;
+    showFriendshipStatus = <Button variant="outline-info" disabled>Friend request sent</Button>;
   } else if (friendshipState === "receivedFriendRequest") {
     showFriendshipStatus = (
       <div>
@@ -53,7 +53,7 @@ const PotentialFriendCard = ({ user }) => {
   } else if (friendshipState === "notfriends") {
     showFriendshipStatus = (
       <Button
-        variant="primary"
+        variant="info"
         onClick={async () => {
           await sendFriendRequest(user.id);
           // research the query and update state search results
