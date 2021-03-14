@@ -11,6 +11,7 @@ const {
   fetchReceivedFriendRequests,
   cleanReceivedFriendRequestObjects,
   acceptPendingFriendRequest,
+  fetchSentReceivedRequestsANDfriendsforUser,
   fetchUserFromDatabaseByLocalEmail,
   fetchUserFromDatabaseByGoogleAuthEmail,
 } = require("../database/friendLogic");
@@ -82,6 +83,19 @@ router.get("/friends", requireAuth, async (req, res) => {
   try {
     let response = await fetchFriendsFromDatabase(req.user.id);
     res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/friends/fullstatus", requireAuth, async (req, res) => {
+  try {
+    [
+      sentRequests,
+      receivedRequests,
+      friends,
+    ] = await fetchSentReceivedRequestsANDfriendsforUser(req.user.id);
+    res.status(200).json({ sentRequests, receivedRequests, friends });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
