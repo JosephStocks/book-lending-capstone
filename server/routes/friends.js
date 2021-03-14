@@ -10,6 +10,7 @@ const {
   cleanSentFriendRequestObjects,
   fetchReceivedFriendRequests,
   cleanReceivedFriendRequestObjects,
+  acceptPendingFriendRequest,
   fetchUserFromDatabaseByLocalEmail,
   fetchUserFromDatabaseByGoogleAuthEmail,
 } = require("../database/friendLogic");
@@ -50,12 +51,12 @@ router.post("/friends/pending", requireAuth, async (req, res) => {
 // accept friend request
 router.post("/friends/accept", requireAuth, async (req, res) => {
   try {
-    let response = await acceptPendingFriendRequest(
+    await acceptPendingFriendRequest(
       req.user.id,
       req.body.pendingFromFriendUserID
     );
-    console.log(response);
-    res.status(200).json(response);
+
+    res.status(200).json({ message: "accepted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

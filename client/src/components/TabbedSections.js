@@ -20,6 +20,7 @@ import {
 import Book from "./Book";
 import BookModal from "./BookModal";
 import * as S from "../styles/Styles";
+import { fetchPendingFriendRequestsANDDispatchToRedux } from "../api-calls/friends-api";
 
 export default function TabbedSections() {
   const [key, setKey] = useState("myBooks");
@@ -45,20 +46,7 @@ export default function TabbedSections() {
     })();
 
     (async () => {
-      try {
-        let {
-          receivedRequests: receivedFriendRequests,
-          sentRequests: sentFriendRequests,
-        } = await fetchPendingFriendRequests();
-        console.log(sentFriendRequests);
-        console.log(receivedFriendRequests);
-        // dispatch(saveOwnedBooks(ownedBooks));
-        dispatch(setPendingReceivedFriendRequests(receivedFriendRequests));
-        dispatch(setPendingSentFriendRequests(sentFriendRequests));
-      } catch (error) {
-        console.error(error);
-        console.log("There was an issue fetching your friend requests!");
-      }
+      await fetchPendingFriendRequestsANDDispatchToRedux();
     })();
   }, [token, dispatch]);
 

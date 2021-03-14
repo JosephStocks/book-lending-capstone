@@ -121,11 +121,30 @@ const cleanReceivedFriendRequestObjects = (sentFriendRequests) => {
   });
 };
 
-acceptPendingFriendRequest;
-const acceptPendingFriendRequest = (userID, friendRequestSenderID) => {
-  // 1. Delete from pending friend request list
+const acceptPendingFriendRequest = async (userID, friendRequestSenderID) => {
+  // 1. Delete from pending friend request list where 'fromUserID' = friendRequestSenderID AND 'toUserID' = userID
+  let response = await db.pendingFriendRequests.destroy({
+    where: {
+      fromUserID: friendRequestSenderID,
+      toUserID: userID,
+    },
+  });
+  console.log("destroy");
+  console.log(response);
   // 2. Create entry in friendRelations table: 'userID' = userID AND 'friendUserID' = friendRequestSenderID
-  // 3.
+  response = await db.friendsRelations.create({
+    userID: friendRequestSenderID,
+    friendUserID: userID,
+  });
+  console.log("create1");
+  console.log(response);
+  // 3. Create entry in friendRelations table in opposite directoin: 'userID' = friendRequestSenderID AND 'friendUserID' = userID
+  response = await db.friendsRelations.create({
+    userID: userID,
+    friendUserID: friendRequestSenderID,
+  });
+  console.log("create2");
+  console.log(response);
 };
 
 const fetchFriendsFromDatabase = async (userID) => {
@@ -136,6 +155,9 @@ const fetchFriendsFromDatabase = async (userID) => {
     include: [
       {
         model: db.user,
+        includes: {
+          model: db.ownedBooks,
+        },
       },
     ],
     raw: true,
@@ -166,6 +188,7 @@ module.exports.fetchSentFriendRequests = fetchSentFriendRequests;
 module.exports.cleanSentFriendRequestObjects = cleanSentFriendRequestObjects;
 module.exports.fetchReceivedFriendRequests = fetchReceivedFriendRequests;
 module.exports.cleanReceivedFriendRequestObjects = cleanReceivedFriendRequestObjects;
+module.exports.acceptPendingFriendRequest = acceptPendingFriendRequest;
 module.exports.fetchFriendsFromDatabase = fetchFriendsFromDatabase;
 module.exports.fetchUserFromDatabaseByLocalEmail = fetchUserFromDatabaseByLocalEmail;
 module.exports.fetchUserFromDatabaseByGoogleAuthEmail = fetchUserFromDatabaseByGoogleAuthEmail;

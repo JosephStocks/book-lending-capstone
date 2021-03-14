@@ -1,6 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { loadTokenFromLocalStorage } from "../redux/store";
+import store, { loadTokenFromLocalStorage } from "../redux/store";
+import {
+  setPendingReceivedFriendRequests,
+  setPendingSentFriendRequests,
+} from "../redux/actions/baseActions";
 
 // Adds token to every http request using this axios instance
 const axiosInstance = axios.create();
@@ -42,5 +46,40 @@ export const fetchPendingFriendRequests = async () => {
   } catch (err) {
     console.error(err);
     // toast.error("");
+  }
+};
+
+export const acceptFriendRequest = async (pendingFromFriendUserID) => {
+  try {
+    console.log("on client!");
+    let response = await axiosInstance.post(
+      "http://localhost:3005/friends/accept",
+      {
+        pendingFromFriendUserID: pendingFromFriendUserID,
+      }
+    );
+    console.log(response);
+  } catch (err) {
+    console.log(err.response);
+    console.error(err);
+    // toast.error("");
+  }
+};
+
+///////
+export const fetchPendingFriendRequestsANDDispatchToRedux = async () => {
+  try {
+    let {
+      receivedRequests: receivedFriendRequests,
+      sentRequests: sentFriendRequests,
+    } = await fetchPendingFriendRequests();
+    console.log(sentFriendRequests);
+    console.log(receivedFriendRequests);
+    // dispatch(saveOwnedBooks(ownedBooks));
+    store.dispatch(setPendingReceivedFriendRequests(receivedFriendRequests));
+    store.dispatch(setPendingSentFriendRequests(sentFriendRequests));
+  } catch (error) {
+    console.error(error);
+    console.log("There was an issue fetching your friend requests!");
   }
 };

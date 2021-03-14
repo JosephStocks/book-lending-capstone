@@ -4,13 +4,21 @@ import FriendCard from "./FriendCard";
 import * as S from "../styles/Styles";
 import { Button, Form, Container, Card } from "react-bootstrap";
 import FriendsResults from "./FriendsResults";
-import { fetchUserSearchResults } from "../api-calls/friends-api";
+import {
+  fetchUserSearchResults,
+  acceptFriendRequest,
+} from "../api-calls/friends-api";
 
 const Friends = () => {
   const [searchText, setSearchText] = useState("");
   const [searchFriends, setSearchFriends] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const pendingRequests = useSelector((state) => state.pendingFriendRequests);
+  const pendingSentFriendRequests = useSelector(
+    (state) => state.pendingSentFriendRequests
+  );
+  const pendingReceivedFriendRequests = useSelector(
+    (state) => state.pendingReceivedFriendRequests
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,22 +48,62 @@ const Friends = () => {
     searchResultsDisplay = null;
   }
 
+  // Displaying received pending friend requests
+
   return (
     <>
       <Container>
         <S.Grid>
-          <Card style={{ width: 300 }} className="text-center mt-5 mb-5">
-            <Card.Header>
-              <S.Grid></S.Grid>
-              <S.H5>Friend Request From "Name"</S.H5>
-              <Button className="mr-3" variant="outline-success" type="button">
-                Accept
-              </Button>
-              <Button variant="outline-danger" type="button">
-                Decline
-              </Button>
-            </Card.Header>
-          </Card>
+          {pendingReceivedFriendRequests != null &&
+          pendingReceivedFriendRequests.length !== 0
+            ? pendingReceivedFriendRequests.map(
+                (
+                  {
+                    fromUserID,
+                    fromUserFirstName,
+                    fromUserLastName,
+                    fromUserEmail,
+                  },
+                  index
+                ) => (
+                  <Card
+                    key={index}
+                    style={{ width: 300 }}
+                    className="text-center"
+                  >
+                    <Card.Header
+                    // style={{
+                    //   height: "100%",
+                    //   display: "flex",
+                    //   flexDirection: "column",
+                    //   justifyContent: "space-between",
+                    // }}
+                    >
+                      <S.H5>
+                        You have a friend request from {fromUserFirstName}{" "}
+                        {fromUserLastName}
+                      </S.H5>
+                      <S.H5>Email: {fromUserEmail}</S.H5>
+                      <div>
+                        <Button
+                          onClick={async () => {
+                            await acceptFriendRequest(fromUserID);
+                          }}
+                          className="mr-3"
+                          variant="outline-success"
+                          type="button"
+                        >
+                          Accept
+                        </Button>
+                        <Button variant="outline-danger" type="button">
+                          Decline
+                        </Button>
+                      </div>
+                    </Card.Header>
+                  </Card>
+                )
+              )
+            : null}
         </S.Grid>
 
         <S.H4>Find New Friends</S.H4>
