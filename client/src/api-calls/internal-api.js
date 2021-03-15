@@ -60,6 +60,28 @@ export const addBookToPersonalLists = async (book, whichList) => {
   }
 };
 
+export const deleteBookFromPersonalLists = async (bookID, whichList) => {
+  try {
+    let response = await axiosInstance.delete("http://localhost:3005/books", {
+      bookID,
+      whichList,
+    });
+    console.log(response);
+    // if (response.data[1]) {
+    //   toast.success(
+    //     `${book.title} was added to your ${capitalize(whichList)} List`
+    //   );
+    // } else {
+    //   toast.warn(
+    //     `${book.title} is already in your ${capitalize(whichList)} List`
+    //   );
+    // }
+  } catch (err) {
+    console.error(err);
+    toast.error("There was an ERROR saving your book!");
+  }
+};
+
 export const fetchOwnedBooks = async () => {
   return await fetchSpecifiedPersonalBookList("ownedbooks");
 };
@@ -140,9 +162,12 @@ export const fetchAllUsersWhoOwnsBookANDDispatch = async (bookID) => {
   console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 1");
   try {
     console.log(bookID);
-    let whoOwnsIt = await axiosInstance.post("http://localhost:3005/whoownsit", {
-      bookID,
-    });
+    let whoOwnsIt = await axiosInstance.post(
+      "http://localhost:3005/whoownsit",
+      {
+        bookID,
+      }
+    );
     whoOwnsIt = whoOwnsIt.data;
     console.log(whoOwnsIt);
     console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 2");

@@ -52,6 +52,28 @@ const deleteBookByGoogleBookID = async (googleBookID) => {
   });
 };
 
+const deleteBookFromPersonalLists = async (
+  dbPersonalBookTableModel,
+  userID,
+  bookID
+) => {
+  return await dbPersonalBookTableModel.destroy({
+    where: {
+      bookID: bookID,
+      userID: userID,
+    },
+  });
+};
+
+const deleteFromPersonalListFunctionMapping = {
+  owned: async (userID, bookID) =>
+    await deleteBookFromPersonalLists(db.OwnedBooks, userID, bookID),
+  read: async (userID, bookID) =>
+    await deleteBookFromPersonalLists(db.ReadBooks, userID, bookID),
+  want: async (userID, bookID) =>
+    await deleteBookFromPersonalLists(db.WantToReadBooks, userID, bookID),
+};
+
 const createBookEntry = async (book) => {
   let {
     id,
@@ -168,4 +190,5 @@ module.exports.showAllReadBooksByUser = showAllReadBooksByUser;
 module.exports.showAllWantToReadBooksByUser = showAllWantToReadBooksByUser;
 module.exports.showAllOwnedBooksByUser = showAllOwnedBooksByUser;
 module.exports.findOrCreatePersonalListFunctionMapping = findOrCreatePersonalListFunctionMapping;
+module.exports.deleteFromPersonalListFunctionMapping = deleteFromPersonalListFunctionMapping;
 module.exports.findOrCreateBookEntry = findOrCreateBookEntry;
