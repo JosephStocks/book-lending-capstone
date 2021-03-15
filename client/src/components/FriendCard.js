@@ -33,7 +33,7 @@ const FriendCard = ({ friend }) => {
               className="d-flex justify-content-center align-items-center m-1 m-sm-0"
               md={2}
             >
-              <S.ClickP style={showOwnedBooks ? { backgroundColor: '#17A2B8' } : {}}
+              <S.ClickP style={showOwnedBooks ? { backgroundColor: '#17A2B8', borderBottom: "15px solid #17A2B8", borderBottomLeftRadius: "50% !important", borderBottomRightRadius: "50% !important" } : {}}
                 onClick={(e) => {
                   setShowReadBooks(false);
                   setShowWantBooks(false);

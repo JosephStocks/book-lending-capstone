@@ -327,7 +327,7 @@ ${({ mt }) =>
 `;
 export const ClickP = styled.p`
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid #17A2B8;
   border-radius: 3px;
   margin: 0px;
   padding: 0.3rem;
