@@ -82,7 +82,7 @@ Mode Code:
 **Logging in with Google**
 ![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
-**Logging in with email and password on mobile device**
+**Logging in with email and password on mobile device**<br/>
 <img src="./client/src/styles/videos/mobilelogin.gif" height="450"/>
 
 **Adding Books to Personal Lists**
