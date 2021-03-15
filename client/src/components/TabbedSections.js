@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+// import TabContent from "react-bootstrap/TabContent";
+// import TabContainer from "react-bootstrap/TabContainer";
+// import TabPane from "react-bootstrap/TabPane";
+
 import Friends from "./Friends";
 import {
   fetchOwnedBooks,
@@ -25,9 +29,10 @@ import {
   fetchAllFriendRelationsIDsANDDispatch,
   fetchAllFriendsANDDispatch,
 } from "../api-calls/friends-api";
+import { Link } from "react-router-dom";
 
 export default function TabbedSections() {
-  const [key, setKey] = useState("myBooks");
+  const [key, setKey] = useState("friends");
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
   const ownedBooks = useSelector((state) => state.ownedBooks);
@@ -69,30 +74,60 @@ export default function TabbedSections() {
       >
         <Tab eventKey="myBooks" title="My Books">
           <S.Grid>
-            {ownedBooks !== undefined && ownedBooks.length !== 0
+            {ownedBooks != null && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
+          {ownedBooks == null || ownedBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you own!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="readBooks" title="Books I've Read">
           <S.Grid>
-            {readBooks !== undefined && readBooks.length !== 0
+            {readBooks != null && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
+          {readBooks == null || readBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you've read!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="wantBooks" title="Books To Read">
           <S.Grid>
-            {wantBooks !== undefined && wantBooks.length !== 0
+            {wantBooks != null && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
               : null}
           </S.Grid>
+          {wantBooks == null || wantBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you want to read!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="friends" title="Friends">
           <Friends />
