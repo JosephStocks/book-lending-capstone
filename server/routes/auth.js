@@ -11,7 +11,6 @@ require('../auth/passAuth'); //import all of passport auth strategy
 
 // create token and store in in the db
 const createToken = (user) => {
-    console.log(process.env.SECRET);
     // create token
     let jwtToken = jwt.sign({ id: user.id }, process.env.secret);
     // save token to DB
