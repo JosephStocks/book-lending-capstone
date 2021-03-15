@@ -298,3 +298,10 @@ ${({ mt }) =>
     var(--line-height) * ${(props) => props.lines}
   ); /* fallback */
 `;
+export const ClickP = styled.p`
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 0px;
+
+  `

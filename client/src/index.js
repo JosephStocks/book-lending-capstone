@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import Home from "./Home";
 import BaseLayout from "./components/layout/BaseLayout";
 
-import Login from "./components/Login";
-import Registration from "./components/Registration";
+import Login from "./components/auth/Login";
+import Registration from "./components/auth/Registration";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import BookSearch from "./components/BookSearch";
 import PersonalPage from "./components/PersonalPage";

@@ -143,9 +143,9 @@ const Friends = () => {
         {searchResultsDisplay}
         <S.H2 className="mt-5 mb-5">Your Friends</S.H2>
         <Container>
-          <S.Grid>
-            {friendsResults != null && friendsResults.length !== 0 ? friendsResults.map((friend, index) => <FriendCard key={index} friend={friend} />) : null}
-          </S.Grid>
+
+          {friendsResults != null && friendsResults.length !== 0 ? friendsResults.map((friend, index) => <FriendCard key={index} friend={friend} />) : null}
+
         </Container>
       </Container>
     </>
