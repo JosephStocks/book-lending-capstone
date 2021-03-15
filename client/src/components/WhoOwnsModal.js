@@ -25,10 +25,10 @@ const WhoOwnsModal = () => {
                 <Modal.Body style={{ backgroundColor: "lightgray", overflow: "auto", height: "70vh" }}>
                     {
                         bookOwners.map((friend, index) => (
-                            <>
-                                <PotentialFriendCard key={index} user={friend} />
+                            <div key={index} >
+                                <PotentialFriendCard user={friend} />
                                 <hr />
-                            </>
+                            </div>
                         ))
                     }
                 </Modal.Body>
