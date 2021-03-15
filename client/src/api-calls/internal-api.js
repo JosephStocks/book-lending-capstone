@@ -139,6 +139,7 @@ export const cleanFetchedBooks = async (books) => {
 export const fetchAllUsersWhoOwnsBookANDDispatch = async (bookID) => {
   console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 1");
   try {
+    console.log(bookID);
     let whoOwnsIt = await axiosInstance.post("http://localhost:3005/whoownsit", {
       bookID,
     });

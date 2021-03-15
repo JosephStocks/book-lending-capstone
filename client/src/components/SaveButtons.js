@@ -1,22 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as S from "../styles/Styles";
 import {
   addBookToPersonalLists,
   fetchAllUsersWhoOwnsBookANDDispatch,
 } from "../api-calls/internal-api";
+import { toggleWhoOwnsModal } from '../redux/actions/baseActions'
 
 export default function SaveButtons() {
   const individBook = useSelector((state) => state.individBook);
-
+  const dispatch = useDispatch();
   return (
     <>
       <S.Button
         variant="success"
-        key={`button1-${individBook.id}`}
+        key={`button4-${individBook.id}`}
         size="sm"
         onClick={() => {
-          fetchAllUsersWhoOwnsBookANDDispatch(individBook.id);
+          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID);
+          dispatch(toggleWhoOwnsModal());
         }}
       >
         Check who owns this book

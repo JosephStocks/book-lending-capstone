@@ -1,6 +1,7 @@
 //setting initial state
 const initialState = {
   modalShow: false,
+  whoOwnsModalShow: false,
   individBook: [],
   searchResults: [],
   ownedBooks: [],
@@ -33,6 +34,11 @@ const baseReducer = (state = initialState, action) => {
       return {
         ...state,
         modalShow: !state.modalShow,
+      };
+    case "TOGGLE_WHO_OWNS_MODAL": //must match name of action.type in actions
+      return {
+        ...state,
+        whoOwnsModalShow: !state.whoOwnsModalShow,
       };
     case "ADDINDIVIDBOOK":
       return {
