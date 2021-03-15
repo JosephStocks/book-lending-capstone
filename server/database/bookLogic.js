@@ -131,6 +131,37 @@ const findOrCreatePersonalListEntry = async (dbTableModel, userID, bookID) => {
   });
 };
 
+const showUsersWhoOwnBook = async (bookID) => {
+  return await db.OwnedBooks.findAll({
+    where: {
+      bookID: bookID,
+    },
+    attributes: ["userID", "bookID", "lendToID"],
+    include: [
+      {
+        as: "owner",
+        model: db.user,
+        attributes: ["firstName", "lastName", "email", "googleAuth"],
+      },
+      {
+        model: db.books,
+        attributes: [
+          "title",
+          "authors",
+          "categories",
+          "isbn",
+          "description",
+          "imageLinks",
+          "googleBookID",
+          "publisher",
+          "publishedDate",
+        ],
+      },
+    ],
+  });
+};
+
+module.exports.showUsersWhoOwnBook = showUsersWhoOwnBook;
 module.exports.showAllOwnedBooksByUser = showAllOwnedBooksByUser;
 module.exports.showAllReadBooksByUser = showAllReadBooksByUser;
 module.exports.showAllWantToReadBooksByUser = showAllWantToReadBooksByUser;
