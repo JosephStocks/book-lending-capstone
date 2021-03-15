@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import Button from "react-bootstrap/Button";
 // import TabContent from "react-bootstrap/TabContent";
 // import TabContainer from "react-bootstrap/TabContainer";
 // import TabPane from "react-bootstrap/TabPane";
@@ -86,7 +87,7 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you own!</strong>
               </div>
               <div>
-                <Link to="/search">Click here to search for any book!</Link>
+                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
@@ -105,7 +106,7 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you've read!</strong>
               </div>
               <div>
-                <Link to="/search">Click here to search for any book!</Link>
+                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
@@ -124,7 +125,7 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you want to read!</strong>
               </div>
               <div>
-                <Link to="/search">Click here to search for any book!</Link>
+                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
