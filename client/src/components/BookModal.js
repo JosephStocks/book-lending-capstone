@@ -45,7 +45,7 @@ const BookModal = (props) => {
           <Modal.Header closeButton>
             <Modal.Title>{individBook.title}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body style={{ overflow: "auto", height: "70vh" }}>
             <Container>
               <Row>
                 <Col xs={8} sm={8} md={8} lg={6}>
