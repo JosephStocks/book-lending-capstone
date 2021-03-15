@@ -87,3 +87,9 @@ export const setAllFriendRelationsIDs = (friendRelationIDs) => {
     data: friendRelationIDs,
   };
 };
+export const setAllFriendsData = (friendsData) => {
+  return {
+    type: "SET_FRIENDS_DATA",
+    data: friendsData,
+  };
+};

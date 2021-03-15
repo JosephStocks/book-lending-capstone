@@ -23,6 +23,7 @@ import * as S from "../styles/Styles";
 import {
   fetchPendingFriendRequestsANDDispatchToRedux,
   fetchAllFriendRelationsIDsANDDispatch,
+  fetchAllFriendsANDDispatch,
 } from "../api-calls/friends-api";
 
 export default function TabbedSections() {
@@ -51,6 +52,7 @@ export default function TabbedSections() {
     (async () => {
       await fetchPendingFriendRequestsANDDispatchToRedux();
       await fetchAllFriendRelationsIDsANDDispatch();
+      await fetchAllFriendsANDDispatch();
     })();
   }, [token, dispatch]);
 
@@ -69,8 +71,8 @@ export default function TabbedSections() {
           <S.Grid>
             {ownedBooks !== undefined && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                  <Book key={index} book={{ ...book, index }} onPersonalPage />
-                ))
+                <Book key={index} book={{ ...book, index }} onPersonalPage />
+              ))
               : null}
           </S.Grid>
         </Tab>
@@ -78,8 +80,8 @@ export default function TabbedSections() {
           <S.Grid>
             {readBooks !== undefined && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                  <Book key={index} book={{ ...book, index }} onPersonalPage />
-                ))
+                <Book key={index} book={{ ...book, index }} onPersonalPage />
+              ))
               : null}
           </S.Grid>
         </Tab>
@@ -87,8 +89,8 @@ export default function TabbedSections() {
           <S.Grid>
             {wantBooks !== undefined && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                  <Book key={index} book={{ ...book, index }} onPersonalPage />
-                ))
+                <Book key={index} book={{ ...book, index }} onPersonalPage />
+              ))
               : null}
           </S.Grid>
         </Tab>

@@ -5,6 +5,7 @@ import {
   setPendingReceivedFriendRequests,
   setPendingSentFriendRequests,
   setAllFriendRelationsIDs,
+  setAllFriendsData,
 } from "../redux/actions/baseActions";
 
 // Adds token to every http request using this axios instance
@@ -98,5 +99,18 @@ export const fetchAllFriendRelationsIDsANDDispatch = async () => {
   } catch (error) {
     console.error(error);
     console.log("There was an issue fetching your friend requests!");
+  }
+};
+
+export const fetchAllFriendsANDDispatch = async () => {
+  try {
+    let response = await axiosInstance.get(
+      "http://localhost:3005/friends");
+    response = response.data;
+    console.log(response);
+    store.dispatch(setAllFriendsData(response));
+  } catch (err) {
+    console.log(err.response);
+    console.error(err);
   }
 };
