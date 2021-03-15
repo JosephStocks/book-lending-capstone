@@ -60,7 +60,7 @@ export const addBookToPersonalLists = async (book, whichList) => {
   }
 };
 
-export const addBookToPersonalLists = async (bookID, whichList) => {
+export const deleteBookFromPersonalLists = async (bookID, whichList) => {
   try {
     let response = await axiosInstance.delete("http://localhost:3005/books", {
       bookID,
