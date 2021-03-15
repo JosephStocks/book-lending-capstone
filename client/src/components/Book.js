@@ -18,6 +18,7 @@ import * as S from "../styles/Styles";
 export default function Book({ book, onPersonalPage, tabKey }, props) {
   let {
     id,
+    bookID,
     selfLink,
     title,
     authors,
@@ -70,7 +71,7 @@ export default function Book({ book, onPersonalPage, tabKey }, props) {
   };
 
   const handleDelete = () => {
-    deleteBookFromPersonalLists(id, whichList);
+    deleteBookFromPersonalLists(bookID, whichList);
   };
 
   useEffect(() => {

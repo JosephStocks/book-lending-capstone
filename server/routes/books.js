@@ -68,10 +68,15 @@ router.post("/books", requireAuth, async (req, res) => {
 // DELETE REQUEST TO DELETE FROM PERSONAL LISTS
 router.delete("/books", requireAuth, async (req, res) => {
   try {
+    console.log("INSIDE DELETE");
+    console.log(req.body.whichList);
+    console.log(req.body.bookID);
+    console.log(req.user.id);
     let response = await deleteFromPersonalListFunctionMapping[
       req.body.whichList
     ](req.user.id, req.body.bookID);
-
+    console.log("RESPONSE");
+    console.log(response);
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });
