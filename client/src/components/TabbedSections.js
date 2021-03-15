@@ -23,7 +23,7 @@ import {
 } from "../redux/actions/baseActions";
 import Book from "./Book";
 import BookModal from "./BookModal";
-import WhoOwnsModal from './WhoOwnsModal';
+import WhoOwnsModal from "./WhoOwnsModal";
 import * as S from "../styles/Styles";
 import {
   fetchPendingFriendRequestsANDDispatchToRedux,
@@ -77,8 +77,13 @@ export default function TabbedSections() {
           <S.Grid>
             {ownedBooks != null && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book
+                    key={index}
+                    book={{ ...book, index }}
+                    onPersonalPage
+                    tabKey={key}
+                  />
+                ))
               : null}
           </S.Grid>
           {ownedBooks == null || ownedBooks.length === 0 ? (
@@ -87,7 +92,11 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you own!</strong>
               </div>
               <div>
-                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
+                <Link to="/search">
+                  <Button variant="outline-info">
+                    Click here to search for any book!
+                  </Button>
+                </Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
@@ -96,8 +105,13 @@ export default function TabbedSections() {
           <S.Grid>
             {readBooks != null && readBooks.length !== 0
               ? readBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book
+                    key={index}
+                    book={{ ...book, index }}
+                    onPersonalPage
+                    tabKey={key}
+                  />
+                ))
               : null}
           </S.Grid>
           {readBooks == null || readBooks.length === 0 ? (
@@ -106,7 +120,11 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you've read!</strong>
               </div>
               <div>
-                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
+                <Link to="/search">
+                  <Button variant="outline-info">
+                    Click here to search for any book!
+                  </Button>
+                </Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
@@ -115,8 +133,13 @@ export default function TabbedSections() {
           <S.Grid>
             {wantBooks != null && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
+                  <Book
+                    key={index}
+                    book={{ ...book, index }}
+                    onPersonalPage
+                    tabKey={key}
+                  />
+                ))
               : null}
           </S.Grid>
           {wantBooks == null || wantBooks.length === 0 ? (
@@ -125,7 +148,11 @@ export default function TabbedSections() {
                 <strong>You haven't added any books you want to read!</strong>
               </div>
               <div>
-                <Link to="/search"><Button variant="outline-info">Click here to search for any book!</Button></Link>
+                <Link to="/search">
+                  <Button variant="outline-info">
+                    Click here to search for any book!
+                  </Button>
+                </Link>
               </div>
             </S.EmptyMessageCentered>
           ) : null}
@@ -136,7 +163,6 @@ export default function TabbedSections() {
       </Tabs>
       <BookModal />
       <WhoOwnsModal />
-
     </>
   );
 }
