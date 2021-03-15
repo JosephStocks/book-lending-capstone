@@ -8,6 +8,7 @@ const {
   showAllWantToReadBooksByUser,
   findOrCreateBookEntry,
   findOrCreatePersonalListFunctionMapping,
+  deleteFromPersonalListFunctionMapping,
   showUsersWhoOwnBook,
 } = require("../database/bookLogic");
 // auth
@@ -67,10 +68,10 @@ router.post("/books", requireAuth, async (req, res) => {
 // DELETE REQUEST TO DELETE FROM PERSONAL LISTS
 router.delete("/books", requireAuth, async (req, res) => {
   try {
-    let response = deleteFromPersonalListFunctionMapping[req.body.whichList](
-      req.user.id,
-      req.body.bookID
-    );
+    let response = await deleteFromPersonalListFunctionMapping[
+      req.body.whichList
+    ](req.user.id, req.body.bookID);
+
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });

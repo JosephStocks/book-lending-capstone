@@ -5,6 +5,7 @@ import {
   bookAddPost,
   bookDeleteRequestByDatabaseID,
   bookDeleteRequestByGoogleBookID,
+  deleteBookFromPersonalLists,
 } from "../api-calls/internal-api";
 import {
   toggleModal,
@@ -14,7 +15,7 @@ import {
 
 import * as S from "../styles/Styles";
 
-export default function Book({ book, onPersonalPage }, props) {
+export default function Book({ book, onPersonalPage, tabKey }, props) {
   let {
     id,
     selfLink,
@@ -33,6 +34,8 @@ export default function Book({ book, onPersonalPage }, props) {
     index,
   } = book;
 
+  console.log(tabKey);
+
   const PLACEHOLDER_IMAGE =
     "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
 
@@ -45,6 +48,17 @@ export default function Book({ book, onPersonalPage }, props) {
   const addBookFunction = () => dispatch(addIndividBook(book));
   let searchResults = useSelector((state) => state.searchResults);
 
+  let whichList;
+  if (tabKey === "myBooks") {
+    whichList = "owned";
+  } else if (tabKey === "readBooks") {
+    whichList = "read";
+  } else if (tabKey === "wantBooks") {
+    whichList = "want";
+  } else {
+    whichList = "undefined";
+  }
+
   const handleClick = async () => {
     if (onPersonalPage === undefined || onPersonalPage === false) {
       book = await addLargerImageLinks(book);
@@ -54,9 +68,11 @@ export default function Book({ book, onPersonalPage }, props) {
     toggleFunction();
     addBookFunction();
   };
-  const handleDelete = () => {
 
-  }
+  const handleDelete = () => {
+    deleteBookFromPersonalLists(id, whichList);
+  };
+
   useEffect(() => {
     setHeight(elementRef.current.clientHeight);
     if (height < 25) {
@@ -136,7 +152,11 @@ export default function Book({ book, onPersonalPage }, props) {
           >
             Add Book to Database
           </S.Button> */}
-          <S.Button variant="danger" key={`button3-${id}`} onClick={handleDelete}>
+          <S.Button
+            variant="danger"
+            key={`button3-${id}`}
+            onClick={handleDelete}
+          >
             Remove from list
           </S.Button>
           <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
