@@ -201,7 +201,7 @@ export const fetchUserSearchResults = async (searchQuery) => {
 ```
 
 
-**Screen Shots and GIFS**
+**Screen Shots and GIFS**<br/><br/>
 **Logging in with Google**
 ![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
