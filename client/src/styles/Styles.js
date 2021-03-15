@@ -303,5 +303,33 @@ export const ClickP = styled.p`
   border: 1px solid black;
   border-radius: 3px;
   margin: 0px;
-    padding: 0.3rem;
-  `
+  padding: 0.3rem;
+`;
+
+export const GridFriendsBooks = styled.div`
+  display: grid;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  margin: 0.5rem;
+  /* font-family: 'Literata', serif; */
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+`;

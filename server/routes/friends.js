@@ -82,6 +82,8 @@ router.get("/friends/pending", requireAuth, async (req, res) => {
 router.get("/friends", requireAuth, async (req, res) => {
   try {
     let response = await fetchFriendsFromDatabase(req.user.id);
+    console.log("\n\n\n\n");
+    console.log(response);
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });
