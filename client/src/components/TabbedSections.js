@@ -74,57 +74,60 @@ export default function TabbedSections() {
       >
         <Tab eventKey="myBooks" title="My Books">
           <S.Grid>
-            {ownedBooks != null && ownedBooks.length !== 0 ? (
-              ownedBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
-            ) : (
-              <div className="d-inline-flex flex-column justify-content-center">
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <strong>You haven't added any books you own!</strong>
-                </div>
-                <div>
-                  <Link to="/search">Click here to search for any book!</Link>
-                </div>
-              </div>
-            )}
+            {ownedBooks != null && ownedBooks.length !== 0
+              ? ownedBooks.map((book, index) => (
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
+              : null}
           </S.Grid>
+          {ownedBooks == null || ownedBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you own!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="readBooks" title="Books I've Read">
           <S.Grid>
-            {readBooks != null && readBooks.length !== 0 ? (
-              readBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
-            ) : (
-              <div className="d-inline-flex flex-column justify-content-center">
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <strong>You haven't added any books you've read!</strong>
-                </div>
-                <div>
-                  <Link to="/search">Click here to search for any book!</Link>
-                </div>
-              </div>
-            )}
+            {readBooks != null && readBooks.length !== 0
+              ? readBooks.map((book, index) => (
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
+              : null}
           </S.Grid>
+          {readBooks == null || readBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you've read!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="wantBooks" title="Books To Read">
           <S.Grid>
-            {wantBooks != null && wantBooks.length !== 0 ? (
-              wantBooks.map((book, index) => (
-                <Book key={index} book={{ ...book, index }} onPersonalPage />
-              ))
-            ) : (
-              <div className="d-flex flex-column justify-content-center">
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <strong>You haven't added any books you want to read!</strong>
-                </div>
-                <div>
-                  <Link to="/search">Click here to search for any book!</Link>
-                </div>
-              </div>
-            )}
+            {wantBooks != null && wantBooks.length !== 0
+              ? wantBooks.map((book, index) => (
+                  <Book key={index} book={{ ...book, index }} onPersonalPage />
+                ))
+              : null}
           </S.Grid>
+          {wantBooks == null || wantBooks.length === 0 ? (
+            <S.EmptyMessageCentered>
+              <div style={{ marginBottom: "1.5rem", width: "max-content" }}>
+                <strong>You haven't added any books you want to read!</strong>
+              </div>
+              <div>
+                <Link to="/search">Click here to search for any book!</Link>
+              </div>
+            </S.EmptyMessageCentered>
+          ) : null}
         </Tab>
         <Tab eventKey="friends" title="Friends">
           <Friends />
