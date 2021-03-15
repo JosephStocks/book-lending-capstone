@@ -104,9 +104,10 @@ export const fetchAllFriendRelationsIDsANDDispatch = async () => {
 
 export const fetchAllFriendsANDDispatch = async () => {
   try {
-    let response = await axiosInstance.get(
-      "http://localhost:3005/friends");
+    let response = await axiosInstance.get("http://localhost:3005/friends");
     response = response.data;
+    console.log("\n\n\n\n\n");
+    console.log("ALL FRIENDS FETCH");
     console.log(response);
     store.dispatch(setAllFriendsData(response));
   } catch (err) {
