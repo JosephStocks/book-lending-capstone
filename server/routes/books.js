@@ -76,8 +76,16 @@ router.delete("/books", async (req, res) => {
 // requireAuth,
 router.post("/whoownsit", async (req, res) => {
   try {
-    let response = await showUsersWhoOwnBook(req.body.bookID);
-    res.status(200).json(response);
+    let records = await showUsersWhoOwnBook(req.body.bookID);
+
+    let book = {};
+    let allOwners = [];
+    if (records != null && records.length !== 0) {
+      book = records[0].book;
+      allOwners = records.map((ownerEntry) => ownerEntry.owner);
+    }
+
+    res.status(200).json({ book, allOwners });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
