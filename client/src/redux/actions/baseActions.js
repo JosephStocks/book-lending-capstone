@@ -93,3 +93,9 @@ export const setAllFriendsData = (friendsData) => {
     data: friendsData,
   };
 };
+export const setWhoOwnsIt = (data) => {
+  return {
+    type: "SET_WHO_OWNS_IT",
+    data: data,
+  };
+};
