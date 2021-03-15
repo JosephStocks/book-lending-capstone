@@ -4,7 +4,7 @@
 ## URL <>
 
 
- This is an app for book lovers and new readers alike! RMBS provides a space for connecting with other readers. Offer up a book you love and share it with others through our book swap feature. Wherever you are in your reading journey, ReadMe Book Swap is here to help you share and explore new literary adventures.
+ReadMe Book Swap is an app for book lovers and new readers alike! RMBS provides a space for connecting with readers who want to trade books with others. Offer up a book you love and share it with friends! RMBS is the tiny library on the corner in your neighborhood if it was an app! Come search and find who has a book that you would like to borrow, barter, or lend.
 
 
 <img src="./client/public/Front.png" width="700" height="500">
@@ -78,13 +78,13 @@ Mode Code:
 ```
 
 
-**Screen Shots and GIFS**
+<!-- **Screen Shots and GIFS**
 
 Search Capabilities
-![movie-matrix-search2](https://user-images.githubusercontent.com/26754072/106790757-9a11b780-6619-11eb-85cb-5bdaa59e0e17.gif)  
+![movie-matrix-search2](https://user-images.githubusercontent.com/26754072/106790757-9a11b780-6619-11eb-85cb-5bdaa59e0e17.gif)   -->
   
-Saving Cards to Personal Lists
-![movie-matrix-saving](https://user-images.githubusercontent.com/26754072/106791021-0096d580-661a-11eb-8f54-07f7f66a9bee.gif)
+<!-- Saving Cards to Personal Lists
+![movie-matrix-saving](https://user-images.githubusercontent.com/26754072/106791021-0096d580-661a-11eb-8f54-07f7f66a9bee.gif) -->
 
 
 
