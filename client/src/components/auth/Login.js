@@ -11,7 +11,7 @@ import {
   saveToken,
   saveGoogleImg,
   setGoogleAuth,
-} from "../redux/actions/baseActions";
+} from "../../redux/actions/baseActions";
 import { GoogleLogin } from "react-google-login";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";

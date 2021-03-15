@@ -14,7 +14,7 @@ import {
   saveToken,
   saveGoogleImg,
   setGoogleAuth,
-} from "../redux/actions/baseActions";
+} from "../../redux/actions/baseActions";
 import { toast } from "react-toastify";
 
 const Registration = () => {
