@@ -79,22 +79,22 @@ Mode Code:
 
 
 **Screen Shots and GIFS**
-Logging in with Google
+**Logging in with Google**
 ![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
-Logging in with email and password on mobile device
-![rmbs5](./client/src/styles/videos/mobielogin.gif)
+**Logging in with email and password on mobile device**
+![rmbs5](./client/src/styles/videos/mobilelogin.gif)
 
-Adding Books to Personal Lists
+**Adding Books to Personal Lists**
 ![rmbs](./client/src/styles/videos/addtolist.gif)
 
-Searching for Books
+**Searching for Books**
 ![rmbs2](./client/src/styles/videos/booksearch.gif)
 
-Sending and Accepting Friend Request
+**Sending and Accepting Friend Request**
 ![rmbs3](./client/src/styles/videos/friendrequest.gif)
 
-Searching for New Friends/Viewing Friends' Books
+**Searching for New Friends/Viewing Friends' Books**
 ![rmbs4](./client/src/styles/videos/friendssearchbooks.gif)
 
 
