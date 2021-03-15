@@ -99,3 +99,8 @@ export const setWhoOwnsIt = (data) => {
     data: data,
   };
 };
+export const toggleWhoOwnsModal = () => {
+  return {
+    type: "TOGGLE_WHO_OWNS_MODAL",
+  };
+};
