@@ -18,7 +18,7 @@ const Welcome = () => {
                 src={BooksPhoto}
                 alt="user pic"
                 />
-            <S.WelcomeGrid className="mt-5">
+            <S.WelcomeGrid className="mt-5 mb-5">
                 <Button variant="outline-info" as={Link} to="/register">Register</Button>
                 <Button variant="outline-info" as={Link} to="/login">Login</Button>
             </S.WelcomeGrid>
