@@ -154,13 +154,13 @@ const DevCards = () => {
             
         <S.H3 className="mt-5 mb-5">Using</S.H3>
         <Container className="mb-5">
-            <S.Grid>
+            <S.GridTechs>
                 <FontAwesomeIcon icon={faReact} size="4x"/>
                 <FontAwesomeIcon icon={faJsSquare} size="4x"/>
                 <FontAwesomeIcon icon={faCss3} size="4x"/>
-                <FontAwesomeIcon className="mt-5" icon={faBootstrap} size="4x"/>
-                <FontAwesomeIcon className="mt-5" icon={faGithub} size="4x"/>
-            </S.Grid>
+                <FontAwesomeIcon icon={faBootstrap} size="4x"/>
+                <FontAwesomeIcon icon={faGithub} size="4x"/>
+            </S.GridTechs>
         </Container>
         </>
     )
