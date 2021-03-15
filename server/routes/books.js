@@ -73,8 +73,8 @@ router.delete("/books", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// requireAuth,
-router.post("/whoownsit", async (req, res) => {
+
+router.post("/whoownsit", requireAuth, async (req, res) => {
   try {
     let records = await showUsersWhoOwnBook(req.body.bookID);
 

@@ -136,10 +136,12 @@ export const cleanFetchedBooks = async (books) => {
   });
 };
 
-export const fetchAllUsersWhoOwnsBookANDDispatch = async () => {
+export const fetchAllUsersWhoOwnsBookANDDispatch = async (bookID) => {
   console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 1");
   try {
-    let whoOwnsIt = await axiosInstance.get("http://localhost:3005/whoownsit");
+    let whoOwnsIt = await axiosInstance.post("http://localhost:3005/whoownsit", {
+      bookID,
+    });
     whoOwnsIt = whoOwnsIt.data;
     console.log(whoOwnsIt);
     console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 2");
