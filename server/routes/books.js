@@ -77,12 +77,20 @@ router.delete("/books", async (req, res) => {
 router.post("/whoownsit", requireAuth, async (req, res) => {
   try {
     let records = await showUsersWhoOwnBook(req.body.bookID);
-
+    console.log("req.user.id");
+    console.log(req.user.id);
     let book = {};
     let allOwners = [];
     if (records != null && records.length !== 0) {
       book = records[0].book;
-      allOwners = records.map((ownerEntry) => ownerEntry.owner);
+      // allOwners = records.map((ownerEntry) => ownerEntry.owner);
+      // map to users while filtering out results for current user
+      allOwners = records.reduce(function (filtered, ownerEntry) {
+        if (ownerEntry.owner.id !== req.user.id) {
+          filtered.push(ownerEntry.owner);
+        }
+        return filtered;
+      }, []);
     }
 
     res.status(200).json({ book, allOwners });
