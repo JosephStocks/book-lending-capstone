@@ -15,7 +15,7 @@ import {
 
 import * as S from "../styles/Styles";
 
-export default function Book({ book, onPersonalPage, tabKey }, props) {
+export default function Book({ book, onPersonalPage, tabKey, fromSearch }, ...props) {
   let {
     id,
     bookID,
@@ -36,7 +36,7 @@ export default function Book({ book, onPersonalPage, tabKey }, props) {
   } = book;
 
   console.log(tabKey);
-
+  console.log(props.fromSearch);
   const PLACEHOLDER_IMAGE =
     "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
 
@@ -144,35 +144,16 @@ export default function Book({ book, onPersonalPage, tabKey }, props) {
           )}
         </S.CardContent>
         <S.ButtonGroup key={`buttons-${id}`}>
-          {/* <S.Button
-            key={`button1-${id}`}
-            size="sm"
-            onClick={() => {
-              bookAddPost(book);
-            }}
-          >
-            Add Book to Database
-          </S.Button> */}
-          <S.Button
+          {fromSearch ? null : (<S.Button
             variant="danger"
             key={`button3-${id}`}
             onClick={handleDelete}
           >
             Remove from list
-          </S.Button>
+          </S.Button>)}
           <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
-
-          {/* <S.Button
-            key={`button3-${id}`}
-            size="sm"
-            onClick={() => {
-              bookDeleteRequestByGoogleBookID(5);
-            }}
-          >
-            Delete book from database
-          </S.Button> */}
         </S.ButtonGroup>
       </S.Card>
     </>

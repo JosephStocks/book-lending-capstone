@@ -14,13 +14,21 @@ import {
 
 import * as S from "../styles/Styles";
 
-export default function Book({ book, onPersonalPage }, props) {
-  let { id, title, authors, categories, description, imageLinks } = book;
+export default function Book({ book, onPersonalPage }, ...props) {
+  let parsedBook;
+  try {
+    parsedBook = {
+      ...book,
+      authors: JSON.parse(book.authors),
+      categories: JSON.parse(book.categories),
+      imageLinks: JSON.parse(book.imageLinks),
+    };
+  }
+  catch (err) {
+    parsedBook = { ...book }
+  }
 
-  authors = JSON.parse(authors);
-  categories = JSON.parse(categories);
-  imageLinks = JSON.parse(imageLinks);
-
+  let { id, title, authors, categories, description, imageLinks } = parsedBook;
   const PLACEHOLDER_IMAGE =
     "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg";
 
@@ -30,15 +38,16 @@ export default function Book({ book, onPersonalPage }, props) {
   const elementRef = useRef(null);
 
   const toggleFunction = () => dispatch(toggleModal(true));
-  const addBookFunction = () => dispatch(addIndividBook(book));
-  let searchResults = useSelector((state) => state.searchResults);
+
+  const addBookFunction = () => dispatch(addIndividBook(parsedBook));
+  // let searchResults = useSelector((state) => state.searchResults);
 
   const handleClick = async () => {
-    if (onPersonalPage === undefined || onPersonalPage === false) {
-      book = await addLargerImageLinks(book);
-      searchResults[book.index] = book;
-    }
-    dispatch(searchFunction(searchResults));
+    // if (onPersonalPage === undefined || onPersonalPage === false) {
+    //   parsedBook = await addLargerImageLinks(parsedBook);
+    //   // searchResults[parsedBook.index] = parsedBook;
+    // }
+    // dispatch(searchFunction(searchResults));
     toggleFunction();
     addBookFunction();
   };
@@ -113,27 +122,9 @@ export default function Book({ book, onPersonalPage }, props) {
           )}
         </S.CardContent>
         <S.ButtonGroup key={`buttons-${id}`}>
-          {/* <S.Button
-            key={`button1-${id}`}
-            size="sm"
-            onClick={() => {
-              bookAddPost(book);
-            }}
-          >
-            Add Book to Database
-          </S.Button> */}
           <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
-          {/* <S.Button
-            key={`button3-${id}`}
-            size="sm"
-            onClick={() => {
-              bookDeleteRequestByGoogleBookID(5);
-            }}
-          >
-            Delete book from database
-          </S.Button> */}
         </S.ButtonGroup>
       </S.Card>
     </>
