@@ -141,11 +141,12 @@ const showUsersWhoOwnBook = async (bookID) => {
       {
         as: "owner",
         model: db.user,
-        attributes: ["firstName", "lastName", "email", "googleAuth"],
+        attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
       },
       {
         model: db.books,
         attributes: [
+          "id",
           "title",
           "authors",
           "categories",
