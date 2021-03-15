@@ -303,5 +303,5 @@ export const ClickP = styled.p`
   border: 1px solid black;
   border-radius: 3px;
   margin: 0px;
-
+    padding: 0.3rem;
   `
