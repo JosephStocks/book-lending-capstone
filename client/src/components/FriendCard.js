@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookReader } from "@fortawesome/free-solid-svg-icons";
 import capitalize from "../helper-functions/capitalize";
 
-const FriendCard = (props) => {
-  // let { firstName, lastName } = friend;
+const FriendCard = ({ friend }) => {
+
+  let { user } = friend;
   return (
     <>
       <Card className="text-center mt-5 mb-5">
         <Card.Header>
-          {/* {capitalize(firstName)} {capitalize(lastName)} */}
+          {capitalize(user.firstName)} {capitalize(user.lastName)}
         </Card.Header>
         <Card.Body>
           <Card.Title>"Your Friend's" Books</Card.Title>

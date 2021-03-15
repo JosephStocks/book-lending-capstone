@@ -18,6 +18,7 @@ const initialState = {
     sentFriendRequestIDs: [],
     receivedFriendRequestIDs: [],
   },
+  friends: [],
 };
 
 //purpose of reducer is to return a new global state
@@ -101,6 +102,11 @@ const baseReducer = (state = initialState, action) => {
       return {
         ...state,
         allFriendRelationIDs: action.data,
+      };
+    case "SET_FRIENDS_DATA":
+      return {
+        ...state,
+        friends: action.data,
       };
 
     default:
