@@ -9,6 +9,7 @@ export default function SaveButtons() {
   return (
     <>
       <S.Button
+        variant="info"
         key={`button1-${individBook.id}`}
         size="sm"
         onClick={() => {
@@ -18,6 +19,7 @@ export default function SaveButtons() {
         I Own This Book
       </S.Button>
       <S.Button
+        variant="info"
         key={`button2-${individBook.id}`}
         size="sm"
         onClick={() => {
@@ -27,6 +29,7 @@ export default function SaveButtons() {
         I've Read This Book
       </S.Button>
       <S.Button
+        variant="info"
         key={`button3-${individBook.id}`}
         size="sm"
         onClick={() => {

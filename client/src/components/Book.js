@@ -134,7 +134,7 @@ export default function Book({ book, onPersonalPage }, props) {
           >
             Add Book to Database
           </S.Button> */}
-          <S.Button key={`button2-${id}`} onClick={handleClick}>
+          <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
           {/* <S.Button
