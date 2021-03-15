@@ -1,6 +1,6 @@
 import React from 'react'
 import { toggleWhoOwnsModal } from "../redux/actions/baseActions";
-import { Modal, Row, Col, Container } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import PotentialFriendCard from './PotentialFriendCard'
 
@@ -22,7 +22,7 @@ const WhoOwnsModal = () => {
                 <Modal.Header style={{ backgroundColor: "lightgray" }} closeButton>
                     <Modal.Title>Owners of {individBook.title}:</Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{ backgroundColor: "lightgray", overflow: "scroll" }}>
+                <Modal.Body style={{ backgroundColor: "lightgray", overflow: "auto", height: "70vh" }}>
                     {
                         bookOwners.map((friend, index) => (
                             <>
@@ -32,7 +32,11 @@ const WhoOwnsModal = () => {
                         ))
                     }
                 </Modal.Body>
-                {/* <Modal.Footer>{saveButtons}</Modal.Footer> */}
+                <Modal.Footer style={{ backgroundColor: "lightgray" }}>
+                    <Button variant="secondary" onClick={() => dispatch(toggleWhoOwnsModal())}>
+                        Close
+                    </Button>
+                </Modal.Footer>
             </Modal>
         </>
     )
