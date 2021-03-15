@@ -4,10 +4,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-
+require('dotenv').config();
 const bcrypt = require('bcryptjs'); //unencrypt
 const db = require('../models'); //access to user model
-const config = require('../config/jwtsecret'); //gives access to jwt secret
 
 
 
@@ -57,7 +56,7 @@ let localLogin = new LocalStrategy(options, async (req, email, password, done) =
  */
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: config.secret,
+    secretOrKey: process.env.SECRET,
     passReqToCallback: true
 }
 let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
