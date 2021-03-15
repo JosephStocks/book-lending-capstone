@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookReader } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,9 @@ import capitalize from "../helper-functions/capitalize";
 import * as S from "../styles/Styles";
 
 const FriendCard = ({ friend }) => {
-
+  const [showOwnedBooks, setShowOwnedBooks] = useState(false)
+  const [showReadBooks, setShowReadBooks] = useState(false)
+  const [showWantBooks, setShowWantBooks] = useState(false)
   let { user } = friend;
   return (
     <>
@@ -22,31 +24,34 @@ const FriendCard = ({ friend }) => {
             </Col>
             <Col className="d-flex justify-content-center align-items-center" xs={2} >
               <S.ClickP onClick={(e) => {
-                console.log("click");
+                setShowOwnedBooks(true);
               }
               }>Owned Books</S.ClickP>
             </Col>
             <Col className="d-flex justify-content-center align-items-center" xs={2}>
-              Read Books
+              <S.ClickP onClick={(e) => {
+                setShowReadBooks(true);
+              }
+              }>Read Books</S.ClickP>
             </Col>
             <Col className="d-flex justify-content-center align-items-center" xs={2}>
-              Looking for
+              <S.ClickP onClick={(e) => {
+                setShowWantBooks(true);
+              }
+              }>Looking for</S.ClickP>
             </Col>
           </Row>
 
 
 
         </Card.Header>
-        {/* <Card.Body>
-          <Card.Title>"Your Friend's" Books</Card.Title>
-          <Card.Text>Book Thumbnails Here</Card.Text>
-        </Card.Body>
-        <Card.Body>
-          <Card.Title>Books They Are Loaning Out</Card.Title>
-          <Card.Text>Book Thumbnails Here</Card.Text>
-          <Button variant="primary">See More From "Friend's Name"</Button>
-        </Card.Body> */}
-        {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
+        <Row>
+          <Col>
+            <S.Grid>
+
+            </S.Grid>
+          </Col>
+        </Row>
       </Card>
     </>
   );
