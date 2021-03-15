@@ -9,6 +9,16 @@ export default function SaveButtons() {
   return (
     <>
       <S.Button
+        variant="success"
+        key={`button1-${individBook.id}`}
+        size="sm"
+        onClick={() => {
+          // addBookToPersonalLists(individBook, "owned");
+        }}
+      >
+        Check who owns this book
+      </S.Button>
+      <S.Button
         variant="info"
         key={`button1-${individBook.id}`}
         size="sm"
