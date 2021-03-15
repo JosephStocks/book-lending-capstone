@@ -5,11 +5,12 @@ import {
   addBookToPersonalLists,
   fetchAllUsersWhoOwnsBookANDDispatch,
 } from "../api-calls/internal-api";
-import { toggleWhoOwnsModal } from '../redux/actions/baseActions'
+import { toggleWhoOwnsModal } from "../redux/actions/baseActions";
 
 export default function SaveButtons() {
   const individBook = useSelector((state) => state.individBook);
   const dispatch = useDispatch();
+  let whichID; // "google" or "database"
   return (
     <>
       <S.Button
@@ -17,7 +18,7 @@ export default function SaveButtons() {
         key={`button4-${individBook.id}`}
         size="sm"
         onClick={() => {
-          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID);
+          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID, whichID);
           dispatch(toggleWhoOwnsModal());
         }}
       >

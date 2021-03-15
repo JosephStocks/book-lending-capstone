@@ -184,7 +184,89 @@ const showUsersWhoOwnBook = async (bookID) => {
   });
 };
 
+const showUsersWhoOwnBookByGoogleID = async (bookID) => {
+  return await db.books.findAll({
+    where: {
+      googleBookID: bookID,
+    },
+    attributes: ["id", "title", "authors"],
+    include: [
+      {
+        // as: "owner",
+        model: db.OwnedBooks,
+        attributes: ["userID", "bookID", "lendToID"],
+        include: [
+          {
+            as: "owner",
+            model: db.user,
+            attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+          },
+          {
+            model: db.books,
+            attributes: [
+              "id",
+              "title",
+              "authors",
+              "categories",
+              "isbn",
+              "description",
+              "imageLinks",
+              "googleBookID",
+              "publisher",
+              "publishedDate",
+            ],
+          },
+        ],
+      },
+      // {
+      //   model: db.books,
+      //   attributes: [
+      //     "id",
+      //     "title",
+      //     "authors",
+      //     "categories",
+      //     "isbn",
+      //     "description",
+      //     "imageLinks",
+      //     "googleBookID",
+      //     "publisher",
+      //     "publishedDate",
+      //   ],
+      // },
+    ],
+  });
+  // return await db.OwnedBooks.findAll({
+  //   where: {
+  //     bookID: bookID,
+  //   },
+  //   attributes: ["userID", "bookID", "lendToID"],
+  //   include: [
+  //     {
+  //       as: "owner",
+  //       model: db.user,
+  //       attributes: ["id", "firstName", "lastName", "email", "googleAuth"],
+  //     },
+  //     {
+  //       model: db.books,
+  //       attributes: [
+  //         "id",
+  //         "title",
+  //         "authors",
+  //         "categories",
+  //         "isbn",
+  //         "description",
+  //         "imageLinks",
+  //         "googleBookID",
+  //         "publisher",
+  //         "publishedDate",
+  //       ],
+  //     },
+  //   ],
+  // });
+};
+
 module.exports.showUsersWhoOwnBook = showUsersWhoOwnBook;
+module.exports.showUsersWhoOwnBookByGoogleID = showUsersWhoOwnBookByGoogleID;
 module.exports.showAllOwnedBooksByUser = showAllOwnedBooksByUser;
 module.exports.showAllReadBooksByUser = showAllReadBooksByUser;
 module.exports.showAllWantToReadBooksByUser = showAllWantToReadBooksByUser;

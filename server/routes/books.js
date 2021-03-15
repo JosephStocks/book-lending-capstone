@@ -10,6 +10,7 @@ const {
   findOrCreatePersonalListFunctionMapping,
   deleteFromPersonalListFunctionMapping,
   showUsersWhoOwnBook,
+  showUsersWhoOwnBookByGoogleID,
 } = require("../database/bookLogic");
 // auth
 const passport = require("passport");
@@ -85,11 +86,19 @@ router.delete("/books", requireAuth, async (req, res) => {
 
 router.post("/whoownsit", requireAuth, async (req, res) => {
   try {
-    let records = await showUsersWhoOwnBook(req.body.bookID);
-    console.log("req.user.id");
-    console.log(req.user.id);
     let book = {};
     let allOwners = [];
+    let records;
+    if (req.body.whichID === "google") {
+      console.log(req.body.bookID);
+      records = await showUsersWhoOwnBookByGoogleID(req.body.bookID);
+      records = records[0].OwnedBooks;
+    } else {
+      records = await showUsersWhoOwnBook(req.body.bookID);
+      console.log("req.user.id");
+      console.log(req.user.id);
+    }
+
     if (records != null && records.length !== 0) {
       book = records[0].book;
       // allOwners = records.map((ownerEntry) => ownerEntry.owner);
@@ -104,6 +113,7 @@ router.post("/whoownsit", requireAuth, async (req, res) => {
 
     res.status(200).json({ book, allOwners });
   } catch (err) {
+    console.log(err.message);
     res.status(500).json({ message: err.message });
   }
 });
