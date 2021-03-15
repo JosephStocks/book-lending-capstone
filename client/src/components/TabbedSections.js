@@ -74,7 +74,7 @@ export default function TabbedSections() {
         onSelect={(k) => setKey(k)}
       >
         <Tab eventKey="myBooks" title="My Books">
-          <S.Grid>
+          <S.Grid className="mb-5">
             {ownedBooks != null && ownedBooks.length !== 0
               ? ownedBooks.map((book, index) => (
                   <Book
@@ -102,7 +102,7 @@ export default function TabbedSections() {
           ) : null}
         </Tab>
         <Tab eventKey="readBooks" title="Books I've Read">
-          <S.Grid>
+          <S.Grid className="mb-5">
             {readBooks != null && readBooks.length !== 0
               ? readBooks.map((book, index) => (
                   <Book
@@ -130,7 +130,7 @@ export default function TabbedSections() {
           ) : null}
         </Tab>
         <Tab eventKey="wantBooks" title="Books To Read">
-          <S.Grid>
+          <S.Grid className="mb-5">
             {wantBooks != null && wantBooks.length !== 0
               ? wantBooks.map((book, index) => (
                   <Book
