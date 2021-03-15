@@ -89,6 +89,7 @@ router.post("/whoownsit", requireAuth, async (req, res) => {
     let book = {};
     let allOwners = [];
     let records;
+    console.log(req.body);
     if (req.body.whichID === "google") {
       console.log(req.body.bookID);
       records = await showUsersWhoOwnBookByGoogleID(req.body.bookID);

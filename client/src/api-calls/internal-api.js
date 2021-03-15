@@ -167,6 +167,7 @@ export const fetchAllUsersWhoOwnsBookANDDispatch = async (bookID, whichID) => {
   console.log("FETCH ALL OWNERS OF A SPECIFIC BOOK - 1");
   try {
     console.log(bookID);
+    console.log(whichID);
     let whoOwnsIt = await axiosInstance.post(
       "http://localhost:3005/whoownsit",
       {

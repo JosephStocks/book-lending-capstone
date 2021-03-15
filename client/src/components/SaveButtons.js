@@ -11,6 +11,14 @@ export default function SaveButtons() {
   const individBook = useSelector((state) => state.individBook);
   const dispatch = useDispatch();
   let whichID; // "google" or "database"
+  let bookID;
+  if (individBook.bookID != null) {
+    whichID = "database";
+    bookID = individBook.bookID;
+  } else {
+    whichID = "google";
+    bookID = individBook.id;
+  }
   return (
     <>
       <S.Button
@@ -18,7 +26,7 @@ export default function SaveButtons() {
         key={`button4-${individBook.id}`}
         size="sm"
         onClick={() => {
-          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID, whichID);
+          fetchAllUsersWhoOwnsBookANDDispatch(bookID, whichID);
           dispatch(toggleWhoOwnsModal());
         }}
       >
