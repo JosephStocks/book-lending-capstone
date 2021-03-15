@@ -333,3 +333,9 @@ export const GridFriendsBooks = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 `;
+
+export const EmptyMessageCentered = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

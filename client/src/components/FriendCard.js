@@ -20,19 +20,19 @@ const FriendCard = ({ friend }) => {
           <Row>
             <Col
               className="d-flex justify-content-center align-items-center"
-              xs={3}
+              md={3}
             >
               {capitalize(user.firstName)} {capitalize(user.lastName)}
             </Col>
             <Col
               className="d-flex justify-content-center align-items-center"
-              xs={3}
+              md={3}
             >
               {user.email || user.googleAuth}
             </Col>
             <Col
-              className="d-flex justify-content-center align-items-center"
-              xs={2}
+              className="d-flex justify-content-center align-items-center m-1 m-sm-0"
+              md={2}
             >
               <S.ClickP
                 onClick={(e) => {
@@ -45,8 +45,8 @@ const FriendCard = ({ friend }) => {
               </S.ClickP>
             </Col>
             <Col
-              className="d-flex justify-content-center align-items-center"
-              xs={2}
+              className="d-flex justify-content-center align-items-center m-1 m-sm-0"
+              md={2}
             >
               <S.ClickP
                 onClick={(e) => {
@@ -59,8 +59,8 @@ const FriendCard = ({ friend }) => {
               </S.ClickP>
             </Col>
             <Col
-              className="d-flex justify-content-center align-items-center"
-              xs={2}
+              className="d-flex justify-content-center align-items-center m-1 m-sm-0"
+              md={2}
             >
               <S.ClickP
                 onClick={(e) => {

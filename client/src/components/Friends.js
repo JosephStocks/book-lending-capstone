@@ -80,7 +80,7 @@ const Friends = () => {
                 ) => (
                   <Card
                     key={index}
-                    style={{ width: 300 }}
+                    style={{ maxWidth: 300, height: "max-content" }}
                     className="text-center"
                   >
                     <Card.Header
@@ -95,7 +95,7 @@ const Friends = () => {
                         You have a friend request from {fromUserFirstName}{" "}
                         {fromUserLastName}
                       </S.H5>
-                      <S.H5>Email: {fromUserEmail}</S.H5>
+                      <S.H5>@: {fromUserEmail}</S.H5>
                       <div>
                         <Button
                           onClick={async () => {
