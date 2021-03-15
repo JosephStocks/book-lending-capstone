@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import Book from "./Book";
 import BookModal from "./BookModal";
+import WhoOwnsModal from "./WhoOwnsModal";
 import { searchFunction } from "../redux/actions/baseActions";
 
 export default function App() {
@@ -51,7 +52,9 @@ export default function App() {
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <Button className="ml-3" variant="outline-info" type="submit">Submit</Button>
+          <Button className="ml-3" variant="outline-info" type="submit">
+            Submit
+          </Button>
         </S.Form>
         <div>
           <S.Grid>
@@ -63,6 +66,7 @@ export default function App() {
       </div>
       {/* {activateModal ? <BookModal /> : null} */}
       <BookModal />
+      <WhoOwnsModal />
     </>
   );
 }
