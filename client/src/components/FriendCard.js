@@ -12,7 +12,6 @@ const FriendCard = ({ friend }) => {
   const [showWantBooks, setShowWantBooks] = useState(false);
   let { user } = friend;
   let { owner, ReadBooks, WantToReadBooks } = user;
-  console.log(user);
   return (
     <>
       <Card className="text-center mt-2 mb-3">
@@ -34,7 +33,7 @@ const FriendCard = ({ friend }) => {
               className="d-flex justify-content-center align-items-center m-1 m-sm-0"
               md={2}
             >
-              <S.ClickP
+              <S.ClickP style={showOwnedBooks ? { backgroundColor: '#17A2B8' } : {}}
                 onClick={(e) => {
                   setShowReadBooks(false);
                   setShowWantBooks(false);
@@ -48,7 +47,7 @@ const FriendCard = ({ friend }) => {
               className="d-flex justify-content-center align-items-center m-1 m-sm-0"
               md={2}
             >
-              <S.ClickP
+              <S.ClickP style={showReadBooks ? { backgroundColor: '#17A2B8' } : {}}
                 onClick={(e) => {
                   setShowOwnedBooks(false);
                   setShowWantBooks(false);
@@ -62,7 +61,7 @@ const FriendCard = ({ friend }) => {
               className="d-flex justify-content-center align-items-center m-1 m-sm-0"
               md={2}
             >
-              <S.ClickP
+              <S.ClickP style={showWantBooks ? { backgroundColor: '#17A2B8' } : {}}
                 onClick={(e) => {
                   setShowOwnedBooks(false);
                   setShowReadBooks(false);
