@@ -65,9 +65,12 @@ router.post("/books", requireAuth, async (req, res) => {
 });
 
 // DELETE REQUEST TO DELETE FROM PERSONAL LISTS
-router.delete("/books", async (req, res) => {
+router.delete("/books", requireAuth, async (req, res) => {
   try {
-    let response = deleteBookByAnyID(req.body);
+    let response = deleteFromPersonalListFunctionMapping[req.body.whichList](
+      req.user.id,
+      req.body.bookID
+    );
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });
