@@ -79,12 +79,26 @@ Mode Code:
 
 
 **Screen Shots and GIFS**
+Logging in with Google
+![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
-Search Capabilities
+Logging in with email and password on mobile device
+![rmbs5](./client/src/styles/videos/mobielogin.gif)
+
+Adding Books to Personal Lists
 ![rmbs](./client/src/styles/videos/addtolist.gif)
+
+Searching for Books
+![rmbs2](./client/src/styles/videos/booksearch.gif)
+
+Sending and Accepting Friend Request
+![rmbs3](./client/src/styles/videos/friendrequest.gif)
+
+Searching for New Friends/Viewing Friends' Books
+![rmbs4](./client/src/styles/videos/friendssearchbooks.gif)
+
+
   
-<!-- Saving Cards to Personal Lists
-![movie-matrix-saving](https://user-images.githubusercontent.com/26754072/106791021-0096d580-661a-11eb-8f54-07f7f66a9bee.gif) -->
 
 
 
