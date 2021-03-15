@@ -62,9 +62,14 @@ export const addBookToPersonalLists = async (book, whichList) => {
 
 export const deleteBookFromPersonalLists = async (bookID, whichList) => {
   try {
+    console.log("INSIDE DELETE FUNCTION ON CLIENT");
+    console.log(bookID);
+    console.log(whichList);
     let response = await axiosInstance.delete("http://localhost:3005/books", {
-      bookID,
-      whichList,
+      data: {
+        bookID,
+        whichList,
+      },
     });
     console.log(response);
     // if (response.data[1]) {
