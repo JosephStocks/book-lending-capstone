@@ -70,7 +70,7 @@ const PotentialFriendCard = ({ user }) => {
         <Card.Header>
           {capitalize(user.firstName)} {capitalize(user.lastName)}
         </Card.Header>
-        <Card.Header>{user.email}</Card.Header>
+        <Card.Header>{user.email || user.googleAuth}</Card.Header>
         <Card.Body className="p-2">{showFriendshipStatus}</Card.Body>
       </Card>
     </>

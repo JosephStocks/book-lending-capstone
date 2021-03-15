@@ -94,7 +94,6 @@ export const fetchAllFriendRelationsIDsANDDispatch = async () => {
     allFriendsRelationsIDs = allFriendsRelationsIDs.data;
     console.log(allFriendsRelationsIDs);
     console.log("FETCH ALL IDS - 2");
-
     store.dispatch(setAllFriendRelationsIDs(allFriendsRelationsIDs));
   } catch (error) {
     console.error(error);
