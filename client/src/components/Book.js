@@ -54,7 +54,9 @@ export default function Book({ book, onPersonalPage }, props) {
     toggleFunction();
     addBookFunction();
   };
+  const handleDelete = () => {
 
+  }
   useEffect(() => {
     setHeight(elementRef.current.clientHeight);
     if (height < 25) {
@@ -134,9 +136,13 @@ export default function Book({ book, onPersonalPage }, props) {
           >
             Add Book to Database
           </S.Button> */}
+          <S.Button variant="danger" key={`button3-${id}`} onClick={handleDelete}>
+            Remove from list
+          </S.Button>
           <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>
+
           {/* <S.Button
             key={`button3-${id}`}
             size="sm"
