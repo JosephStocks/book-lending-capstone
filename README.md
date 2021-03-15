@@ -25,7 +25,7 @@ To use the app simply click on the link provided above. User can choose to regis
 
 **MVP**
 
-Our base goal was to give the user the ability the register a username and password, login and choose a book from the search results so that they can add a chosen book to an "I own this book", "I have read this book", or "I want to read this book" list. 
+Our base goal was to give the user the ability the register a username and password, login and choose a book from the search results so that they can add a chosen book to an "I own this book", "I have read this book", or "I want to read this book" list. We also allowed for users to become "friends" and view each other's owned books and give access to "friends" email.
 
 <img src="./client/public/Search.png" width="700" height="500">
 
@@ -34,16 +34,55 @@ Our base goal was to give the user the ability the register a username and passw
 
 **Stretch Goals**
 
-Leaving reviews and comments on books.
+Leaving reviews and comments on books. Chatting with friends.
 
 **Code Snippets**
 
-More Code:
+**Server side logic to create entry in Personal Tables (OwnedBooks, ReadBooks, WantToReadBooks).**
+**Creates a mapping object that is indexed by "owned", "read", or "want" to create the entry in the correct table.:**
 ```
-   
+const findOrCreatePersonalListEntry = async (dbTableModel, userID, bookID) => {
+  return await dbTableModel.findOrCreate({
+    where: {
+      userID: userID,
+      bookID: bookID,
+    },
+  });
+};
+const findOrCreatePersonalListFunctionMapping = {
+  owned: async (userID, bookID) =>
+    await findOrCreatePersonalListEntry(db.OwnedBooks, userID, bookID),
+  read: async (userID, bookID) =>
+    await findOrCreatePersonalListEntry(db.ReadBooks, userID, bookID),
+  want: async (userID, bookID) =>
+    await findOrCreatePersonalListEntry(db.WantToReadBooks, userID, bookID),
+};
+```
+**Client Side of Creating Book Entry in Personal Tables**
+```
+export const addBookToPersonalLists = async (book, whichList) => {
+  try {
+    let response = await axiosInstance.post("http://localhost:3005/books", {
+      book,
+      whichList,
+    });
+    if (response.data[1]) {
+      toast.success(
+        `${book.title} was added to your ${capitalize(whichList)} List`
+      );
+    } else {
+      toast.warn(
+        `${book.title} is already in your ${capitalize(whichList)} List`
+      );
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("There was an ERROR saving your book!");
+  }
+};
 ```
 
-Conditional Rendering for navbar if user is logged in or logged out:
+**Conditional Rendering for navbar if user is logged in or logged out:**
 ```
 let whichButtons;
     if (token !== “” && googleAuth === true) {
@@ -71,9 +110,93 @@ let whichButtons;
 
 ```
 
-Mode Code:
+**Custom server side authentication callback to inform the user of any signup issues.:**
+```
+router.post("/signin", (req, res, next) => {
+    passport.authenticate('local', { session: false }, (err, user, info) => {
+        if (err) {
+            return res.status(405).json({ message: "User not found!" })
+        }
+        if (!user) {
+            return res.status(410).json({ message: info.message })
+        }
+        req.logIn(user, { session: false }, (err) => {
+            if (err) {
+                return res.status(410).json({ token: "", message: "Something went wrong!" })
+            }
+            //validate user in middleware
+            // create token and save to db
+            let jwtToken = createToken(user);
+            // send token to user
+            return res.json({ token: jwtToken, firstName: req.user.firstName, lastName: req.user.lastName });
+        });
+    })(req, res, next);
+});
+
 ```
 
+**Custom functional component to protect routes on the client side:**
+```
+const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
+    const token = useSelector(state => state.token);
+    return (
+        < Route {...rest} render={(props) => {
+            console.log('in protected');
+            if (token) {
+                return <PrRoute  {...props} />
+            }
+            else {
+                return <Redirect
+                    to={{
+                        pathname: '/login',
+                        state: { from: props.location }
+                    }} />
+            }
+        }}
+        />
+    )
+};
+
+```
+**Custom functional component to protect routes on the client side:**
+```
+const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
+    const token = useSelector(state => state.token);
+    return (
+        < Route {...rest} render={(props) => {
+            console.log('in protected');
+            if (token) {
+                return <PrRoute  {...props} />
+            }
+            else {
+                return <Redirect
+                    to={{
+                        pathname: '/login',
+                        state: { from: props.location }
+                    }} />
+            }
+        }}
+        />
+    )
+};
+
+```
+**Axios interceptor adds token to every internal api http request using this axios instance. The fetch function is a simplified example of how to use the intercepted axios instance.:**
+```
+const axiosInstance = axios.create();
+axiosInstance.interceptors.request.use(function (config) {
+  config.headers.Authorization = loadTokenFromLocalStorage();
+  return config;
+});
+export const fetchUserSearchResults = async (searchQuery) => {
+  try {
+    return await axiosInstance.post("http://localhost:3005/users", {
+      searchQuery,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 ```
 
