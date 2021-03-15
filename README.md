@@ -78,10 +78,10 @@ Mode Code:
 ```
 
 
-<!-- **Screen Shots and GIFS**
+**Screen Shots and GIFS**
 
 Search Capabilities
-![movie-matrix-search2](https://user-images.githubusercontent.com/26754072/106790757-9a11b780-6619-11eb-85cb-5bdaa59e0e17.gif)   -->
+![rmbs](./client/src/styles/videos/addtolist.gif)
   
 <!-- Saving Cards to Personal Lists
 ![movie-matrix-saving](https://user-images.githubusercontent.com/26754072/106791021-0096d580-661a-11eb-8f54-07f7f66a9bee.gif) -->
