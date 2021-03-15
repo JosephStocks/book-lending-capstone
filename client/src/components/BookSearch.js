@@ -56,7 +56,7 @@ export default function App() {
         <div>
           <S.Grid>
             {searchResults?.map((book, index) => (
-              <Book key={index} book={{ ...book, index }} />
+              <Book fromSearch key={index} book={{ ...book, index }} />
             ))}
           </S.Grid>
         </div>

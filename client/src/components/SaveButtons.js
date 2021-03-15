@@ -17,7 +17,8 @@ export default function SaveButtons() {
         key={`button4-${individBook.id}`}
         size="sm"
         onClick={() => {
-          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID);
+          console.log(individBook);
+          fetchAllUsersWhoOwnsBookANDDispatch(individBook.bookID || individBook.id);
           dispatch(toggleWhoOwnsModal());
         }}
       >
