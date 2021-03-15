@@ -331,6 +331,17 @@ export const ClickP = styled.p`
   border-radius: 3px;
   margin: 0px;
   padding: 0.3rem;
+
+  ${({ arrow }) =>
+    arrow
+      ? css`
+          background-color: #17A2B8;
+          border-bottom: 10px solid #17A2B8;
+          border-bottom-left-radius: 50%;
+          border-bottom-right-radius: 50%;
+        `
+      : ""}
+  
 `;
 
 export const GridFriendsBooks = styled.div`
