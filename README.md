@@ -11,19 +11,19 @@ ReadMe Book Swap is an app for book lovers and new readers alike! RMBS provides 
 
 
 
-**How To Use App**
+### How To Use App
 
 - Account Login Name/Email:  test@me.com
 - Password for Account: 1234
 
 To use the app simply click on the link provided above. User can choose to register and login or can use the login and password that are provided directly above. Once logged in the user can search for certain books. To see the details of the book card just simply click the "See More" button on the card of the book and a modal dialog box will appear with the specific information regarding that book. If the user decides they want to add this to any of their lists, they can hit either "I own this book", "I have read this book", or "I want to read this book". Once the user has added to the appropriate group the user can then navigate to the corresponding page which is located within the "My Dashboard" dropdown menu. Here they can see each individual page that will correspond to any books that have been saved. When the user is finished, they can simply logout. 
 
-**Tech Stack**
+### Tech Stack
 
 - React.js, Redux.js, Bootstrap, Sass, SQL, Sequelize, Passport
 - API : Google Books API
 
-**MVP**
+### MVP
 
 Our base goal was to give the user the ability the register a username and password, login and choose a book from the search results so that they can add a chosen book to an "I own this book", "I have read this book", or "I want to read this book" list. We also allowed for users to become "friends" and view each other's owned books and give access to "friends" email.
 
@@ -32,11 +32,11 @@ Our base goal was to give the user the ability the register a username and passw
 <img src="./client/public/Dashboard.png" width="700" height="500">
 
 
-**Stretch Goals**
+### Stretch Goals
 
 Leaving reviews and comments on books. Chatting with friends.
 
-**Code Snippets**
+### Code Snippets
 
 **Server side logic to create entry in Personal Tables (OwnedBooks, ReadBooks, WantToReadBooks).**
 **Creates a mapping object that is indexed by "owned", "read", or "want" to create the entry in the correct table.:**
@@ -201,7 +201,7 @@ export const fetchUserSearchResults = async (searchQuery) => {
 ```
 
 
-**Screen Shots and GIFS**<br/><br/>
+### Screenshots and GIFs<br/><br/>
 **Logging in with Google**
 ![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
@@ -225,9 +225,9 @@ export const fetchUserSearchResults = async (searchQuery) => {
 
 
 
-**Developer Team**
+### Developer Team
 
-- Joe Stocks: 
-- Jacob Deel: UX, Design, Responsiveness
-- Claude Major: 
+- Joe Stocks: Database, API, Search Logic
+- Claude Major: Authentication, Security, Database
 - Ian Haddock: UX, Design, Responsiveness
+- Jacob Deel: UX, Design, Responsiveness
