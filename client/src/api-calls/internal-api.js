@@ -2,7 +2,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import store, { loadTokenFromLocalStorage } from "../redux/store";
 import capitalize from "../helper-functions/capitalize";
-import { setWhoOwnsIt } from "../redux/actions/baseActions";
+import {
+  setWhoOwnsIt,
+  saveOwnedBooks,
+  saveReadBooks,
+  saveWantBooks,
+} from "../redux/actions/baseActions";
 
 // Adds token to every http request using this axios instance
 const axiosInstance = axios.create();
@@ -182,5 +187,19 @@ export const fetchAllUsersWhoOwnsBookANDDispatch = async (bookID, whichID) => {
   } catch (error) {
     console.error(error);
     console.log("There was an issue fetching your friend requests!");
+  }
+};
+
+export const fetchAllPersonalBooksANDDispatch = async (bookID, whichID) => {
+  try {
+    let ownedBooks = await cleanFetchedBooks(await fetchOwnedBooks());
+    store.dispatch(saveOwnedBooks(ownedBooks));
+    let readBooks = await cleanFetchedBooks(await fetchReadBooks());
+    let wantBooks = await cleanFetchedBooks(await fetchWantBooks());
+    store.dispatch(saveReadBooks(readBooks));
+    store.dispatch(saveWantBooks(wantBooks));
+  } catch (error) {
+    console.error(error);
+    console.log("There was an issue fetching your books!");
   }
 };

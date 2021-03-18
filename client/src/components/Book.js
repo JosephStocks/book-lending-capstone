@@ -6,6 +6,7 @@ import {
   bookDeleteRequestByDatabaseID,
   bookDeleteRequestByGoogleBookID,
   deleteBookFromPersonalLists,
+  fetchAllPersonalBooksANDDispatch,
 } from "../api-calls/internal-api";
 import {
   toggleModal,
@@ -15,7 +16,10 @@ import {
 
 import * as S from "../styles/Styles";
 
-export default function Book({ book, onPersonalPage, tabKey, fromSearch }, ...props) {
+export default function Book(
+  { book, onPersonalPage, tabKey, fromSearch },
+  ...props
+) {
   let {
     id,
     bookID,
@@ -72,6 +76,7 @@ export default function Book({ book, onPersonalPage, tabKey, fromSearch }, ...pr
 
   const handleDelete = () => {
     deleteBookFromPersonalLists(bookID, whichList);
+    fetchAllPersonalBooksANDDispatch();
   };
 
   useEffect(() => {
@@ -144,13 +149,15 @@ export default function Book({ book, onPersonalPage, tabKey, fromSearch }, ...pr
           )}
         </S.CardContent>
         <S.ButtonGroup key={`buttons-${id}`}>
-          {fromSearch ? null : (<S.Button
-            variant="danger"
-            key={`button3-${id}`}
-            onClick={handleDelete}
-          >
-            Remove from list
-          </S.Button>)}
+          {fromSearch ? null : (
+            <S.Button
+              variant="danger"
+              key={`button3-${id}`}
+              onClick={handleDelete}
+            >
+              Remove from list
+            </S.Button>
+          )}
           <S.Button variant="info" key={`button2-${id}`} onClick={handleClick}>
             See More
           </S.Button>

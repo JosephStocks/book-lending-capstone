@@ -28,9 +28,17 @@ const PotentialFriendCard = ({ user }) => {
   // render based on friendship status
   let showFriendshipStatus = "";
   if (friendshipState === "alreadyfriends") {
-    showFriendshipStatus = <Button variant="outline-info" disabled>Already friends</Button>;
+    showFriendshipStatus = (
+      <Button variant="outline-info" disabled>
+        Already friends
+      </Button>
+    );
   } else if (friendshipState === "friendRequestSent") {
-    showFriendshipStatus = <Button variant="outline-info" disabled>Friend request sent</Button>;
+    showFriendshipStatus = (
+      <Button variant="outline-info" disabled>
+        Friend request sent
+      </Button>
+    );
   } else if (friendshipState === "receivedFriendRequest") {
     showFriendshipStatus = (
       <div>
@@ -38,6 +46,7 @@ const PotentialFriendCard = ({ user }) => {
           onClick={async () => {
             await acceptFriendRequest(user.id);
             await fetchAllFriendRelationsIDsANDDispatch();
+            await fetchPendingFriendRequestsANDDispatchToRedux();
           }}
           className="mr-3"
           variant="outline-success"
