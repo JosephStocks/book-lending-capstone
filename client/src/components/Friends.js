@@ -100,7 +100,7 @@ const Friends = () => {
                         <Button
                           onClick={async () => {
                             await acceptFriendRequest(fromUserID);
-                            fetchPendingFriendRequestsANDDispatchToRedux();
+                            await fetchPendingFriendRequestsANDDispatchToRedux();
                           }}
                           className="mr-3"
                           variant="outline-success"
