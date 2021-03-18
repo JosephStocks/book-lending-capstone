@@ -57,7 +57,7 @@ let localLogin = new LocalStrategy(options, async (req, email, password, done) =
  */
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: process.env.secret,
+    secretOrKey: process.env.SECRET,
     passReqToCallback: true
 }
 let jwtLogin = new JwtStrategy(jwtOptions, async (req, payload, done) => {
