@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcryptjs"); //encrypt passwords
 const crypto = require('crypto'); // random bytes
 const db = require("../models");
-const config = require('../config/jwtsecret');
+// const config = require('../config/jwtsecret');
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 require('../auth/passAuth'); //import all of passport auth strategy
@@ -11,7 +12,7 @@ require('../auth/passAuth'); //import all of passport auth strategy
 // create token and store in in the db
 const createToken = (user) => {
     // create token
-    let jwtToken = jwt.sign({ id: user.id }, config.secret);
+    let jwtToken = jwt.sign({ id: user.id }, process.env.secret);
     // save token to DB
     const saveToken = db.user.update({ jwtToken }, { where: { id: user.id } })
     // return token
