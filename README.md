@@ -158,36 +158,15 @@ const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
 };
 
 ```
-**Custom functional component to protect routes on the client side:**
-```
-const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
-    const token = useSelector(state => state.token);
-    return (
-        < Route {...rest} render={(props) => {
-            console.log('in protected');
-            if (token) {
-                return <PrRoute  {...props} />
-            }
-            else {
-                return <Redirect
-                    to={{
-                        pathname: '/login',
-                        state: { from: props.location }
-                    }} />
-            }
-        }}
-        />
-    )
-};
 
-```
-**Axios interceptor adds token to every internal api http request using this axios instance. The fetch function is a simplified example of how to use the intercepted axios instance.:**
+**Axios interceptor adds token to every internal api http request using this axios instance. The http post request is a simplified example of how to use the intercepted axios instance.:**
 ```
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use(function (config) {
   config.headers.Authorization = loadTokenFromLocalStorage();
   return config;
 });
+
 export const fetchUserSearchResults = async (searchQuery) => {
   try {
     return await axiosInstance.post("http://localhost:3005/users", {
