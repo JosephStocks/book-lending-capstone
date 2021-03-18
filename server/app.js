@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const passport = require('passport');
-
 
 //body parser
 app.use(express.urlencoded({ extended: false }));
