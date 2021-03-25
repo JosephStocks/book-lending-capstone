@@ -1,22 +1,17 @@
 ## ReadMe BookSwap
 
-
-## URL <>
-
+## URL <https://readmebookswap.netlify.app/>
 
 ReadMe Book Swap is an app for book lovers and new readers alike! RMBS provides a space for connecting with readers who want to trade books with others. Offer up a book you love and share it with friends! RMBS is the tiny library on the corner in your neighborhood if it was an app! Come search and find who has a book that you would like to borrow, barter, or lend.
 
-
 <img src="./client/public/Front.png" width="700" height="500">
-
-
 
 ### How To Use App
 
-- Account Login Name/Email:  test@me.com
+- Account Login Name/Email: test@me.com
 - Password for Account: 1234
 
-To use the app simply click on the link provided above. User can choose to register and login or can use the login and password that are provided directly above. Once logged in the user can search for certain books. To see the details of the book card just simply click the "See More" button on the card of the book and a modal dialog box will appear with the specific information regarding that book. If the user decides they want to add this to any of their lists, they can hit either "I own this book", "I have read this book", or "I want to read this book". Once the user has added to the appropriate group the user can then navigate to the corresponding page which is located within the "My Dashboard" dropdown menu. Here they can see each individual page that will correspond to any books that have been saved. When the user is finished, they can simply logout. 
+To use the app simply click on the link provided above. User can choose to register and login or can use the login and password that are provided directly above. Once logged in the user can search for certain books. To see the details of the book card just simply click the "See More" button on the card of the book and a modal dialog box will appear with the specific information regarding that book. If the user decides they want to add this to any of their lists, they can hit either "I own this book", "I have read this book", or "I want to read this book". Once the user has added to the appropriate group the user can then navigate to the corresponding page which is located within the "My Dashboard" dropdown menu. Here they can see each individual page that will correspond to any books that have been saved. When the user is finished, they can simply logout.
 
 ### Tech Stack
 
@@ -31,7 +26,6 @@ Our base goal was to give the user the ability the register a username and passw
 
 <img src="./client/public/Dashboard.png" width="700" height="500">
 
-
 ### Stretch Goals
 
 Leaving reviews and comments on books. Chatting with friends.
@@ -40,6 +34,7 @@ Leaving reviews and comments on books. Chatting with friends.
 
 **Server side logic to create entry in Personal Tables (OwnedBooks, ReadBooks, WantToReadBooks).**
 **Creates a mapping object that is indexed by "owned", "read", or "want" to create the entry in the correct table.:**
+
 ```
 const findOrCreatePersonalListEntry = async (dbTableModel, userID, bookID) => {
   return await dbTableModel.findOrCreate({
@@ -58,7 +53,9 @@ const findOrCreatePersonalListFunctionMapping = {
     await findOrCreatePersonalListEntry(db.WantToReadBooks, userID, bookID),
 };
 ```
+
 **Client Side of Creating Book Entry in Personal Tables**
+
 ```
 export const addBookToPersonalLists = async (book, whichList) => {
   try {
@@ -83,6 +80,7 @@ export const addBookToPersonalLists = async (book, whichList) => {
 ```
 
 **Conditional Rendering for navbar if user is logged in or logged out:**
+
 ```
 let whichButtons;
     if (token !== “” && googleAuth === true) {
@@ -111,6 +109,7 @@ let whichButtons;
 ```
 
 **Custom server side authentication callback to inform the user of any signup issues.:**
+
 ```
 router.post("/signin", (req, res, next) => {
     passport.authenticate('local', { session: false }, (err, user, info) => {
@@ -136,6 +135,7 @@ router.post("/signin", (req, res, next) => {
 ```
 
 **Custom functional component to protect routes on the client side:**
+
 ```
 const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
     const token = useSelector(state => state.token);
@@ -160,6 +160,7 @@ const ProtectedRoute = ({ component: PrRoute, ...rest }) => {
 ```
 
 **Axios interceptor adds token to every internal api http request using this axios instance. The http post request is a simplified example of how to use the intercepted axios instance.:**
+
 ```
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use(function (config) {
@@ -179,8 +180,8 @@ export const fetchUserSearchResults = async (searchQuery) => {
 
 ```
 
-
 ### Screenshots and GIFs<br/><br/>
+
 **Logging in with Google**
 ![rmbs5](./client/src/styles/videos/googlelogin.gif)
 
@@ -198,11 +199,6 @@ export const fetchUserSearchResults = async (searchQuery) => {
 
 **Searching for New Friends/Viewing Friends' Books**
 ![rmbs4](./client/src/styles/videos/friendssearchbooks.gif)
-
-
-  
-
-
 
 ### Developer Team
 
